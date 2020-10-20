@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   static_mem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/20 20:00:44 by ezalos           ###   ########.fr       */
+/*   Created: 2020/10/20 17:45:12 by ezalos            #+#    #+#             */
+/*   Updated: 2020/10/20 17:57:20 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-void		our_free(void *alloc)
+t_malloc		**static_mem(void)
 {
-	(void)alloc;
-	free(alloc);
+	static t_malloc		*memory;
+
+	return (&memory);
 }
