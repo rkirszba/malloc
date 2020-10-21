@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:20:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/21 14:57:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/21 15:00:12 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int8_t			alloc_split(t_alloc *alloc, size_t first_alloc_size)
 
 	retval = ERROR;
 	old_size = ABS(alloc->size);
-	if (first_alloc_size < old_size)
+	if (first_alloc_size < old_size - sizeof(*alloc))
 	{
 		retval = SUCCESS;
 		mem_index_del(alloc);
 		alloc->size = first_alloc_size;
-
-
+		alloc = alloc_access_next(alloc);
+		alloc->size = old_size - first_alloc_size - sizeof(*alloc);
 	}
 	return (retval);
 }
