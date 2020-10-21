@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/21 11:43:44 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/21 12:40:07 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ZONE_SIZE	4096
 
 # define ERROR		-1
+# define FAILURE	-1
 # define SUCCESS	0
 
 # define TRUE		1
@@ -40,8 +41,14 @@
 typedef	struct				s_alloc
 {
 	int32_t					size;
-	uint8_t					*alloc;
+	//uint8_t				zone of 'size' octets of memory;
 }							t_alloc;
+
+typedef	struct				s_mem_index
+{
+	int32_t					size;
+	t_alloc					*alloc;
+}							t_mem_index;
 
 typedef	struct				s_zone
 {

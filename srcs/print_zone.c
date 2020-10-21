@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 20:01:57 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/21 11:43:58 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/21 12:22:24 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,6 @@ void 			mem_put_color(t_alloc *alloc, int8_t alloc_nb)
 	{
 		printf("\x1b[38;2;%d;%d;%dm", 255, 255, 155);
 	}
-}
-
-t_alloc			*access_alloc_th(t_zone *zone, size_t zone_size,
-				size_t umpteenth)
-{
-	t_alloc		*alloc;
-	void		*ptr_lim;
-	size_t		alloc_nb;
-
-	alloc_nb = 0;
-	ptr_lim = (uint8_t*)zone + zone_size;
-	alloc = &zone->allocation;
-	while (alloc_nb < umpteenth)
-	{
-		alloc = (t_alloc*)((uint8_t*)alloc + alloc->size + sizeof(alloc->size));
-		alloc_nb++;
-		if ((void*)alloc >= ptr_lim)
-			return (NULL);
-	}
-	return (alloc);
 }
 
 void			print_alloc(t_alloc *alloc, size_t *total_octet,
@@ -81,12 +61,12 @@ void			print_zone(t_zone *zone, size_t zone_size)
 
 	total_octet = 0;
 	alloc_nb = 0;
-	alloc = access_alloc_th(zone, zone_size, alloc_nb);
+	alloc = alloc_access_th(zone, zone_size, alloc_nb);
 	while (alloc)
 	{
 		mem_put_color(alloc, alloc_nb);
 		print_alloc(alloc, &total_octet, alloc_nb);
-		alloc = access_alloc_th(zone, zone_size, ++alloc_nb);
+		alloc = alloc_access_th(zone, zone_size, ++alloc_nb);
 
 	}
 	printf("\n");
