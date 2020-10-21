@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 20:01:57 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/20 21:32:05 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/21 11:43:58 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void 			mem_put_color(t_alloc *alloc, int8_t alloc_nb)
 	}
 }
 
-t_alloc			*access_alloc_th(t_zone_alloc *zone, size_t zone_size,
+t_alloc			*access_alloc_th(t_zone *zone, size_t zone_size,
 				size_t umpteenth)
 {
 	t_alloc		*alloc;
@@ -59,7 +59,7 @@ void			print_alloc(t_alloc *alloc, size_t *total_octet,
 	octet = 0;
 	while (octet < (size_t)ABS(alloc->size))
 	{
-		if (*total_octet % PRINT_LINE_SIZE == 0)
+		if (0 == *total_octet % PRINT_LINE_SIZE)
 		{
 			printf("\x1b[0m");
 			printf("%p: ", (uint8_t*)alloc + sizeof(alloc->size) + octet);
@@ -68,12 +68,12 @@ void			print_alloc(t_alloc *alloc, size_t *total_octet,
 		printf("%02hhd ", *((uint8_t*)alloc + sizeof(alloc->size) + octet));
 		octet++;
 		(*total_octet)++;
-		if (*total_octet % PRINT_LINE_SIZE == 0)
+		if (0 == *total_octet % PRINT_LINE_SIZE)
 			printf("\n");
 	}
 }
 
-void			print_zone(t_zone_alloc *zone, size_t zone_size)
+void			print_zone(t_zone *zone, size_t zone_size)
 {
 	t_alloc		*alloc;
 	size_t		alloc_nb;
@@ -96,7 +96,7 @@ void			print_zone(t_zone_alloc *zone, size_t zone_size)
 void		print_malloc_mem(void)
 {
 	t_malloc		*base;
-	t_zone_alloc	*zone;
+	t_zone			*zone;
 	size_t			zone_nb;
 
 	base = *static_mem();

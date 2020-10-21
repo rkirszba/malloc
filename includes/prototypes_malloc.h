@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:14:59 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/20 20:38:24 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/21 11:43:24 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void		*our_malloc(size_t size);
 t_malloc	**static_mem(void);
 void		test_read(void *mem, size_t size);
 void		test_write(void *mem, size_t size);
-int8_t		zone_create(t_zone_alloc **zone, size_t zone_size);
-int8_t		zone_all_liberate(t_zone_alloc *zone, size_t zone_size);
+int8_t		zone_create(t_zone **zone, size_t zone_size);
+int8_t		zone_liberate_all(t_zone *zone, size_t zone_size);
 void		print_malloc_mem(void);
 
 #endif

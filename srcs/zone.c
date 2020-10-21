@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/20 19:55:01 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/21 11:41:37 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	It then adds a new entry available memory index
 */
 
-int8_t	zone_create(t_zone_alloc **zone, size_t zone_size)
+int8_t	zone_create(t_zone **zone, size_t zone_size)
 {
 	while (*zone)
 		*zone = (*zone)->next_zone;
@@ -29,16 +29,16 @@ int8_t	zone_create(t_zone_alloc **zone, size_t zone_size)
 	if (*zone == MAP_FAILED)
 		return (ERROR);
 
-	(*zone)->allocation.size = zone_size - sizeof((*zone)->allocation.size);
+	(*zone)->allocation.size = zone_size - sizeof((*zone)->allocation.size) - sizeof((*zone)->next_zone);
 
-	//add_available_alloc((*zone), zone_size);
+	//add_available_alloc((*zone)->allocation, (*zone)->allocation.size);
 	return (SUCCESS);
 }
 
 
-int8_t	zone_all_liberate(t_zone_alloc *zone, size_t zone_size)
+int8_t	zone_liberate_all(t_zone *zone, size_t zone_size)
 {
-	t_zone_alloc	*n_zone;
+	t_zone			*n_zone;
 	int8_t			retval;
 
 	retval = SUCCESS;
@@ -46,7 +46,7 @@ int8_t	zone_all_liberate(t_zone_alloc *zone, size_t zone_size)
 	{
 		n_zone = zone;
 		zone = zone->next_zone;
-	    if (munmap((void*)n_zone, zone_size) == -1)
+	    if (-1 == munmap((void*)n_zone, zone_size))
 			retval = ERROR;
 	}
 	return (retval);

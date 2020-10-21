@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/20 20:56:34 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/21 11:43:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,25 @@
 
 # define ABS(x)		((x < 0) ? -x : x)
 
-typedef	struct		s_alloc
+typedef	struct				s_alloc
 {
-	int32_t			size;
-	uint8_t			*alloc;
-}					t_alloc;
+	int32_t					size;
+	uint8_t					*alloc;
+}							t_alloc;
 
-typedef	struct		s_zone_alloc
+typedef	struct				s_zone
 {
-	void			*next_zone;
-	t_alloc			allocation;
-}					t_zone_alloc;
+	struct s_zone			*next_zone;
+	t_alloc					allocation;
+}							t_zone;
 
-typedef	struct		s_malloc
+typedef	struct				s_malloc
 {
-	t_zone_alloc	*tiny_zone;
-	size_t			tiny_zone_size;
-	t_zone_alloc	*small_zone;
-	size_t			small_zone_size;
-}					t_malloc;
+	t_zone					*tiny_zone;
+	size_t					tiny_zone_size;
+	t_zone					*small_zone;
+	size_t					small_zone_size;
+}							t_malloc;
 
 # include "prototypes_malloc.h"
 
