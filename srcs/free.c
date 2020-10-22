@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 18:05:56 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:21:36 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_alloc_header	*get_alloc_header(void* alloc, t_zone *zone)
 			if ((void*)alloc_cursor == (uint8_t*)alloc - (sizeof(t_alloc_header))
 				&& alloc_cursor->available == FALSE)
 			{
-				printf("Hello\n");
 				return alloc_cursor;
 			}
 			alloc_cursor = alloc_access_next(alloc_cursor);
@@ -42,12 +41,12 @@ void	free_alloc(t_alloc_header *alloc_header)
 
 void	our_free(void *alloc)
 {
-	t_malloc		*base;
+	t_infos			*base;
 	t_alloc_header	*alloc_header;
 
-	base = *static_mem();
-	if (!(alloc_header = get_alloc_header(alloc, base->tiny_zone)))
-		if (!(alloc_header = get_alloc_header(alloc, base->small_zone)))
+	base = static_mem();
+	if (!(alloc_header = get_alloc_header(alloc, base->tiny.zone)))
+		if (!(alloc_header = get_alloc_header(alloc, base->small.zone)))
 			return;
 	free_alloc(alloc_header);
 }
@@ -55,7 +54,7 @@ void	our_free(void *alloc)
 /*
 int8_t	remove_alloc(t_bst ***tree, )
 {
-	
+
 }
 
 void	our_free(void *alloc)

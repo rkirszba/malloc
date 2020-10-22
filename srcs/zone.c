@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 14:38:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:11:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int8_t	zone_create(t_zone **zone, size_t zone_size)
 		zone_prev->header.next_zone = (*zone);
 
 	zone_header_init(&(*zone)->header);
-	alloc_header_init(&(*zone)->first_alloc_header, zone_size - sizeof((*zone)->header), TRUE, TRUE);
 
+	alloc_header_init(&(*zone)->first_alloc_header, zone_size - sizeof((*zone)->header), TRUE, TRUE);
+	
 	//add_available_alloc((*zone)->allocation, (*zone)->allocation.size);
 	return (SUCCESS);
 }

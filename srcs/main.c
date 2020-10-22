@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:46 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 16:00:56 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:46:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		main(int ac, char **av)
 		return (0);
 	size = atoi(av[1]);
 	mem = our_malloc(size);
+
+
 	mem_2 = our_malloc(size * 2);
 
 
@@ -35,7 +37,7 @@ int		main(int ac, char **av)
 	our_free(mem_2);
 
 	print_malloc_mem();
-	
+
 	malloc_exit();
 	return (0);
 }

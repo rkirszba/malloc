@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/10/22 16:25:40 by ldevelle         ###   ########.fr        #
+#    Updated: 2020/10/22 17:30:33 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ run: $(NAME)
 	./$(NAME) $(COMMAND_ARGS)
 
 prototypes:
-	python3 .tmp/prototype_catcher.py srcs includes/prototypes.h malloc
+	python3 .tmp/prototype_catcher.py srcs includes/prototypes_malloc.h malloc
 
 REQUEST 		= 'read -p "Enter a commit message:	" pwd && echo $$pwd'
 COMMIT_MESSAGE ?= $(shell bash -c $(REQUEST))

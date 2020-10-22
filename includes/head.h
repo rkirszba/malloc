@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   head.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/22 18:06:44 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:21:42 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "tree.h"
 
 # define ZONE_SIZE	4096
+# define TABLE_SIZE	((ZONE_SIZE / 4 / 16) + 1)
 
 # define ERROR		-1
 # define FAILURE	-1
@@ -43,7 +44,7 @@
 
 typedef	struct				s_alloc_header
 {
-	// t_rbt					rbt;
+	t_rbt					rbt;
 	int32_t					size;
 	uint8_t					available;
 	uint8_t					last;
@@ -61,13 +62,19 @@ typedef	struct				s_zone
 	//uint8_t				first allocation memory of 'size' octets of memory;
 }							t_zone;
 
-typedef	struct				s_malloc
+typedef	struct				s_mem_type
 {
-	t_zone					*tiny_zone;
-	size_t					tiny_zone_size;
-	t_zone					*small_zone;
-	size_t					small_zone_size;
-}							t_malloc;
+	t_zone					*zone;
+	size_t					size;
+	t_rbt					*available[TABLE_SIZE];
+}							t_mem_type;
+
+typedef	struct				s_infos
+{
+	t_mem_type				tiny;
+	t_mem_type				small;
+	t_rbt					*unavailable;
+}							t_infos;
 
 # include "prototypes_malloc.h"
 

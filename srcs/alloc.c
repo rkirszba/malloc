@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:20:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/22 15:53:44 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:11:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	alloc_header_init(t_alloc_header *header, size_t size,
 		uint8_t available, uint8_t last)
 {
-	header->size = size - sizeof(header);
+	header->size = size - sizeof(*header);
 	header->available = available;
 	header->last = last;
 }
@@ -35,29 +35,22 @@ t_alloc_header			*alloc_access_next(t_alloc_header *alloc)
 	return (next_alloc_header);
 }
 
-t_alloc_header			*alloc_access_th(t_zone *zone, size_t zone_size,
-				size_t umpteenth)
+t_alloc_header			*alloc_access_th(t_zone *zone, size_t umpteenth)
 {
 	t_alloc_header		*alloc;
-	void		*ptr_lim;
 	size_t		alloc_nb;
 
 	alloc_nb = 0;
-	ptr_lim = (uint8_t*)zone + zone_size;
 	alloc = &zone->first_alloc_header;
-	while (alloc_nb < umpteenth)
+	while (alloc_nb < umpteenth && alloc)
 	{
-		if (alloc->last)
-			return (NULL);
 		alloc = alloc_access_next(alloc);
-		if ((void*)alloc >= ptr_lim)
-			return (NULL);
 		alloc_nb++;
 	}
 	return (alloc);
 }
 
-int8_t			alloc_split(t_alloc_header *alloc, size_t first_alloc_header_size)
+int8_t			alloc_split(t_alloc_header *alloc, size_t first_size)
 {
 	t_alloc_header		*new_alloc;
 	int8_t				retval;
@@ -65,21 +58,17 @@ int8_t			alloc_split(t_alloc_header *alloc, size_t first_alloc_header_size)
 	size_t				old_size;
 
 	retval = ERROR;
-	old_size = ABS(alloc->size);
-	if (first_alloc_header_size < old_size - sizeof(*alloc))
+	old_size = alloc->size;
+	if (first_size < old_size - sizeof(*alloc) && alloc->available)
 	{
 		retval = SUCCESS;
-		mem_index_del(alloc);
-		alloc->size = first_alloc_header_size;
+		// mem_index_del(alloc);
 		last = alloc->last;
-		alloc->last = FALSE;
-		alloc->available = TRUE;
+		alloc_header_init(alloc, first_size + sizeof(*alloc), TRUE, FALSE);
 		new_alloc = alloc_access_next(alloc);
-		new_alloc->size = old_size - first_alloc_header_size - sizeof(*alloc);
-		new_alloc->last = last;
-		new_alloc->available = TRUE;
-		mem_index_add(alloc);
-		mem_index_add(new_alloc);
+		alloc_header_init(new_alloc, old_size - first_size, TRUE, last);
+		// mem_index_add(alloc);
+		// mem_index_add(new_alloc);
 	}
 	return (retval);
 }
@@ -92,7 +81,7 @@ void		*get_spot(size_t size_to_find)
 	t_zone			*zone;
 
 	size_to_find = (((size_to_find - 1) >> 4) << 4) + 16;
-	zone = (*static_mem())->tiny_zone;
+	zone = static_mem()->tiny.zone;
 	while (zone)
 	{
 		alloc = &zone->first_alloc_header;
@@ -103,11 +92,10 @@ void		*get_spot(size_t size_to_find)
 				if ((size_t)alloc->size >= size_to_find)
 				{
 					alloc_split(alloc, size_to_find);
-					print_malloc_mem();
 					alloc->available = FALSE;
 					// printf("Size alloc header: %#lx\n", sizeof(alloc));
 					// printf("adrr: %p\n", alloc + sizeof(alloc));
-					return ((uint8_t*)alloc + sizeof(alloc));
+					return ((uint8_t*)alloc + sizeof(*alloc));
 				}
 			}
 			alloc = alloc_access_next(alloc);
