@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 14:38:28 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 15:14:42 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ int8_t		malloc_init(void)
 
 void		*our_malloc(size_t size)
 {
-	// void	*mem;
+	void	*mem;
 
 	if (*static_mem() == NULL)
 		if (malloc_init() == ERROR)
 			return ((void*)ERROR);
 
-	// mem = get_spot(size);
+	mem = get_spot(size);
+	return (mem);
 	return (malloc(size));
 }

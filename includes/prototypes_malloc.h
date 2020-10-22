@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:14:59 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 14:37:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 15:18:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ t_alloc_header		*mem_index_get(size_t size);
 void 		mem_put_color(t_alloc_header *alloc, int8_t alloc_nb);
 void		our_free(void *alloc);
 void		*our_malloc(size_t size);
-void		print_alloc_header(t_alloc_header *alloc, size_t *total_octet,
-			size_t alloc_nb);
+void		print_alloc_header(t_alloc_header *alloc, size_t *total_octet);
 void		print_malloc_mem(void);
 void		print_zone(t_zone *zone, size_t zone_size);
 t_malloc	**static_mem(void);
@@ -37,5 +36,6 @@ int8_t		zone_liberate_all(t_zone *zone, size_t zone_size);
 
 void	alloc_header_init(t_alloc_header *header, size_t size,
 		uint8_t available, uint8_t last);
+void		*get_spot(size_t size_to_find);
 
 #endif
