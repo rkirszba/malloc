@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:06:07 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/20 17:32:19 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/22 15:44:41 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		test_write(void *mem, size_t size)
 
 	i = 0;
 	while (i < size)
-		((char*)mem)[i++] = '\0';
+		((char*)mem)[i++] = 'X';
 }
 
 
