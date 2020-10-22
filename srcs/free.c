@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 15:57:21 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:01:55 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,25 @@ void	our_free(void *alloc)
 			return;
 	free_alloc(alloc_header);
 }
+
+/*
+int8_t	remove_alloc(t_bst ***tree, )
+{
+	
+}
+
+void	our_free(void *alloc)
+{
+	t_malloc		*base;
+	t_alloc_header	*alloc_header;
+
+	base = *static_mem();
+	if (remove_alloc(base->alloc_tab, alloc) == FAILURE)
+		return ;
+	alloc_header = (t_alloc_header*)alloc - sizeof(t_alloc_header);
+	alloc_header->available = TRUE;
+	/*
+	** fonction qui fait la defragmentation
+	*/
+}
+*/
