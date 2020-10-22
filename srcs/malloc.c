@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 15:48:24 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:01:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,33 @@
 
 int8_t		malloc_exit(void)
 {
-	t_malloc	*base;
+	t_infos			*base;
 	int8_t			retval;
 
 	retval = SUCCESS;
-	base = *static_mem();
-	if (ERROR == zone_liberate_all(base->small_zone, base->small_zone_size))
+	base = static_mem();
+	if (ERROR == zone_liberate_all(base->small.zone, base->small.size))
 		retval = ERROR;
-	if (ERROR == zone_liberate_all(base->tiny_zone, base->tiny_zone_size))
+	if (ERROR == zone_liberate_all(base->tiny.zone, base->tiny.size))
 		retval = ERROR;
-    if (-1 == munmap((void*)base, sizeof(t_malloc)))
+    if (-1 == munmap((void*)base, sizeof(t_infos)))
 		retval = ERROR;
 	return (retval);
 }
 
 int8_t		malloc_init(void)
 {
-	t_malloc	*base;
+	t_infos	*base;
 
-    base = mmap(NULL, sizeof(t_malloc), PROT_READ | PROT_WRITE,
-				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	base = static_mem();
 
-	if (base == MAP_FAILED)
+	base->small.size = ZONE_SIZE;
+	base->tiny.size = ZONE_SIZE / 4;
+
+	if (ERROR == zone_create(&base->small.zone, base->small.size))
 		return (ERROR);
 
-	*static_mem() = (t_malloc*)base;
-
-	base->small_zone_size = ZONE_SIZE;
-	base->tiny_zone_size = ZONE_SIZE / 4;
-
-	if (ERROR == zone_create(&base->small_zone, base->small_zone_size))
-		return (ERROR);
-
-	if (ERROR == zone_create(&(base->tiny_zone), base->tiny_zone_size))
+	if (ERROR == zone_create(&(base->tiny.zone), base->tiny.size))
 		return (ERROR);
 
 	return (SUCCESS);
@@ -56,7 +50,7 @@ void		*our_malloc(size_t size)
 {
 	void	*mem;
 
-	if (*static_mem() == NULL)
+	if (static_mem()->small.zone == NULL)
 		if (malloc_init() == ERROR)
 			return ((void*)ERROR);
 

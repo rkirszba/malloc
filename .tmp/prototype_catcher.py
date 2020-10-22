@@ -77,8 +77,14 @@ def generate_header(protos, name="test", subname=""):
         header += proto + ";" + "\n"
     header += "\n"
     header += "#endif"
-    print(header)
+    # print(header)
     return(header)
+
+def write_header(content, file_name):
+	with open(file_name,"r+") as f:
+		f.truncate(0)
+		f.write(content)
+		f.close()
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
@@ -91,3 +97,4 @@ if __name__ == "__main__":
         protos = sort_protos(protos)
         protos = align_protos(protos)
         content = generate_header(protos, "PROTOTYPES", sys.argv[3])
+        write_header(content, sys.argv[2])
