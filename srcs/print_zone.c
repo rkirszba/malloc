@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 20:01:57 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 14:39:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:58:31 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,51 @@
 
 void 			mem_put_color(t_alloc_header *alloc, int8_t alloc_nb)
 {
-	if (alloc->size > 0)
+	if (alloc_nb < 0)
+	{
+		alloc_nb = -(alloc_nb + 1);
+		alloc_nb /= 4;
+		// printf("\x1b[48;2;%d;%d;%dm", 55, 55, 55);
+		if (alloc_nb % 2)
+			printf("\x1b[38;2;%d;%d;%dm", 255, 205, 55);
+		else
+			printf("\x1b[38;2;%d;%d;%dm", 255, 255, 5);
+	}
+	else if (alloc->available)
 	{
 		if (alloc_nb % 2)
 			printf("\x1b[38;2;%d;%d;%dm", 155, 255, 155);
 		else
 			printf("\x1b[38;2;%d;%d;%dm", 205, 255, 205);
 	}
-	else if (alloc->size < 0)
+	else
 	{
 		printf("\x1b[38;2;%d;%d;%dm", 255, 155, 155);
 	}
-	else
+}
+
+void			print_alloc_header(t_alloc_header *alloc, size_t *total_octet)
+{
+	size_t		octet;
+
+	octet = 0;
+	while (octet < sizeof(alloc))
 	{
-		printf("\x1b[38;2;%d;%d;%dm", 255, 255, 155);
+		if (0 == *total_octet % PRINT_LINE_SIZE)
+		{
+			printf("\x1b[0m");
+			printf("%p: ", (uint8_t*)alloc + octet);
+		}
+		mem_put_color(alloc, -octet -1);
+		printf("%02hhx ", *((uint8_t*)alloc + octet));
+		octet++;
+		(*total_octet)++;
+		if (0 == *total_octet % PRINT_LINE_SIZE)
+			printf("\n");
 	}
 }
 
-void			print_alloc_header(t_alloc_header *alloc, size_t *total_octet,
+void			print_alloc_memory(t_alloc_header *alloc, size_t *total_octet,
 				size_t alloc_nb)
 {
 	size_t		octet;
@@ -45,7 +72,7 @@ void			print_alloc_header(t_alloc_header *alloc, size_t *total_octet,
 			printf("%p: ", (uint8_t*)alloc + sizeof(alloc) + octet);
 			mem_put_color(alloc, alloc_nb);
 		}
-		printf("%02hhd ", *((uint8_t*)alloc + sizeof(alloc) + octet));
+		printf("%02hhx ", *((uint8_t*)alloc + sizeof(alloc) + octet));
 		octet++;
 		(*total_octet)++;
 		if (0 == *total_octet % PRINT_LINE_SIZE)
@@ -65,7 +92,13 @@ void			print_zone(t_zone *zone, size_t zone_size)
 	while (alloc)
 	{
 		mem_put_color(alloc, alloc_nb);
-		print_alloc_header(alloc, &total_octet, alloc_nb);
+		if (TRUE)
+		{
+			print_alloc_header(alloc, &total_octet);
+			// printf("\x1b[0m");
+			mem_put_color(alloc, alloc_nb);
+		}
+		print_alloc_memory(alloc, &total_octet, alloc_nb);
 		alloc = alloc_access_th(zone, zone_size, ++alloc_nb);
 
 	}
