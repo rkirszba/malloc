@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   head.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/22 14:42:23 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:03:44 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define ZONE_TINY	1
 # define ZONE_SMALL	2
 # define ZONE_LARGE	3
+
+# define TAB_ALLOCS 77777
 
 # define PRINT_LINE_SIZE	32
 

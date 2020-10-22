@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 18:01:55 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:05:56 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ void	our_free(void *alloc)
 		return ;
 	alloc_header = (t_alloc_header*)alloc - sizeof(t_alloc_header);
 	alloc_header->available = TRUE;
-	/*
-	** fonction qui fait la defragmentation
-	*/
+
 }
+
 */
