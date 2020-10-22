@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:20:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/22 15:21:07 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 15:53:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ int8_t			alloc_split(t_alloc_header *alloc, size_t first_alloc_header_size)
 	return (retval);
 }
 
+
+
 void		*get_spot(size_t size_to_find)
 {
 	t_alloc_header	*alloc;
 	t_zone			*zone;
 
-	if (size_to_find < 16)
-		size_to_find += 16;
-	size_to_find -= size_to_find % 16;
+	size_to_find = (((size_to_find - 1) >> 4) << 4) + 16;
 	zone = (*static_mem())->tiny_zone;
 	while (zone)
 	{
@@ -103,8 +103,11 @@ void		*get_spot(size_t size_to_find)
 				if ((size_t)alloc->size >= size_to_find)
 				{
 					alloc_split(alloc, size_to_find);
+					print_malloc_mem();
 					alloc->available = FALSE;
-					return (alloc + sizeof(alloc));
+					// printf("Size alloc header: %#lx\n", sizeof(alloc));
+					// printf("adrr: %p\n", alloc + sizeof(alloc));
+					return ((uint8_t*)alloc + sizeof(alloc));
 				}
 			}
 			alloc = alloc_access_next(alloc);

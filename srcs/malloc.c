@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 15:14:42 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 15:48:24 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,4 @@ void		*our_malloc(size_t size)
 
 	mem = get_spot(size);
 	return (mem);
-	return (malloc(size));
 }
