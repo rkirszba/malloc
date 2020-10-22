@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/10/20 17:40:11 by ezalos           ###   ########.fr        #
+#    Updated: 2020/10/22 16:25:40 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,13 @@ NAME=malloc
 SRCS_DIR	= srcs/
 HEAD_DIR	= includes/
 OBJS_DIR	= objs/
+OBJS_RBT_DIR	= objs/rbt/
 $(shell mkdir -p $(OBJS_DIR))
+$(shell mkdir -p $(OBJS_RBT_DIR))
 
 INCS		= $(wildcard $(HEAD_DIR)*.h)
 SRCS		= $(wildcard $(SRCS_DIR)*.c)
+SRCS		+= $(wildcard $(SRCS_DIR)rbt/*.c)
 OBJS		= $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
 HEADERS		= -I./$(HEAD_DIR)

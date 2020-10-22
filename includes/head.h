@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/22 14:42:23 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 16:56:33 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include "tree.h"
 
 # define ZONE_SIZE	4096
 
@@ -40,6 +41,7 @@
 
 typedef	struct				s_alloc_header
 {
+	// t_rbt					rbt;
 	int32_t					size;
 	uint8_t					available;
 	uint8_t					last;
