@@ -6,13 +6,13 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 20:01:57 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/21 12:22:24 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:39:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-void 			mem_put_color(t_alloc *alloc, int8_t alloc_nb)
+void 			mem_put_color(t_alloc_header *alloc, int8_t alloc_nb)
 {
 	if (alloc->size > 0)
 	{
@@ -31,7 +31,7 @@ void 			mem_put_color(t_alloc *alloc, int8_t alloc_nb)
 	}
 }
 
-void			print_alloc(t_alloc *alloc, size_t *total_octet,
+void			print_alloc_header(t_alloc_header *alloc, size_t *total_octet,
 				size_t alloc_nb)
 {
 	size_t		octet;
@@ -42,10 +42,10 @@ void			print_alloc(t_alloc *alloc, size_t *total_octet,
 		if (0 == *total_octet % PRINT_LINE_SIZE)
 		{
 			printf("\x1b[0m");
-			printf("%p: ", (uint8_t*)alloc + sizeof(alloc->size) + octet);
+			printf("%p: ", (uint8_t*)alloc + sizeof(alloc) + octet);
 			mem_put_color(alloc, alloc_nb);
 		}
-		printf("%02hhd ", *((uint8_t*)alloc + sizeof(alloc->size) + octet));
+		printf("%02hhd ", *((uint8_t*)alloc + sizeof(alloc) + octet));
 		octet++;
 		(*total_octet)++;
 		if (0 == *total_octet % PRINT_LINE_SIZE)
@@ -55,17 +55,17 @@ void			print_alloc(t_alloc *alloc, size_t *total_octet,
 
 void			print_zone(t_zone *zone, size_t zone_size)
 {
-	t_alloc		*alloc;
+	t_alloc_header		*alloc;
 	size_t		alloc_nb;
 	size_t		total_octet;
 
 	total_octet = 0;
 	alloc_nb = 0;
-	alloc = alloc_access_th(zone, zone_size, alloc_nb);
+	alloc = &zone->first_alloc_header;
 	while (alloc)
 	{
 		mem_put_color(alloc, alloc_nb);
-		print_alloc(alloc, &total_octet, alloc_nb);
+		print_alloc_header(alloc, &total_octet, alloc_nb);
 		alloc = alloc_access_th(zone, zone_size, ++alloc_nb);
 
 	}
@@ -87,7 +87,7 @@ void		print_malloc_mem(void)
 		printf("\x1b[38;2;%d;%d;%dm", 155, 155, 255);
 		printf("Printing malloc zone %lu:\n", zone_nb);
 		print_zone(zone, base->tiny_zone_size);
-		zone = zone->next_zone;
+		zone = zone->header.next_zone;
 		zone_nb++;
 	}
 }

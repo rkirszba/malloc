@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/21 12:40:07 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:42:23 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,23 @@
 
 # define ABS(x)		((x < 0) ? -x : x)
 
-typedef	struct				s_alloc
+typedef	struct				s_alloc_header
 {
 	int32_t					size;
-	//uint8_t				zone of 'size' octets of memory;
-}							t_alloc;
+	uint8_t					available;
+	uint8_t					last;
+}							t_alloc_header;
 
-typedef	struct				s_mem_index
+typedef	struct				s_zone_header
 {
-	int32_t					size;
-	t_alloc					*alloc;
-}							t_mem_index;
+	struct s_zone			*next_zone;
+}							t_zone_header;
 
 typedef	struct				s_zone
 {
-	struct s_zone			*next_zone;
-	t_alloc					allocation;
+	t_zone_header			header;
+	t_alloc_header			first_alloc_header;
+	//uint8_t				first allocation memory of 'size' octets of memory;
 }							t_zone;
 
 typedef	struct				s_malloc

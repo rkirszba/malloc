@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/21 11:30:25 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:38:28 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int8_t		malloc_init(void)
 	if (ERROR == zone_create(&base->small_zone, base->small_zone_size))
 		return (ERROR);
 
-	if (ERROR == zone_create(&base->tiny_zone, base->tiny_zone_size))
+	if (ERROR == zone_create(&(base->tiny_zone), base->tiny_zone_size))
 		return (ERROR);
 
 	return (SUCCESS);

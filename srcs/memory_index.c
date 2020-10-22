@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 11:59:18 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/21 12:14:38 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:18:38 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	Add a new entry to the memory index
 */
 
-int8_t		mem_index_add(t_alloc *availble_alloc)
+int8_t		mem_index_add(t_alloc_header *availble_alloc)
 {
 	int8_t		retval;
 
@@ -29,7 +29,7 @@ int8_t		mem_index_add(t_alloc *availble_alloc)
 **	Remove an entry from the memory index
 */
 
-uint8_t		mem_index_del(t_alloc *unavailble_alloc)
+uint8_t		mem_index_del(t_alloc_header *unavailble_alloc)
 {
 	int8_t		retval;
 
@@ -47,9 +47,9 @@ uint8_t		mem_index_del(t_alloc *unavailble_alloc)
 **	If no entry is available, return NULL.
 */
 
-t_alloc		*mem_index_get(size_t size)
+t_alloc_header		*mem_index_get(size_t size)
 {
-	t_alloc		*alloc;
+	t_alloc_header		*alloc;
 
 	alloc = NULL;
 	(void)size;
