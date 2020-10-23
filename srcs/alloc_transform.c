@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:20:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/23 17:17:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 18:00:28 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,13 @@ static int8_t	alloc_join_get_pos_flags(t_alloc_header *alloc,
 	return (flags);
 }
 
-int8_t			alloc_join(t_alloc_header *alloc, uint8_t join_with_next)
+t_alloc_header	*alloc_join(t_alloc_header *alloc, uint8_t join_with_next)
 {
 	t_alloc_header		*del_alloc;
-	int8_t				retval;
 	size_t				new_size;
 	size_t				size_prev;
 	uint8_t				flags;
 
-	retval = ERROR;
 	if (join_with_next == TRUE)
 		del_alloc = alloc_access_next(alloc);
 	else
@@ -96,9 +94,9 @@ int8_t			alloc_join(t_alloc_header *alloc, uint8_t join_with_next)
 		flags = alloc_join_get_pos_flags(alloc, del_alloc, join_with_next);
 		alloc_header_init(alloc, new_size, size_prev, flags);
 		alloc_update_size_next(alloc);
-		retval = SUCCESS;
+		return (join_with_next == TRUE) ? alloc : del_alloc;
 	}
-	return (retval);
+	return (NULL);
 }
 
 

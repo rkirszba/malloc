@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_remove.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 14:11:36 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 17:13:22 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 14:05:06 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		tree_replace_node(t_rbt *node, t_rbt *child)
 		node->parent->right = child;
 }
 
-void		tree_delete_one_child(t_rbt *node, t_rbt_free_content *func)
+void		tree_delete_one_child(t_rbt *node)
 {
 	t_rbt	*child;
 
@@ -40,7 +40,8 @@ void		tree_delete_one_child(t_rbt *node, t_rbt_free_content *func)
 				tree_delete_case_1(child);
 		}
 	}
-	if (func)
-		func(&node->content);
+	// return (node);
+	// if (func)
+	// 	func(&node->content);
 	// ft_memdel((void**)&node);
 }

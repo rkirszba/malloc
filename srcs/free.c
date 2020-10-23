@@ -6,68 +6,43 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/23 15:40:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 18:01:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-
-t_alloc_header	*get_alloc_header(void* alloc, t_zone *zone)
+t_alloc_header	*defragment(t_alloc_header *alloc_header)
 {
-	t_alloc_header	*alloc_cursor;
+	t_alloc_header	*neighbor;
 
-	while (zone)
+	neighbor = alloc_access_next(alloc_header);
+	if (neighbor && neighbor->flags & HDR_AVAILABLE)
 	{
-		alloc_cursor = &zone->first_alloc_header;
-		while (alloc_cursor)
-		{
-			if ((void*)alloc_cursor == (uint8_t*)alloc - (sizeof(t_alloc_header))
-				&& alloc_cursor->flags & HDR_AVAILABLE)
-			{
-				return alloc_cursor;
-			}
-			alloc_cursor = alloc_access_next(alloc_cursor);
-		}
-		zone = zone->header.next_zone;
+		alloc_header = alloc_join(alloc_header, TRUE);
+		remove_available((void*)neighbor);
+		return (defragment(alloc_header));
 	}
-	return NULL;
+	neighbor = alloc_access_prev(alloc_header);
+	if (neighbor && neighbor->flags & HDR_AVAILABLE)
+	{
+		alloc_header = alloc_join(neighbor, TRUE);
+		remove_available((void*)neighbor);
+	}
+	return (alloc_header);
 }
 
-void	free_alloc(t_alloc_header *header)
-{
-	header->flags = flag_set_availabilty(header->flags, HDR_AVAILABLE);
-}
 
-void	our_free(void *alloc)
+void		our_free(void *ptr)
 {
-	t_infos			*base;
+	t_infos			*infos;
 	t_alloc_header	*alloc_header;
+	t_rbt			**tree;
+	t_rbt			*node;
 
-	base = static_mem();
-	if (!(alloc_header = get_alloc_header(alloc, base->tiny.zone)))
-		if (!(alloc_header = get_alloc_header(alloc, base->small.zone)))
-			return;
-	free_alloc(alloc_header);
-}
-
-/*
-int8_t	remove_alloc(t_bst ***tree, )
-{
-
-}
-
-void	our_free(void *alloc)
-{
-	t_malloc		*base;
-	t_alloc_header	*alloc_header;
-
-	base = *static_mem();
-	if (remove_alloc(base->alloc_tab, alloc) == FAILURE)
+	alloc_header = ptr - sizeof(t_alloc_header);
+	if (remove_unavailable((void*)alloc_header) == FAILURE)
 		return ;
-	alloc_header = (t_alloc_header*)alloc - sizeof(t_alloc_header);
-	alloc_header->available = TRUE;
-
+	alloc_header = defragment(alloc_header);
+	add_available(alloc_header);
 }
-
-*/

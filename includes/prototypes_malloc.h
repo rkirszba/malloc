@@ -1,6 +1,8 @@
 #ifndef PROTOTYPES_MALLOC_H
 # define PROTOTYPES_MALLOC_H
 
+void			add_available(t_alloc_header *alloc_header);
+size_t			align_size(uint8_t type_flag, size_t size);
 t_alloc_header	*alloc_access_next(t_alloc_header *alloc);
 t_alloc_header	*alloc_access_prev(t_alloc_header *alloc);
 t_alloc_header	*alloc_access_th(t_zone *zone, size_t umpteenth);
@@ -8,17 +10,19 @@ void			alloc_header_init(t_alloc_header *header,
 				size_t size,
 				size_t size_prev,
 				uint8_t flags);
-int8_t			alloc_join(t_alloc_header *alloc, uint8_t join_with_next);
+t_alloc_header	*alloc_join(t_alloc_header *alloc, uint8_t join_with_next);
 int8_t			alloc_split(t_alloc_header *alloc, size_t first_size);
 void			alloc_update_size_next(t_alloc_header *alloc);
+long long		compare_adresses(void *content1, void *content2);
+t_alloc_header	*defragment(t_alloc_header *alloc_header);
 uint8_t			flag_set(uint8_t flag, uint8_t category, uint8_t option);
 uint8_t			flag_set_availabilty(uint8_t flag, uint8_t option);
 uint8_t			flag_set_pos(uint8_t flag, uint8_t option);
 uint8_t			flag_set_type(uint8_t flag, uint8_t option);
-void			free_alloc(t_alloc_header *header);
 size_t			ft_nb_len(intmax_t n, size_t base);
-t_alloc_header	*get_alloc_header(void* alloc, t_zone *zone);
+t_rbt			**get_available_tree(t_infos *infos, size_t size);
 void			*get_spot(size_t size_to_find);
+t_rbt			**get_unavailable_tree(t_infos *infos, void *ptr);
 int				main(int ac, char **av);
 int8_t			malloc_exit(void);
 int8_t			malloc_init(void);
@@ -29,7 +33,7 @@ void 			mem_put_color(t_alloc_header *alloc,
 				int32_t alloc_nb,
 				int8_t header);
 void			mem_type_init(t_mem_type *mem_type, int8_t zone_type);
-void			our_free(void *alloc);
+void			our_free(void *ptr);
 void			*our_malloc(size_t size);
 void			padding_after(t_rbt *node);
 void			padding_before(t_rbt *node, size_t space);
@@ -39,6 +43,7 @@ void			print_alloc_memory(t_alloc_header *alloc, size_t *total_octet,
 void			print_malloc_mem(void);
 void			print_zone(t_zone *zone, size_t zone_size);
 void			print_zone_header(t_zone *zone, size_t *total_octet);
+int8_t			remove_unavailable(void *alloc_header);
 t_infos			*static_mem(void);
 void			test_read(void *mem, size_t size);
 void			test_write(void *mem, size_t size);
@@ -48,8 +53,14 @@ void			tree_delete_case_3(t_rbt *node);
 void			tree_delete_case_4(t_rbt *node);
 void			tree_delete_case_5(t_rbt *node);
 void			tree_delete_case_6(t_rbt *node);
-void			tree_delete_one_child(t_rbt *node, t_rbt_free_content *func);
+void			tree_delete_one_child(t_rbt *node);
 void			tree_free(t_rbt *root, t_rbt_free_content *func);
+t_rbt			*tree_get_recurse_func(t_rbt *root,
+				void *content,
+				t_rbt_compare *func);
+t_rbt			*tree_get_recurse_func_ll(t_rbt *root,
+				void *content,
+				t_rbt_compare_long_long *func);
 t_rbt			*tree_grand_parent(t_rbt *node);
 int				tree_inorder(t_rbt *root, t_rbt_inorder *func);
 void			*tree_inorder_ptr(t_rbt *root, t_rbt_inorder_ptr *func);
@@ -61,9 +72,16 @@ void			tree_insert_case_3(t_rbt *n);
 void			tree_insert_case_4(t_rbt *n);
 t_rbt			*tree_insert_func(t_rbt *root, t_rbt *new_node, void *content,
 				t_rbt_compare *func);
+t_rbt			*tree_insert_func_ll(t_rbt *root,
+				t_rbt *new_node,
+				void *content,
+				t_rbt_compare_long_long *func);
 void			tree_insert_recurse_func(t_rbt *root,
 				t_rbt *n,
 				t_rbt_compare *func);
+void			tree_insert_recurse_func_ll(t_rbt *root,
+				t_rbt *n,
+				t_rbt_compare_long_long *func);
 void			tree_insert_repair(t_rbt *n);
 t_rbt			*tree_new_node(void *content, t_rbt *new_node);
 t_rbt			*tree_parent(t_rbt *node);

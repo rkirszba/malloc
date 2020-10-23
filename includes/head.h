@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/23 16:31:45 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 17:51:14 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # include "tree.h"
 
 # define ZONE_SIZE					4096
-# define TABLE_SIZE					((ZONE_SIZE / 4 / 16) + 1)
+# define AVAILABLE_TABLE_SIZE		((ZONE_SIZE / 4 / 16) + 1)
+# define UNAVAILABLE_TABLE_SIZE		77777
 
 # define ERROR						-1
 # define FAILURE					-1
@@ -79,14 +80,14 @@ typedef	struct				s_mem_type
 	size_t					alloc_size_min;
 	size_t					alloc_size_max;
 	size_t					alloc_resolution_size;
-	t_rbt					*available[TABLE_SIZE];
+	t_rbt					*available[AVAILABLE_TABLE_SIZE];
 }							t_mem_type;
 
 typedef	struct				s_infos
 {
 	t_mem_type				tiny;
 	t_mem_type				small;
-	t_rbt					*unavailable;
+	t_rbt					*unavailable[UNAVAILABLE_TABLE_SIZE];
 }							t_infos;
 
 # include "prototypes_malloc.h"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 18:51:38 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 17:19:38 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 15:41:46 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct		s_rbt
 }					t_rbt;
 
 typedef	int				(t_rbt_compare)				(void *, void *);
+typedef	long long		(t_rbt_compare_long_long)	(void *, void *);
 typedef	int				(t_rbt_inorder)				(t_rbt *);
 typedef	void			*(t_rbt_inorder_ptr)		(t_rbt *);
 typedef	void			(t_rbt_free_content)		(void **);
@@ -44,7 +45,7 @@ void	tree_delete_case_3(t_rbt *node);
 void	tree_delete_case_4(t_rbt *node);
 void	tree_delete_case_5(t_rbt *node);
 void	tree_delete_case_6(t_rbt *node);
-void	tree_delete_one_child(t_rbt *node, t_rbt_free_content *func);
+void	tree_delete_one_child(t_rbt *node);
 void	tree_free(t_rbt *root, t_rbt_free_content *func);
 t_rbt	*tree_grand_parent(t_rbt *node);
 int		tree_inorder(t_rbt *root, t_rbt_inorder *func);
