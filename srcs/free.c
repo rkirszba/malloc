@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 19:21:36 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 15:40:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_alloc_header	*get_alloc_header(void* alloc, t_zone *zone)
 		while (alloc_cursor)
 		{
 			if ((void*)alloc_cursor == (uint8_t*)alloc - (sizeof(t_alloc_header))
-				&& alloc_cursor->available == FALSE)
+				&& alloc_cursor->flags & HDR_AVAILABLE)
 			{
 				return alloc_cursor;
 			}
@@ -34,9 +34,9 @@ t_alloc_header	*get_alloc_header(void* alloc, t_zone *zone)
 	return NULL;
 }
 
-void	free_alloc(t_alloc_header *alloc_header)
+void	free_alloc(t_alloc_header *header)
 {
-	alloc_header->available = TRUE;
+	header->flags = flag_set_availabilty(header->flags, HDR_AVAILABLE);
 }
 
 void	our_free(void *alloc)
