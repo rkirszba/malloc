@@ -2,11 +2,20 @@
 # define PROTOTYPES_MALLOC_H
 
 t_alloc_header	*alloc_access_next(t_alloc_header *alloc);
+t_alloc_header	*alloc_access_prev(t_alloc_header *alloc);
 t_alloc_header	*alloc_access_th(t_zone *zone, size_t umpteenth);
-void			alloc_header_init(t_alloc_header *header, size_t size,
-				uint8_t available, uint8_t last);
+void			alloc_header_init(t_alloc_header *header,
+				size_t size,
+				size_t size_prev,
+				uint8_t flags);
+int8_t			alloc_join(t_alloc_header *alloc, uint8_t join_with_next);
 int8_t			alloc_split(t_alloc_header *alloc, size_t first_size);
-void			free_alloc(t_alloc_header *alloc_header);
+void			alloc_update_size_next(t_alloc_header *alloc);
+uint8_t			flag_set(uint8_t flag, uint8_t category, uint8_t option);
+uint8_t			flag_set_availabilty(uint8_t flag, uint8_t option);
+uint8_t			flag_set_pos(uint8_t flag, uint8_t option);
+uint8_t			flag_set_type(uint8_t flag, uint8_t option);
+void			free_alloc(t_alloc_header *header);
 size_t			ft_nb_len(intmax_t n, size_t base);
 t_alloc_header	*get_alloc_header(void* alloc, t_zone *zone);
 void			*get_spot(size_t size_to_find);
@@ -17,8 +26,9 @@ int8_t			mem_index_add(t_alloc_header *availble_alloc);
 uint8_t			mem_index_del(t_alloc_header *unavailble_alloc);
 t_alloc_header	*mem_index_get(size_t size);
 void 			mem_put_color(t_alloc_header *alloc,
-				int8_t alloc_nb,
+				int32_t alloc_nb,
 				int8_t header);
+void			mem_type_init(t_mem_type *mem_type, int8_t zone_type);
 void			our_free(void *alloc);
 void			*our_malloc(size_t size);
 void			padding_after(t_rbt *node);
@@ -66,8 +76,8 @@ void			tree_rot_left(t_rbt *node);
 void			tree_rot_right(t_rbt *node);
 t_rbt			*tree_sibling(t_rbt *node);
 t_rbt			*tree_uncle(t_rbt *node);
-int8_t			zone_create(t_zone **zone, size_t zone_size);
-void			zone_header_init(t_zone_header *header);
+int8_t			zone_create(t_mem_type *mem_type, uint8_t zone_type);
+void			zone_header_init(t_zone_header *header, t_zone *next);
 int8_t			zone_liberate_all(t_zone *zone, size_t zone_size);
 
 #endif

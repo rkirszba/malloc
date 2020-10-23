@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/22 19:21:42 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 16:31:45 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,42 @@
 # include <unistd.h>
 # include "tree.h"
 
-# define ZONE_SIZE	4096
-# define TABLE_SIZE	((ZONE_SIZE / 4 / 16) + 1)
+# define ZONE_SIZE					4096
+# define TABLE_SIZE					((ZONE_SIZE / 4 / 16) + 1)
 
-# define ERROR		-1
-# define FAILURE	-1
-# define SUCCESS	0
+# define ERROR						-1
+# define FAILURE					-1
+# define SUCCESS					0
 
-# define TRUE		1
-# define FALSE		0
+# define TRUE						1
+# define FALSE						0
 
-# define ZONE_TINY	1
-# define ZONE_SMALL	2
-# define ZONE_LARGE	3
+# define TAB_ALLOCS 				77777
 
-# define TAB_ALLOCS 77777
+# define PRINT_LINE_SIZE			32
 
-# define PRINT_LINE_SIZE	32
+# define ABS(x)						((x < 0) ? -x : x)
 
-# define ABS(x)		((x < 0) ? -x : x)
+# define HDR_AVAILABLE				0b00000100
+# define HDR_POS					0b00000011
+# define HDR_POS_FIRST				0b00000001
+# define HDR_POS_LAST				0b00000010
+# define HDR_TYPE					0b00111000
+# define HDR_TYPE_TINY				0b00001000
+# define HDR_TYPE_SMALL				0b00010000
+# define HDR_TYPE_LARGE				0b00100000
+
+# define ZONE_TINY					HDR_TYPE_TINY
+# define ZONE_SMALL					HDR_TYPE_SMALL
+# define ZONE_LARGE					HDR_TYPE_LARGE
+
 
 typedef	struct				s_alloc_header
 {
 	t_rbt					rbt;
-	int32_t					size;
-	uint8_t					available;
-	uint8_t					last;
+	uint16_t				size;
+	uint16_t				size_prev;
+	uint8_t					flags;
 }							t_alloc_header;
 
 typedef	struct				s_zone_header
@@ -66,6 +76,9 @@ typedef	struct				s_mem_type
 {
 	t_zone					*zone;
 	size_t					size;
+	size_t					alloc_size_min;
+	size_t					alloc_size_max;
+	size_t					alloc_resolution_size;
 	t_rbt					*available[TABLE_SIZE];
 }							t_mem_type;
 

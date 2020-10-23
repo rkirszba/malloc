@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 19:01:02 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 16:38:28 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,17 @@ int8_t		malloc_init(void)
 
 	base = static_mem();
 
-	base->small.size = ZONE_SIZE;
-	base->tiny.size = ZONE_SIZE / 4;
-
-	if (ERROR == zone_create(&base->small.zone, base->small.size))
+	// printf("Hello in\n");
+	mem_type_init(&base->small, ZONE_SMALL);
+	if (ERROR == zone_create(&base->small, ZONE_SMALL))
 		return (ERROR);
 
-	if (ERROR == zone_create(&(base->tiny.zone), base->tiny.size))
+	// printf("Hello small done\n");
+
+	mem_type_init(&base->tiny, ZONE_TINY);
+	if (ERROR == zone_create(&base->tiny, ZONE_TINY))
 		return (ERROR);
+	// printf("Hello tiny dßone\n");
 
 	return (SUCCESS);
 }
