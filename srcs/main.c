@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:46 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/23 16:36:32 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 17:05:57 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		main(int ac, char **av)
 	mem = our_malloc(size);
 
 
+	print_malloc_mem();
 	mem_2 = our_malloc(size * 2);
 
 

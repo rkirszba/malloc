@@ -6,16 +6,21 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 20:01:57 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/23 16:48:47 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 17:38:26 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
+# define		PRINT_HEADER_ALLOC		TRUE
+# define		PRINT_HEADER_ZONE		TRUE
+
+
 void 			mem_put_color(t_alloc_header *alloc, int32_t alloc_nb, int8_t header)
 {
 	if (header == TRUE)
 	{
+		printf("\x1b[48;2;%d;%d;%dm", 30, 30, 0);
 		if (alloc_nb < 0)
 		{
 			alloc_nb = -(alloc_nb + 1);
@@ -23,9 +28,9 @@ void 			mem_put_color(t_alloc_header *alloc, int32_t alloc_nb, int8_t header)
 			{
 				alloc_nb /= 8;
 				if (alloc_nb % 2)
-					printf("\x1b[38;2;%d;%d;%dm", 255, 105, 55);
+					printf("\x1b[38;2;%d;%d;%dm", 255, 205, 255);
 				else
-					printf("\x1b[38;2;%d;%d;%dm", 255, 155, 55);
+					printf("\x1b[38;2;%d;%d;%dm", 205, 255, 255);
 			}
 			else
 			{
@@ -38,24 +43,27 @@ void 			mem_put_color(t_alloc_header *alloc, int32_t alloc_nb, int8_t header)
 		}
 		else
 		{
-			alloc_nb /= 4;
-			if (alloc_nb % 2)
-				printf("\x1b[38;2;%d;%d;%dm", 55, 205, 255);
-			else
-				printf("\x1b[38;2;%d;%d;%dm", 5, 255, 255);
+			printf("\x1b[38;2;%d;%d;%dm", 105, 55, 255);
 		}
 
 	}
-	else if (alloc->flags & HDR_AVAILABLE)
-	{
-		if (alloc_nb % 2)
-			printf("\x1b[38;2;%d;%d;%dm", 155, 255, 155);
-		else
-			printf("\x1b[38;2;%d;%d;%dm", 105, 255, 105);
-	}
 	else
 	{
-		printf("\x1b[38;2;%d;%d;%dm", 255, 155, 155);
+		printf("\x1b[48;2;%d;%d;%dm", 0, 0, 60);
+		if (alloc->flags & HDR_AVAILABLE)
+		{
+			if (alloc_nb % 2)
+				printf("\x1b[38;2;%d;%d;%dm", 155, 255, 155);
+			else
+				printf("\x1b[38;2;%d;%d;%dm", 105, 255, 105);
+		}
+		else
+		{
+			if (alloc_nb % 2)
+				printf("\x1b[38;2;%d;%d;%dm", 255, 105, 105);
+			else
+				printf("\x1b[38;2;%d;%d;%dm", 255, 55, 55);
+		}
 	}
 }
 
@@ -76,7 +84,10 @@ void			print_alloc_header(t_alloc_header *alloc, size_t *total_octet)
 		octet++;
 		(*total_octet)++;
 		if (0 == *total_octet % PRINT_LINE_SIZE)
+		{
+			printf("\x1b[0m");
 			printf("\n");
+		}
 	}
 }
 
@@ -98,7 +109,10 @@ void			print_alloc_memory(t_alloc_header *alloc, size_t *total_octet,
 		octet++;
 		(*total_octet)++;
 		if (0 == *total_octet % PRINT_LINE_SIZE)
+		{
+			printf("\x1b[0m");
 			printf("\n");
+		}
 	}
 }
 
@@ -131,7 +145,7 @@ void			print_zone(t_zone *zone, size_t zone_size)
 	size_t		total_octet;
 
 	total_octet = 0;
-	if (TRUE)
+	if (PRINT_HEADER_ZONE)
 	{
 		print_zone_header(zone, &total_octet);
 		// printf("\n%*s", (int)(13 + (total_octet * 3)), " ");
@@ -143,7 +157,7 @@ void			print_zone(t_zone *zone, size_t zone_size)
 		if (total_octet >= zone_size)
 			break;
 		mem_put_color(alloc, alloc_nb, FALSE);
-		if (TRUE)
+		if (PRINT_HEADER_ALLOC)
 		{
 			print_alloc_header(alloc, &total_octet);
 			// printf("\x1b[0m");
@@ -156,7 +170,7 @@ void			print_zone(t_zone *zone, size_t zone_size)
 
 	}
 	printf("\x1b[0m");
-	printf("%p: ", (uint8_t*)zone + total_octet);
+	printf("%p", (uint8_t*)zone + total_octet);
 	printf("\n");
 }
 
