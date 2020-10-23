@@ -6,9 +6,8 @@ t_alloc_header	*alloc_access_th(t_zone *zone, size_t umpteenth);
 void			alloc_header_init(t_alloc_header *header, size_t size,
 				uint8_t available, uint8_t last);
 int8_t			alloc_split(t_alloc_header *alloc, size_t first_size);
-void			free_alloc(t_alloc_header *alloc_header);
+t_alloc_header	*defragment(t_alloc_header *alloc_header);
 size_t			ft_nb_len(intmax_t n, size_t base);
-t_alloc_header	*get_alloc_header(void* alloc, t_zone *zone);
 void			*get_spot(size_t size_to_find);
 int				main(int ac, char **av);
 int8_t			malloc_exit(void);
@@ -19,7 +18,7 @@ t_alloc_header	*mem_index_get(size_t size);
 void 			mem_put_color(t_alloc_header *alloc,
 				int8_t alloc_nb,
 				int8_t header);
-void			our_free(void *alloc);
+void			our_free(void *ptr);
 void			*our_malloc(size_t size);
 void			padding_after(t_rbt *node);
 void			padding_before(t_rbt *node, size_t space);
@@ -38,8 +37,14 @@ void			tree_delete_case_3(t_rbt *node);
 void			tree_delete_case_4(t_rbt *node);
 void			tree_delete_case_5(t_rbt *node);
 void			tree_delete_case_6(t_rbt *node);
-void			tree_delete_one_child(t_rbt *node, t_rbt_free_content *func);
+void			tree_delete_one_child(t_rbt *node);
 void			tree_free(t_rbt *root, t_rbt_free_content *func);
+t_rbt			*tree_get_recurse_func(t_rbt *root,
+				void *content,
+				t_rbt_compare *func);
+t_rbt			*tree_get_recurse_func_ll(t_rbt *root,
+				void *content,
+				t_rbt_compare_long_long *func);
 t_rbt			*tree_grand_parent(t_rbt *node);
 int				tree_inorder(t_rbt *root, t_rbt_inorder *func);
 void			*tree_inorder_ptr(t_rbt *root, t_rbt_inorder_ptr *func);
@@ -51,9 +56,16 @@ void			tree_insert_case_3(t_rbt *n);
 void			tree_insert_case_4(t_rbt *n);
 t_rbt			*tree_insert_func(t_rbt *root, t_rbt *new_node, void *content,
 				t_rbt_compare *func);
+t_rbt			*tree_insert_func_ll(t_rbt *root,
+				t_rbt *new_node,
+				void *content,
+				t_rbt_compare_long_long *func);
 void			tree_insert_recurse_func(t_rbt *root,
 				t_rbt *n,
 				t_rbt_compare *func);
+void			tree_insert_recurse_func_ll(t_rbt *root,
+				t_rbt *n,
+				t_rbt_compare_long_long *func);
 void			tree_insert_repair(t_rbt *n);
 t_rbt			*tree_new_node(void *content, t_rbt *new_node);
 t_rbt			*tree_parent(t_rbt *node);

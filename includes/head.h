@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   head.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/22 19:21:42 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 14:26:05 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 # include <unistd.h>
 # include "tree.h"
 
-# define ZONE_SIZE	4096
-# define TABLE_SIZE	((ZONE_SIZE / 4 / 16) + 1)
+# define ZONE_SIZE				4096
+# define AVAILABLE_TABLE_SIZE	((ZONE_SIZE / 4 / 16) + 1)
+# define UNAVAILABLE_TABLE_SIZE	77777
 
 # define ERROR		-1
 # define FAILURE	-1
@@ -36,7 +37,6 @@
 # define ZONE_SMALL	2
 # define ZONE_LARGE	3
 
-# define TAB_ALLOCS 77777
 
 # define PRINT_LINE_SIZE	32
 
@@ -66,14 +66,14 @@ typedef	struct				s_mem_type
 {
 	t_zone					*zone;
 	size_t					size;
-	t_rbt					*available[TABLE_SIZE];
+	t_rbt					*available[AVAILABLE_TABLE_SIZE];
 }							t_mem_type;
 
 typedef	struct				s_infos
 {
 	t_mem_type				tiny;
 	t_mem_type				small;
-	t_rbt					*unavailable;
+	t_rbt					*unavailable[UNAVAILABLE_TABLE_SIZE];
 }							t_infos;
 
 # include "prototypes_malloc.h"
