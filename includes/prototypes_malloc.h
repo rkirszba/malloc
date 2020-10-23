@@ -23,6 +23,7 @@ size_t			ft_nb_len(intmax_t n, size_t base);
 t_rbt			**get_available_tree(t_infos *infos, size_t size);
 void			*get_spot(size_t size_to_find);
 t_rbt			**get_unavailable_tree(t_infos *infos, void *ptr);
+size_t  		hash_djb2(unsigned char *ptr);
 int				main(int ac, char **av);
 int8_t			malloc_exit(void);
 int8_t			malloc_init(void);

@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:09:56 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/23 18:01:46 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 19:01:26 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int8_t		remove_unavailable(void *alloc_header)
 			&compare_adresses)))
 		return FAILURE;
     // munmap s'il s'agit d'une big zone + return SUCCESS;
-    ((t_alloc_header*)alloc_header)->available = TRUE;
+    ((t_alloc_header*)alloc_header)->flags = ((t_alloc_header*)alloc_header)->flags | HDR_AVAILABLE;
     tree_delete_one_child(node);
     return SUCCESS;
 }
@@ -53,13 +53,11 @@ void		add_available(t_alloc_header *alloc_header)
 {
     t_infos *infos;
     t_rbt   **tree;
-    t_rbt	*node;
 
+    infos = static_mem();
     tree = get_available_tree(infos, alloc_header->size);
-    *tree = tree_insert_func_ll(*tree, alloc_header->rbt, (void*)alloc_header, &compare_adresses);
+    *tree = tree_insert_func_ll(*tree, &alloc_header->rbt, (void*)alloc_header, &compare_adresses);
 }
-
-
 
 long long	compare_adresses(void *content1, void *content2)
 {

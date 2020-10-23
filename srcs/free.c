@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/23 18:01:01 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/23 18:56:03 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ t_alloc_header	*defragment(t_alloc_header *alloc_header)
 	if (neighbor && neighbor->flags & HDR_AVAILABLE)
 	{
 		alloc_header = alloc_join(alloc_header, TRUE);
-		remove_available((void*)neighbor);
+		tree_delete_one_child(&neighbor->rbt);
 		return (defragment(alloc_header));
 	}
 	neighbor = alloc_access_prev(alloc_header);
 	if (neighbor && neighbor->flags & HDR_AVAILABLE)
 	{
 		alloc_header = alloc_join(neighbor, TRUE);
-		remove_available((void*)neighbor);
+		tree_delete_one_child(&neighbor->rbt);
 	}
 	return (alloc_header);
 }
@@ -35,10 +35,7 @@ t_alloc_header	*defragment(t_alloc_header *alloc_header)
 
 void		our_free(void *ptr)
 {
-	t_infos			*infos;
 	t_alloc_header	*alloc_header;
-	t_rbt			**tree;
-	t_rbt			*node;
 
 	alloc_header = ptr - sizeof(t_alloc_header);
 	if (remove_unavailable((void*)alloc_header) == FAILURE)

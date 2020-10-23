@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 18:51:38 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/23 15:41:46 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/23 19:12:53 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	tree_insert_case_4(t_rbt *n);
 t_rbt	*tree_insert_func(t_rbt *root, t_rbt *new_node, void *content,
 		t_rbt_compare *func);
 void	tree_insert_recurse_func(t_rbt *root, t_rbt *n, t_rbt_compare *func);
+void	tree_insert_recurse_func_ll(t_rbt *root, t_rbt *n,
+		t_rbt_compare_long_long *func);
 void	tree_insert_repair(t_rbt *n);
 t_rbt	*tree_new_node(void *content, t_rbt *new_node);
 t_rbt	*tree_parent(t_rbt *node);
