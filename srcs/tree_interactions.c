@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:09:56 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/23 15:25:42 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/23 15:47:43 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_rbt   **get_available_tree(t_infos *infos, size_t size)
 {
     /*
-    ** remplacer 16 par un define
+    ** remplacer 16 par l'element de la structure correspondante
     */
 	if (size <= infos->tiny.alloc_size_max)
 		return &infos->tiny.available[size / 16 - 1];
