@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/25 01:57:23 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 16:01:44 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef	struct				s_zone_header
 {
 	struct s_zone			*next_zone;
 	struct s_zone			*prev_zone;
-	size_t					used_size;
+	size_t					size;
 }							t_zone_header;
 
 typedef	struct				s_zone
@@ -96,6 +96,7 @@ typedef	struct				s_infos
 {
 	t_mem_type				tiny;
 	t_mem_type				small;
+	t_zone					*large;
 	t_rbt					*unavailable[UNAVAILABLE_TABLE_SIZE];
 	uint8_t					is_init;
 }							t_infos;

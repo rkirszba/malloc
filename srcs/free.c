@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 12:49:27 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 16:53:06 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_alloc_header	*defrag_elem(t_alloc_header *alloc_header)
 	}
 	return (alloc_header);
 }
-
 
 t_alloc_header	*defragment(t_alloc_header *alloc_header)
 {
@@ -73,5 +72,8 @@ void		our_free(void *ptr)
 		return ;
 	alloc_set_available(alloc_header);
 	alloc_header = defragment(alloc_header);
-	available_add(alloc_header);
+	if (TRUE == can_zone_liberate(alloc_header))
+		zone_liberate(alloc_access_zone(alloc_header));
+	else
+		available_add(alloc_header);
 }

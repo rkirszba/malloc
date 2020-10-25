@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:41:43 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/25 11:56:46 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 16:25:23 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,17 @@ t_alloc_header			*alloc_access_th(t_zone *zone, size_t umpteenth)
 		alloc_nb++;
 	}
 	return (alloc);
+}
+
+t_zone					*alloc_access_zone(t_alloc_header *alloc)
+{
+	t_alloc_header		*alloc_prev;
+
+	alloc_prev = alloc_access_prev(alloc);
+	while (alloc_prev)
+	{
+		alloc = alloc_prev;
+		alloc_prev = alloc_access_prev(alloc);
+	}
+	return ((t_zone*)((size_t)alloc - sizeof(t_zone_header)));
 }

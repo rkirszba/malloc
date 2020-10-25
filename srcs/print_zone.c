@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 20:01:57 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/23 17:38:26 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/25 17:00:06 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,22 +174,40 @@ void			print_zone(t_zone *zone, size_t zone_size)
 	printf("\n");
 }
 
-void		print_malloc_mem(void)
+void			print_zone_type(t_zone *zone)
 {
-	t_infos			*base;
-	t_zone			*zone;
 	size_t			zone_nb;
 
-	base = static_mem();
-	zone = base->tiny.zone;
 	zone_nb = 0;
 	while (zone)
 	{
 		printf("\x1b[38;2;%d;%d;%dm", 155, 155, 255);
 		printf("Printing malloc zone %lu:\n", zone_nb);
-		print_zone(zone, base->tiny.size);
+		print_zone(zone, zone->header.size);
 		printf("\n");
 		zone = zone->header.next_zone;
 		zone_nb++;
 	}
+}
+
+
+void		print_malloc_mem(void)
+{
+	t_infos			*base;
+
+	base = static_mem();
+	printf("\x1b[38;2;%d;%d;%dm", 255, 105, 255);
+	printf("==============\n");
+	printf("ZONE TYPE TINY\n");
+	print_zone_type(base->tiny.zone);
+	printf("\x1b[38;2;%d;%d;%dm", 255, 105, 255);
+	printf("===============\n");
+	printf("ZONE TYPE SMALL\n");
+	print_zone_type(base->small.zone);
+	printf("\x1b[38;2;%d;%d;%dm", 255, 105, 255);
+	printf("===============\n");
+	printf("ZONE TYPE LARGE\n");
+	print_zone_type(base->large);
+	printf("==============\n");
+	printf("\x1b[0m");
 }

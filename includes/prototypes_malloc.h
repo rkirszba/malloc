@@ -5,7 +5,9 @@ size_t			align_size(uint8_t type_flag, size_t size);
 t_alloc_header	*alloc_access_next(t_alloc_header *alloc);
 t_alloc_header	*alloc_access_prev(t_alloc_header *alloc);
 t_alloc_header	*alloc_access_th(t_zone *zone, size_t umpteenth);
+t_zone			*alloc_access_zone(t_alloc_header *alloc);
 t_alloc_header	*alloc_get(size_t size);
+t_alloc_header	*alloc_get_available(size_t size);
 void			alloc_header_init(t_alloc_header *header,
 				size_t size,
 				size_t size_prev,
@@ -19,6 +21,7 @@ void			available_add(t_alloc_header *alloc);
 t_rbt			**available_get_tree(t_alloc_header *alloc);
 t_rbt			**available_get_tree_with_memory(size_t size_to_find);
 int8_t			available_remove(t_alloc_header *alloc);
+uint8_t			can_zone_liberate(t_alloc_header *alloc);
 long long		compare_adresses(void *content1, void *content2);
 t_alloc_header	*defrag_elem(t_alloc_header *alloc_header);
 t_alloc_header	*defragment(t_alloc_header *alloc_header);
@@ -27,6 +30,7 @@ uint8_t			flag_set_pos(uint8_t flag, uint8_t option);
 uint8_t			flag_set_type(uint8_t flag, uint8_t option);
 size_t			ft_nb_len(intmax_t n, size_t base);
 size_t			hash_djb2(unsigned char *ptr);
+uint8_t			is_large_zone(size_t size);
 int				main(int ac, char **av);
 int8_t			malloc_exit(void);
 int8_t			malloc_init(void);
@@ -103,7 +107,11 @@ void			unavailable_add(t_alloc_header *alloc_header);
 t_rbt			**unavailable_get_tree(void *ptr);
 int8_t			unavailable_remove(void *maybe_alloc_header);
 int8_t			zone_create(t_mem_type *mem_type);
-void			zone_header_init(t_zone_header *header, t_zone *next);
+t_alloc_header	*zone_create_large(size_t size);
+void			zone_header_init(t_zone_header *header,
+				t_zone *next,
+				size_t size);
+int8_t			zone_liberate(t_zone *zone);
 int8_t			zone_liberate_all(t_zone *zone, size_t zone_size);
 
 #endif
