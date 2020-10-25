@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:46 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 02:52:04 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 02:36:33 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		main(int ac, char **av)
 	// test_read(mem, size);
 
 	test_write(mem_2, size *2);
-	printf("Print test wreite\n");
+	printf("Print test write\n");
 	print_malloc_mem();
 	// test_read(mem, size);
 	our_free(mem);

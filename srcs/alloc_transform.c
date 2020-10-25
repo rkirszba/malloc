@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:20:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/25 02:27:28 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 02:38:15 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static uint8_t	alloc_split_check_size(t_alloc_header *alloc, size_t first_size)
 	}
 	return (FALSE);
 }
+
 /*
 **	This function takes the size of the first part in partameter.
 **	This size will be aligned before splitting.
@@ -143,47 +144,6 @@ t_alloc_header	*alloc_join(t_alloc_header *alloc, uint8_t join_with_next)
 	return (NULL);
 }
 
-
-
-void		*get_spot(size_t size_to_find)
-{
-	t_alloc_header	*alloc;
-	t_zone			*zone;
-
-	// size_to_find = (((size_to_find - 1) >> 4) << 4) + 16;
-	zone = static_mem()->tiny.zone;
-	while (zone)
-	{
-		alloc = &zone->first_alloc_header;
-		while (alloc)
-		{
-			if ((alloc->flags & HDR_AVAILABLE))
-			{
-				if ((size_t)alloc->size >= size_to_find)
-				{
-					alloc_split(alloc, size_to_find);
-					alloc->flags = flag_set_availabilty(alloc->flags, 0);
-					return ((uint8_t*)alloc + sizeof(*alloc));
-				}
-			}
-			alloc = alloc_access_next(alloc);
-		}
-		zone = zone->header.next_zone;
-	}
-	return (NULL);
-}
-
-/*
-**	SEARCH IN TAB FIRST MATCHING SIZE;
-**	get_first_matching_available_tree();
-**	remove elem from available
-**	if split(elem)
-**		save in available alloc_access_next(elem)
-**	elem save in unavailable()
-**	save with address of header : get_unavailable_tree()
-**	*tree = tree_insert_func_ll(*tree, &alloc_header->rbt, (void*)alloc_header, &compare_adresses);
-*/
-
 t_alloc_header		*alloc_get(size_t size)
 {
 	t_alloc_header	*alloc;
@@ -191,32 +151,19 @@ t_alloc_header		*alloc_get(size_t size)
 	t_rbt			*node;
 	int				umpteenth_node;
 
-	printf("~~~Hey\n");
-	printf("~~~Asking for size %lu\n", size);
 	size = secure_align_size(size);
-	printf("~~~Aligned size is %lu\n", size);
 	if (NULL == (tree = available_get_tree_with_memory(size)))
 		return (NULL);
 	umpteenth_node = 0;
-	printf("~~~Wassup, tree %p\n", *tree);
 	if (!(node = tree_get_node_th(*tree, &umpteenth_node)))
 	{
 		dprintf(2, "Error: can't get %dth node of tree\n", umpteenth_node);
 		return (NULL);
 	}
-	printf("~~~We got node %p to give\n", node);
 	alloc = (t_alloc_header*)node;
-	printf("~~~It's size is %d\n", alloc->size);
 	available_remove(alloc);
-	printf("~~~It's size is %d bef split\n", alloc->size);
 	if (SUCCESS == alloc_split(alloc, size))
-	{
-		printf("~~~We splitted !\n");
 		available_add(alloc_access_next(alloc));
-	}
-	else
-		printf("~~~No split !\n");
-	printf("~~~It's size is %d aft split\n", alloc->size);
 	alloc_set_unavailable(alloc);
 	unavailable_add(alloc);
 	return (alloc);
