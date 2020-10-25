@@ -1,38 +1,39 @@
 #ifndef PROTOTYPES_MALLOC_H
 # define PROTOTYPES_MALLOC_H
 
-void			add_available(t_alloc_header *alloc_header);
 size_t			align_size(uint8_t type_flag, size_t size);
 t_alloc_header	*alloc_access_next(t_alloc_header *alloc);
 t_alloc_header	*alloc_access_prev(t_alloc_header *alloc);
 t_alloc_header	*alloc_access_th(t_zone *zone, size_t umpteenth);
+t_alloc_header	*alloc_get(size_t size);
 void			alloc_header_init(t_alloc_header *header,
 				size_t size,
 				size_t size_prev,
 				uint8_t flags);
 t_alloc_header	*alloc_join(t_alloc_header *alloc, uint8_t join_with_next);
+void			alloc_set_available(t_alloc_header *alloc);
+void			alloc_set_unavailable(t_alloc_header *alloc);
 int8_t			alloc_split(t_alloc_header *alloc, size_t first_size);
 void			alloc_update_size_next(t_alloc_header *alloc);
+void			available_add(t_alloc_header *alloc);
+t_rbt			**available_get_tree(size_t size, uint8_t type);
+t_rbt			**available_get_tree_with_memory(size_t size_to_find);
+int8_t			available_remove(t_alloc_header *alloc);
 long long		compare_adresses(void *content1, void *content2);
 t_alloc_header	*defragment(t_alloc_header *alloc_header);
-uint8_t			flag_set(uint8_t flag, uint8_t category, uint8_t option);
 uint8_t			flag_set_availabilty(uint8_t flag, uint8_t option);
 uint8_t			flag_set_pos(uint8_t flag, uint8_t option);
 uint8_t			flag_set_type(uint8_t flag, uint8_t option);
 size_t			ft_nb_len(intmax_t n, size_t base);
-t_rbt			**get_available_tree(t_infos *infos, size_t size);
-void			*get_spot(size_t size_to_find);
-t_rbt			**get_unavailable_tree(t_infos *infos, void *ptr);
-size_t  		hash_djb2(unsigned char *ptr);
+size_t			hash_djb2(unsigned char *ptr);
 int				main(int ac, char **av);
 int8_t			malloc_exit(void);
 int8_t			malloc_init(void);
-int8_t			mem_index_add(t_alloc_header *availble_alloc);
-uint8_t			mem_index_del(t_alloc_header *unavailble_alloc);
-t_alloc_header	*mem_index_get(size_t size);
 void 			mem_put_color(t_alloc_header *alloc,
 				int32_t alloc_nb,
 				int8_t header);
+t_mem_type		*mem_type_get(uint8_t type);
+t_mem_type		*mem_type_get_from_size(size_t size);
 void			mem_type_init(t_mem_type *mem_type, int8_t zone_type);
 void			our_free(void *ptr);
 void			*our_malloc(size_t size);
@@ -44,7 +45,7 @@ void			print_alloc_memory(t_alloc_header *alloc, size_t *total_octet,
 void			print_malloc_mem(void);
 void			print_zone(t_zone *zone, size_t zone_size);
 void			print_zone_header(t_zone *zone, size_t *total_octet);
-int8_t			remove_unavailable(void *alloc_header);
+size_t			secure_align_size(size_t size);
 t_infos			*static_mem(void);
 void			test_read(void *mem, size_t size);
 void			test_write(void *mem, size_t size);
@@ -54,13 +55,14 @@ void			tree_delete_case_3(t_rbt *node);
 void			tree_delete_case_4(t_rbt *node);
 void			tree_delete_case_5(t_rbt *node);
 void			tree_delete_case_6(t_rbt *node);
+t_rbt			*tree_delete_node(t_rbt *node);
 void			tree_delete_one_child(t_rbt *node);
 void			tree_free(t_rbt *root, t_rbt_free_content *func);
+t_rbt			*tree_get_node_th(t_rbt *root, int *umpteenth);
 t_rbt			*tree_get_recurse_func(t_rbt *root,
 				void *content,
 				t_rbt_compare *func);
-t_rbt			*tree_get_recurse_func_ll(t_rbt *root,
-				void *content,
+t_rbt			*tree_get_recurse_func_ll(t_rbt *root, void *content,
 				t_rbt_compare_long_long *func);
 t_rbt			*tree_grand_parent(t_rbt *node);
 int				tree_inorder(t_rbt *root, t_rbt_inorder *func);
@@ -95,7 +97,10 @@ void			tree_rot_left(t_rbt *node);
 void			tree_rot_right(t_rbt *node);
 t_rbt			*tree_sibling(t_rbt *node);
 t_rbt			*tree_uncle(t_rbt *node);
-int8_t			zone_create(t_mem_type *mem_type, uint8_t zone_type);
+void			unavailable_add(t_alloc_header *alloc_header);
+t_rbt			**unavailable_get_tree(void *ptr);
+int8_t			unavailable_remove(void *maybe_alloc_header);
+int8_t			zone_create(t_mem_type *mem_type);
 void			zone_header_init(t_zone_header *header, t_zone *next);
 int8_t			zone_liberate_all(t_zone *zone, size_t zone_size);
 

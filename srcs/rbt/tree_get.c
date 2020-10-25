@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:35:41 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/23 19:04:25 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/25 01:26:31 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ t_rbt	*tree_get_recurse_func(t_rbt *root, void *content, t_rbt_compare *func)
             return root;
 	}
     return NULL;
-	
+
 }
 
-t_rbt	*tree_get_recurse_func_ll(t_rbt *root, void *content, t_rbt_compare_long_long *func)
+t_rbt	*tree_get_recurse_func_ll(t_rbt *root, void *content,
+		t_rbt_compare_long_long *func)
 {
 	if (root != NULL)
 	{
@@ -39,5 +40,21 @@ t_rbt	*tree_get_recurse_func_ll(t_rbt *root, void *content, t_rbt_compare_long_l
             return root;
 	}
     return NULL;
-	
+
+}
+
+t_rbt	*tree_get_node_th(t_rbt *root, int *umpteenth)
+{
+	t_rbt			*node;
+
+	node = NULL;
+	if (NULL != root)
+	{
+		node = tree_get_node_th(root->left, umpteenth);
+		if (!*umpteenth || NULL != node)
+			return (root);
+		(*umpteenth)--;
+		node = tree_get_node_th(root->right, umpteenth);
+	}
+	return (node);
 }

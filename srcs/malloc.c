@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/23 16:38:28 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/25 02:55:17 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,17 @@ int8_t		malloc_init(void)
 
 	// printf("Hello in\n");
 	mem_type_init(&base->small, ZONE_SMALL);
-	if (ERROR == zone_create(&base->small, ZONE_SMALL))
-		return (ERROR);
+	// if (ERROR == zone_create(&base->small))
+	// 	return (ERROR);
 
 	// printf("Hello small done\n");
 
 	mem_type_init(&base->tiny, ZONE_TINY);
-	if (ERROR == zone_create(&base->tiny, ZONE_TINY))
-		return (ERROR);
+	// if (ERROR == zone_create(&base->tiny))
+	// 	return (ERROR);
 	// printf("Hello tiny dßone\n");
 
+	base->is_init = TRUE;
 	return (SUCCESS);
 }
 
@@ -53,10 +54,11 @@ void		*our_malloc(size_t size)
 {
 	void	*mem;
 
-	if (static_mem()->small.zone == NULL)
+	if (static_mem()->is_init != TRUE)
 		if (malloc_init() == ERROR)
 			return ((void*)ERROR);
-
-	mem = get_spot(size);
-	return (mem);
+	mem = alloc_get(size);
+	if (mem)
+		return (mem + sizeof(t_alloc_header));
+	return (NULL);
 }

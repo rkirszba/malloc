@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:46 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/23 17:05:57 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/25 02:52:04 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int		main(int ac, char **av)
 	size = atoi(av[1]);
 	mem = our_malloc(size);
 
-
+	printf("We got mem %p\n", mem);
 	print_malloc_mem();
 	mem_2 = our_malloc(size * 2);
+	printf("We got mem2 %p\n", mem_2);
 
 
 	print_malloc_mem();
@@ -33,10 +34,14 @@ int		main(int ac, char **av)
 	// test_read(mem, size);
 
 	test_write(mem_2, size *2);
+	printf("Print test wreite\n");
 	print_malloc_mem();
 	// test_read(mem, size);
 	our_free(mem);
+	printf("Print free 1\n");
+	print_malloc_mem();
 	our_free(mem_2);
+	printf("Print free 2\n");
 
 	print_malloc_mem();
 
