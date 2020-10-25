@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:41:43 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/23 14:42:07 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:56:46 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_alloc_header			*alloc_access_next(t_alloc_header *alloc)
 {
 	t_alloc_header		*next_alloc_header;
 
-	if (alloc->flags & HDR_POS_LAST)
+	if (!alloc || alloc->flags & HDR_POS_LAST)
 		return (NULL);
 	next_alloc_header = (t_alloc_header*)((uint8_t*)alloc + alloc->size + sizeof(*alloc));
 	return (next_alloc_header);
@@ -26,9 +26,9 @@ t_alloc_header			*alloc_access_prev(t_alloc_header *alloc)
 {
 	t_alloc_header		*next_alloc_header;
 
-	if (alloc->flags & HDR_POS_FIRST)
+	if (!alloc || alloc->flags & HDR_POS_FIRST)
 		return (NULL);
-	next_alloc_header = (t_alloc_header*)((uint8_t*)alloc - alloc->size - sizeof(*alloc));
+	next_alloc_header = (t_alloc_header*)((uint8_t*)alloc - alloc->size_prev - sizeof(*alloc));
 	return (next_alloc_header);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 02:46:07 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 12:14:22 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int8_t	zone_create(t_mem_type *mem_type)
 
 	flags = HDR_AVAILABLE | HDR_POS_LAST | HDR_POS_FIRST | mem_type->type;
 	alloc_header_init(&zone->first_alloc_header,
-		mem_type->size - sizeof(zone->header), 0, flags);
+		mem_type->size - sizeof(zone->header) - sizeof(t_alloc_header), 0, flags);
 	available_add(&zone->first_alloc_header);
 	return (SUCCESS);
 }

@@ -10,7 +10,7 @@ void			alloc_header_init(t_alloc_header *header,
 				size_t size,
 				size_t size_prev,
 				uint8_t flags);
-t_alloc_header	*alloc_join(t_alloc_header *alloc, uint8_t join_with_next);
+t_alloc_header	*alloc_join(t_alloc_header *alloc);
 void			alloc_set_available(t_alloc_header *alloc);
 void			alloc_set_unavailable(t_alloc_header *alloc);
 int8_t			alloc_split(t_alloc_header *alloc, size_t first_size);
@@ -20,6 +20,7 @@ t_rbt			**available_get_tree(t_alloc_header *alloc);
 t_rbt			**available_get_tree_with_memory(size_t size_to_find);
 int8_t			available_remove(t_alloc_header *alloc);
 long long		compare_adresses(void *content1, void *content2);
+t_alloc_header	*defrag_elem(t_alloc_header *alloc_header);
 t_alloc_header	*defragment(t_alloc_header *alloc_header);
 uint8_t			flag_set_availabilty(uint8_t flag, uint8_t option);
 uint8_t			flag_set_pos(uint8_t flag, uint8_t option);
@@ -39,6 +40,7 @@ void			our_free(void *ptr);
 void			*our_malloc(size_t size);
 void			padding_after(t_rbt *node);
 void			padding_before(t_rbt *node, size_t space);
+void			print_alloc(t_alloc_header *alloc);
 void			print_alloc_header(t_alloc_header *alloc, size_t *total_octet);
 void			print_alloc_memory(t_alloc_header *alloc, size_t *total_octet,
 				size_t alloc_nb);

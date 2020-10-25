@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 00:05:07 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 02:05:03 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 12:54:58 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	mem_type_init(t_mem_type *mem_type, int8_t zone_type)
 		mem_type->factor_size_max = SMALL_SIZE_MAX_FACTOR;
 		mem_type->alloc_size_min = mem_type->alloc_resolution_size * 2;
 		mem_type->alloc_size_max = mem_type->alloc_resolution_size * SMALL_SIZE_MAX_FACTOR;//normally * 30 wich give : 15360(15KB)
-		mem_type->size = page_size * 4096;//16777216=16MB
+		// mem_type->size = page_size * 4096;//16777216=16MB
 		mem_type->size = mem_type->alloc_size_max * 1092;//16777216=16MB
 		mem_type->size = ZONE_SIZE;
 		mem_type->type = HDR_TYPE_SMALL;
