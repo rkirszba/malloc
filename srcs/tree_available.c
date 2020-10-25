@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 00:00:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 02:37:39 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 02:42:51 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ t_rbt		**available_get_tree_with_memory(size_t size_to_find)
 	return (&mem_type->available[index]);
 }
 
-//	Carefull, should not return tree from size, because ending alloc rarely has
-//	size which 'belong' to tree of his mem type
-t_rbt		**available_get_tree(size_t size, uint8_t type)
+t_rbt		**available_get_tree(t_alloc_header *alloc)
 {
 	t_mem_type		*mem_type;
 	size_t			index;
 
-	mem_type = mem_type_get(type);
-	index = (size / mem_type->alloc_resolution_size) - 1;
+	mem_type = mem_type_get(alloc->flags & HDR_TYPE);
+	index = (alloc->size / mem_type->alloc_resolution_size) - 1;
 	if (index > mem_type->factor_size_max)
 		index = mem_type->factor_size_max;
 	return &mem_type->available[index];
@@ -56,7 +54,7 @@ void		available_add(t_alloc_header *alloc)
 {
     t_rbt   **tree;
 
-    tree = available_get_tree(alloc->size, alloc->flags & HDR_TYPE);
+    tree = available_get_tree(alloc);
 	alloc->rbt.content = alloc;
     *tree = tree_insert_func_ll(*tree, &alloc->rbt,
 		(void*)alloc, &compare_adresses);
@@ -67,7 +65,7 @@ int8_t		available_remove(t_alloc_header *alloc)
     t_rbt   **tree;
     t_rbt	*node;
 
-	tree = available_get_tree(alloc->size, alloc->flags & HDR_TYPE);
+	tree = available_get_tree(alloc);
 	if (!(node = tree_get_recurse_func_ll(*tree, alloc,
 			&compare_adresses)))
 	{

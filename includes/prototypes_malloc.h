@@ -16,7 +16,7 @@ void			alloc_set_unavailable(t_alloc_header *alloc);
 int8_t			alloc_split(t_alloc_header *alloc, size_t first_size);
 void			alloc_update_size_next(t_alloc_header *alloc);
 void			available_add(t_alloc_header *alloc);
-t_rbt			**available_get_tree(size_t size, uint8_t type);
+t_rbt			**available_get_tree(t_alloc_header *alloc);
 t_rbt			**available_get_tree_with_memory(size_t size_to_find);
 int8_t			available_remove(t_alloc_header *alloc);
 long long		compare_adresses(void *content1, void *content2);
