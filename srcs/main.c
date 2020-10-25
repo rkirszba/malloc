@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:46 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 02:36:33 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 17:11:03 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		main(int ac, char **av)
 	int		size;
 	void	*mem;
 	void	*mem_2;
+	void	*mem_large;
 
 	if (ac != 2)
 		return (0);
@@ -29,11 +30,13 @@ int		main(int ac, char **av)
 	printf("We got mem2 %p\n", mem_2);
 
 
+	mem_large = our_malloc(16777216 * 2);
 	print_malloc_mem();
 	test_write(mem, size);
 	// test_read(mem, size);
 
 	test_write(mem_2, size *2);
+	test_write(mem_large, 16777216 * 2);
 	printf("Print test write\n");
 	print_malloc_mem();
 	// test_read(mem, size);
@@ -43,6 +46,9 @@ int		main(int ac, char **av)
 	our_free(mem_2);
 	printf("Print free 2\n");
 
+	print_malloc_mem();
+	printf("Print free 3\n");
+	our_free(mem_large);
 	print_malloc_mem();
 
 	malloc_exit();

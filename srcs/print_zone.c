@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 20:01:57 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 17:00:06 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 17:11:36 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,6 @@ void		print_malloc_mem(void)
 
 	base = static_mem();
 	printf("\x1b[38;2;%d;%d;%dm", 255, 105, 255);
-	printf("==============\n");
 	printf("ZONE TYPE TINY\n");
 	print_zone_type(base->tiny.zone);
 	printf("\x1b[38;2;%d;%d;%dm", 255, 105, 255);
@@ -208,6 +207,5 @@ void		print_malloc_mem(void)
 	printf("===============\n");
 	printf("ZONE TYPE LARGE\n");
 	print_zone_type(base->large);
-	printf("==============\n");
 	printf("\x1b[0m");
 }

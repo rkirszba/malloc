@@ -51,6 +51,7 @@ void			print_alloc_memory(t_alloc_header *alloc, size_t *total_octet,
 void			print_malloc_mem(void);
 void			print_zone(t_zone *zone, size_t zone_size);
 void			print_zone_header(t_zone *zone, size_t *total_octet);
+void			print_zone_type(t_zone *zone);
 size_t			secure_align_size(size_t size);
 t_infos			*static_mem(void);
 void			test_read(void *mem, size_t size);
@@ -112,6 +113,6 @@ void			zone_header_init(t_zone_header *header,
 				t_zone *next,
 				size_t size);
 int8_t			zone_liberate(t_zone *zone);
-int8_t			zone_liberate_all(t_zone *zone, size_t zone_size);
+int8_t			zone_liberate_all(t_zone *zone);
 
 #endif

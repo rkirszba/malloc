@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 17:03:43 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 17:51:17 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int8_t		zone_liberate(t_zone *zone)
 }
 
 
-int8_t	zone_liberate_all(t_zone *zone, size_t zone_size)
+int8_t	zone_liberate_all(t_zone *zone)
 {
 	t_zone			*n_zone;
 	int8_t			retval;
@@ -133,7 +133,7 @@ int8_t	zone_liberate_all(t_zone *zone, size_t zone_size)
 	{
 		n_zone = zone;
 		zone = zone->header.next_zone;
-	    if (-1 == munmap((void*)n_zone, zone_size))
+	    if (-1 == munmap((void*)n_zone, n_zone->header.size))
 			retval = ERROR;
 	}
 	return (retval);

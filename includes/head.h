@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/25 16:01:44 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 17:34:44 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define SMALL_SIZE_MAX_FACTOR		32
 
 # define AVAILABLE_TABLE_SIZE		(SMALL_SIZE_MAX_FACTOR > TINY__SIZE_MAX_FACTOR ? SMALL_SIZE_MAX_FACTOR : TINY__SIZE_MAX_FACTOR) + 1
-# define UNAVAILABLE_TABLE_SIZE		77777
+# define UNAVAILABLE_TABLE_SIZE		13
 
 # define ERROR						-1
 # define FAILURE					-1

@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 12:52:20 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/25 17:51:58 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int8_t		malloc_exit(void)
 
 	retval = SUCCESS;
 	base = static_mem();
-	if (ERROR == zone_liberate_all(base->small.zone, base->small.size))
+	if (ERROR == zone_liberate_all(base->small.zone))
 		retval = ERROR;
-	if (ERROR == zone_liberate_all(base->tiny.zone, base->tiny.size))
+	if (ERROR == zone_liberate_all(base->tiny.zone))
 		retval = ERROR;
-    if (-1 == munmap((void*)base, sizeof(t_infos)))
+	if (ERROR == zone_liberate_all(base->large))
 		retval = ERROR;
 	return (retval);
 }
