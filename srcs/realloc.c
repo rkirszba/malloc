@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/26 20:30:48 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/26 20:33:01 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void    *realloc(void* ptr, size_t size)
     alloc_header = ptr - sizeof(t_alloc_header);
     if (unavailable_exists((void*)alloc_header) == FALSE)
         return NULL;
+    // faire un if avec tentative de join
+        // remove le next header
+        // remove alloc_header
+        // add new_alloc header 
     else
     {
         new_ptr = our_malloc(size);
