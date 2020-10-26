@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tree_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 20:59:37 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/22 17:16:01 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/26 11:16:42 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 
-#define NB_OF_SPACE		7
+#define NB_OF_SPACE		15
 
 size_t		ft_nb_len(intmax_t n, size_t base)
 {
@@ -63,7 +63,7 @@ void	padding_after(t_rbt *node)
 	if (node->left != NULL || node->right != NULL)
 	{
 		padding = NB_OF_SPACE - ft_nb_len((size_t)node->content, 16) - 4;
-		padding = NB_OF_SPACE - 3 - 4;
+		padding = NB_OF_SPACE - 11 - 4;
 		i = 0;
 		while (i < padding)
 		{

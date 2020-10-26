@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 17:51:17 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/26 11:30:16 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,11 @@ int8_t		zone_liberate(t_zone *zone)
 	retval = SUCCESS;
 
 	if (zone->header.next_zone)
-		if (zone->header.next_zone->header.prev_zone)
+		// if (zone->header.next_zone->header.prev_zone)
 			zone->header.next_zone->header.prev_zone = zone->header.prev_zone;
 	if (zone->header.prev_zone)
 	{
-		if (zone->header.prev_zone->header.next_zone)
+		// if (zone->header.prev_zone->header.next_zone)
 			zone->header.prev_zone->header.next_zone = zone->header.next_zone;
 	}
 	else
