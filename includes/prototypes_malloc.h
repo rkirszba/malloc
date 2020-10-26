@@ -112,6 +112,7 @@ void			tree_rot_right(t_rbt *node);
 t_rbt			*tree_sibling(t_rbt *node);
 t_rbt			*tree_uncle(t_rbt *node);
 void			unavailable_add(t_alloc_header *alloc_header);
+uint8_t			unavailable_exists(void *maybe_alloc_header);
 t_rbt			**unavailable_get_tree(void *ptr);
 int8_t			unavailable_remove(void *maybe_alloc_header);
 int8_t			zone_create(t_mem_type *mem_type);

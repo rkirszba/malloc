@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:09:56 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/25 17:53:10 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/26 20:22:05 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@ t_rbt		**unavailable_get_tree(void *ptr)
 	infos = static_mem();
     hash = hash_djb2((unsigned char*)&ptr) % UNAVAILABLE_TABLE_SIZE;
     return &infos->unavailable[hash];
+}
+
+uint8_t		unavailable_exists(void *maybe_alloc_header)
+{
+	t_rbt   **tree;
+
+	tree = unavailable_get_tree(maybe_alloc_header);
+	if (tree_get_recurse_func_ll(*tree, maybe_alloc_header,
+		&compare_adresses))
+		return TRUE;
+	return FALSE;
 }
 
 int8_t		unavailable_remove(void *maybe_alloc_header)
