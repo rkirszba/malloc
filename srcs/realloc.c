@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/26 20:33:01 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/26 20:33:52 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void    *realloc(void* ptr, size_t size)
     // faire un if avec tentative de join
         // remove le next header
         // remove alloc_header
+        // split
+            // si marche, ajout du next header
         // add new_alloc header 
     else
     {
