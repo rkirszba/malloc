@@ -6,18 +6,18 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:07:39 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/26 21:09:55 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/27 00:29:28 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-void		*malloc(size_t size)
-{
-	return (our_malloc(size));
-}
-
-void		free(void *ptr)
-{
-	our_free(ptr);
-}
+// void		*malloc(size_t size)
+// {
+// 	return (our_malloc(size));
+// }
+//
+// void		free(void *ptr)
+// {
+// 	our_free(ptr);
+// }

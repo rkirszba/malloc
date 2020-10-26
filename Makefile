@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/10/26 21:13:34 by ezalos           ###   ########.fr        #
+#    Updated: 2020/10/27 00:28:52 by ezalos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,16 @@ HOSTTYPE := $(shell uname -m)_$(shell uname -s)
 endif
 
 NAME		= libft_malloc_$(HOSTTYPE).so
+TESTOR		= malloc_testor.out
 CC			= gcc
 
 CFLAGS		= -Wall -Werror -Wextra
+
 SO_FLAG		= -fPIC
+SO_FLAG_	= -shared
+
+SO_FLAG		=
+SO_FLAG_	=
 
 #For developping purposes:
 CFLAGS 		+= -fsanitize=address,undefined -g3
@@ -47,11 +53,14 @@ HEADERS		= -I./$(HEAD_DIR)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -shared -o $(NAME) $(HEADERS)
+	$(CC) $(CFLAGS) $(OBJS) $(SO_FLAG_) -o $(NAME) $(HEADERS)
 	ln -sf $(NAME) libft_malloc.so
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCS) Makefile
 	$(CC) $(CFLAGS) $(SO_FLAG) -o $@ -c $< $(HEADERS)
+
+$(TESTOR): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TESTOR) $(HEADERS)
 
 clean:
 	rm -rf $(OBJS)
@@ -75,8 +84,8 @@ ifneq "$(SUPPORTS_MAKE_ARGS)" ""
   $(eval $(COMMAND_ARGS):;@:)
 endif
 
-run: $(NAME)
-	./$(NAME) $(COMMAND_ARGS)
+run: $(TESTOR)
+	./$(TESTOR) $(COMMAND_ARGS)
 
 tests: $(NAME)
 	sh .tmp/script.sh $(COMMAND_ARGS)

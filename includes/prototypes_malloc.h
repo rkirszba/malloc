@@ -29,12 +29,9 @@ size_t			first_biggest_than(t_zone *zone, size_t bound);
 uint8_t			flag_set_availabilty(uint8_t flag, uint8_t option);
 uint8_t			flag_set_pos(uint8_t flag, uint8_t option);
 uint8_t			flag_set_type(uint8_t flag, uint8_t option);
-void			free(void *ptr);
 size_t			ft_nb_len(intmax_t n, size_t base);
 size_t			hash_djb2(unsigned char *ptr);
 uint8_t			is_large_zone(size_t size);
-int				main(int ac, char **av);
-void			*malloc(size_t size);
 int8_t			malloc_exit(void);
 int8_t			malloc_init(void);
 void 			mem_put_color(t_alloc_header *alloc,
