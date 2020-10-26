@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/26 17:51:18 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/26 21:11:04 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		print_hex_zeroes(size_t n)
 
 	shift = sizeof(size_t) * 2;
 	shift -= 4;
-	while (shift >= 0 && 0 == (n & ((size_t)MASK_CHAR << shift)))
+	while (shift < sizeof(size_t) * 2
+	&& 0 == (n & ((size_t)MASK_CHAR << shift)))
 	{
 		write(1, "0", 1);
 		shift -= 4;
