@@ -6,18 +6,28 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/10/22 17:30:33 by ldevelle         ###   ########.fr        #
+#    Updated: 2020/10/27 00:28:52 by ezalos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+ifeq ($(HOSTTYPE),)
+HOSTTYPE := $(shell uname -m)_$(shell uname -s)
+endif
+
+NAME		= libft_malloc_$(HOSTTYPE).so
+TESTOR		= malloc_testor.out
 CC			= gcc
 
 CFLAGS		= -Wall -Werror -Wextra
 
+SO_FLAG		= -fPIC
+SO_FLAG_	= -shared
+
+SO_FLAG		=
+SO_FLAG_	=
+
 #For developping purposes:
 CFLAGS 		+= -fsanitize=address,undefined -g3
-
-NAME=malloc
 
 SRCS_DIR	= srcs/
 HEAD_DIR	= includes/
@@ -43,10 +53,14 @@ HEADERS		= -I./$(HEAD_DIR)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(HEADERS)
+	$(CC) $(CFLAGS) $(OBJS) $(SO_FLAG_) -o $(NAME) $(HEADERS)
+	ln -sf $(NAME) libft_malloc.so
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCS) Makefile
-	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	$(CC) $(CFLAGS) $(SO_FLAG) -o $@ -c $< $(HEADERS)
+
+$(TESTOR): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TESTOR) $(HEADERS)
 
 clean:
 	rm -rf $(OBJS)
@@ -63,22 +77,24 @@ re : fclean
 ##						##
 ##########################
 
-SUPPORTED_COMMANDS := run
+SUPPORTED_COMMANDS := run tests
 SUPPORTS_MAKE_ARGS := $(findstring $(firstword $(MAKECMDGOALS)), $(SUPPORTED_COMMANDS))
 ifneq "$(SUPPORTS_MAKE_ARGS)" ""
   COMMAND_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
   $(eval $(COMMAND_ARGS):;@:)
 endif
 
-run: $(NAME)
-	./$(NAME) $(COMMAND_ARGS)
+run: $(TESTOR)
+	./$(TESTOR) $(COMMAND_ARGS)
+
+tests: $(NAME)
+	sh .tmp/script.sh $(COMMAND_ARGS)
 
 prototypes:
 	python3 .tmp/prototype_catcher.py srcs includes/prototypes_malloc.h malloc
 
 REQUEST 		= 'read -p "Enter a commit message:	" pwd && echo $$pwd'
 COMMIT_MESSAGE ?= $(shell bash -c $(REQUEST))
-# $(GIT_VALID) || (echo -n "Are you sure? [y/N] " && read ans && [ $${ans:-N} = y ])
 git :
 		git add -A
 		git status

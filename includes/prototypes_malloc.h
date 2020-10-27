@@ -34,7 +34,6 @@ uint8_t			flag_set_type(uint8_t flag, uint8_t option);
 size_t			ft_nb_len(intmax_t n, size_t base);
 size_t			hash_djb2(unsigned char *ptr);
 uint8_t			is_large_zone(size_t size);
-int				main(int ac, char **av);
 int8_t			malloc_exit(void);
 int8_t			malloc_init(void);
 void 			mem_put_color(t_alloc_header *alloc,
