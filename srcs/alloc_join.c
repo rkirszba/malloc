@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 12:04:09 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 15:21:56 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int8_t	alloc_join_get_pos_flags(t_alloc_header *alloc,
 static int8_t		remove_alloc_from_ds(t_alloc_header *alloc)
 {
 	if (alloc->flags & HDR_AVAILABLE)
-		return unavailable_remove(alloc);
-	else
 		return available_remove(alloc);
+	else
+		return unavailable_remove(alloc);
 }
 
 
@@ -37,14 +37,12 @@ t_alloc_header	*alloc_join(t_alloc_header *alloc, t_alloc_header *del_alloc)
 	size_t				size_prev;
 	uint8_t				flags;
 
-	if (NULL == alloc)
-		return (NULL);
-	del_alloc = alloc_access_next(alloc);
-	if (alloc->flags & HDR_AVAILABLE
-	&& del_alloc && del_alloc->flags & HDR_AVAILABLE)
+	// if (alloc->flags & HDR_AVAILABLE
+	// && del_alloc && del_alloc->flags & HDR_AVAILABLE)
+	if (alloc && del_alloc)//TODO: rm ?
 	{
-		remove_alloc_from_ds(alloc);
-		remove_alloc_from_ds(del_alloc);
+		//if (FAILURE == available_remove(del_alloc))
+		//	return NULL;
 		new_size = alloc->size + sizeof(*alloc) + del_alloc->size;
 		size_prev = alloc->size_prev;
 		flags = alloc_join_get_pos_flags(alloc, del_alloc);
@@ -54,7 +52,7 @@ t_alloc_header	*alloc_join(t_alloc_header *alloc, t_alloc_header *del_alloc)
 	return (NULL);
 }
 
-t_alloc_header	*alloc_join_defrag(t_alloc_header *alloc)
+t_alloc_header	*alloc_join_defrag(t_alloc_header *alloc, int8_t r_left, int8_t r_right)
 {
 	t_alloc_header		*del_alloc;
 
@@ -63,7 +61,13 @@ t_alloc_header	*alloc_join_defrag(t_alloc_header *alloc)
 	del_alloc = alloc_access_next(alloc);
 	if (alloc->flags & HDR_AVAILABLE
 	&& del_alloc && del_alloc->flags & HDR_AVAILABLE)
+	{
+		if (TRUE == r_left)
+			remove_alloc_from_ds(alloc);//TODO: check return ?
+		if (TRUE == r_right)
+			remove_alloc_from_ds(del_alloc);//TODO: check return ?
 		return (alloc_join(alloc, del_alloc));
+	}
 	return NULL;
 }
 
@@ -80,6 +84,9 @@ t_alloc_header	*alloc_join_realloc(t_alloc_header *alloc, size_t size)
 	if (del_alloc && del_alloc->flags & HDR_AVAILABLE
 	&& alloc->size + sizeof(t_alloc_header) + del_alloc->size
 	<= align_size(alloc->flags & HDR_TYPE, size))
+	{
+		remove_alloc_from_ds(del_alloc);//TODO: check return ?
 		return (alloc_join(alloc, del_alloc));
+	}
 	return NULL;
 }

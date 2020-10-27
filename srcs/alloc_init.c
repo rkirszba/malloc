@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:42:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/25 12:15:26 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/27 14:47:51 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void	alloc_header_init(t_alloc_header *header, size_t size, size_t size_prev,
 void			print_alloc(t_alloc_header *alloc)
 {
 	uint8_t		flag;
+
+	if (!alloc)
+	{
+		printf("Alloc: %p\n", alloc);
+		return ;
+	}
 	printf("Alloc: %p\n", alloc);
 	printf("\tsize     : %d\n", alloc->size);
 	printf("\tsize_prev: %d\n", alloc->size_prev);
