@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_rand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/27 00:30:06 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/27 12:31:32 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,13 @@ void		finish(char **tab)
 
 }
 
-int			main(void)
+int			main(int ac, char **av)
 {
 	char		**tab;
 	int			i;
 
+	(void)ac;
+	(void)av;
 	srand(42);
 
 	write(1, "Begin tests\n", 12);
