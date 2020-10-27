@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 17:51:58 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/27 13:18:37 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int8_t		malloc_exit(void)
 	return (retval);
 }
 
-int8_t		malloc_init(void)
+void		malloc_init(void)
 {
 	t_infos	*base;
 
@@ -38,7 +38,6 @@ int8_t		malloc_init(void)
 	mem_type_init(&base->tiny, ZONE_TINY);
 
 	base->is_init = TRUE;
-	return (SUCCESS);
 }
 
 void		*our_malloc(size_t size)
@@ -46,8 +45,7 @@ void		*our_malloc(size_t size)
 	void	*mem;
 
 	if (static_mem()->is_init != TRUE)
-		if (malloc_init() == ERROR)
-			return ((void*)ERROR);
+		malloc_init();
 	mem = alloc_get(size);
 	if (mem)
 		return (mem + sizeof(t_alloc_header));
