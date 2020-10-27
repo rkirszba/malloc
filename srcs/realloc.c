@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/26 20:33:52 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 11:25:56 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void    ft_memncpy(void* dest, void* src, size_t n)
 
 void    *realloc(void* ptr, size_t size)
 {
+    (void)ptr;
+    (void)size;
+	return NULL;
     t_alloc_header  *alloc_header;
     void            *new_ptr;
 
@@ -45,7 +48,7 @@ void    *realloc(void* ptr, size_t size)
         new_ptr = our_malloc(size);
         our_free(ptr);
         ft_memncpy(new_ptr, ptr, alloc_header->size);
-        return new_ptr
+        return new_ptr;
     }
     return NULL;
 }

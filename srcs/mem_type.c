@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 00:05:07 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 12:54:58 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/27 11:25:43 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,31 @@ t_mem_type		*mem_type_get(uint8_t type)
 
 void	mem_type_init(t_mem_type *mem_type, int8_t zone_type)
 {
-	int		page_size;
+	size_t		page_size;
 
 	page_size = getpagesize();//it's 4096
-	if (page_size <= 256)
-		page_size = ZONE_SIZE;
+	while (page_size < (RES_SMALL + sizeof(t_alloc_header)) * SMALL_SIZE_MAX_FACTOR * 100 + sizeof(t_zone_header) / 4096)
+		page_size += getpagesize();
 	if (zone_type == ZONE_TINY)
 	{
-		mem_type->alloc_resolution_size = page_size / 256;//it's 16
-		mem_type->factor_size_max = TINY__SIZE_MAX_FACTOR;
-		mem_type->alloc_size_min = 0;
-		mem_type->alloc_size_max = mem_type->alloc_resolution_size * TINY__SIZE_MAX_FACTOR;//normally reso * 62 which give : 992.
+		mem_type->type = HDR_TYPE_TINY;
+		mem_type->alloc_resolution_size = RES_TINY;
+		mem_type->factor_size_max = TINY_SIZE_MAX_FACTOR;
+		mem_type->alloc_size_min = RES_TINY * 0;
+		mem_type->alloc_size_max = RES_TINY * TINY_SIZE_MAX_FACTOR;//normally reso * 62 which give : 992.
 		//So with resolution * 64 == 1024
 		mem_type->size = page_size * 512;//it's 2MB = 2097152
-		mem_type->size = ZONE_SIZE / 4;
+		// mem_type->size = ZONE_SIZE / 4;
 		mem_type->type = HDR_TYPE_TINY;
 	}
 	else if (zone_type == ZONE_SMALL)
 	{
-		mem_type->alloc_resolution_size = page_size / 8;
-		mem_type->factor_size_max = SMALL_SIZE_MAX_FACTOR;
-		mem_type->alloc_size_min = mem_type->alloc_resolution_size * 2;
-		mem_type->alloc_size_max = mem_type->alloc_resolution_size * SMALL_SIZE_MAX_FACTOR;//normally * 30 wich give : 15360(15KB)
-		// mem_type->size = page_size * 4096;//16777216=16MB
-		mem_type->size = mem_type->alloc_size_max * 1092;//16777216=16MB
-		mem_type->size = ZONE_SIZE;
 		mem_type->type = HDR_TYPE_SMALL;
+		mem_type->alloc_resolution_size = RES_SMALL;
+		mem_type->factor_size_max = SMALL_SIZE_MAX_FACTOR;
+		mem_type->alloc_size_min = RES_TINY * TINY_SIZE_MAX_FACTOR + 1;
+		mem_type->alloc_size_max = RES_SMALL * SMALL_SIZE_MAX_FACTOR;//normally * 30 wich give : 15360(15KB)
+		mem_type->size = page_size * 4096;//16777216=16MB
+		mem_type->size = ZONE_SIZE;
 	}
 }

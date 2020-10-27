@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/26 11:30:16 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 11:03:29 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_alloc_header	*zone_create_large(size_t size)
 	uint8_t			flags;
 
 	// printf("mmap of %s zone\n", "large");
-	zone = mmap(NULL, size,
+	zone = mmap(NULL, size + sizeof(t_zone_header) + sizeof(t_alloc_header),
 				PROT_READ | PROT_WRITE,
 				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 

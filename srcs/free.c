@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/26 11:48:36 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 11:24:39 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_alloc_header	*defrag_elem(t_alloc_header *alloc_header)
 	if (NULL != alloc_header)
 	{
 		old = alloc_access_next(alloc_header);
-		if (NULL != (new = alloc_join(alloc_header)))
+		if (NULL != (new = alloc_join_defrag(alloc_header)))
 		{
 			tree = available_get_tree(old);
 			*tree = tree_delete_node(&old->rbt);

@@ -12,7 +12,9 @@ void			alloc_header_init(t_alloc_header *header,
 				size_t size,
 				size_t size_prev,
 				uint8_t flags);
-t_alloc_header	*alloc_join(t_alloc_header *alloc);
+t_alloc_header	*alloc_join(t_alloc_header *alloc, t_alloc_header *del_alloc);
+t_alloc_header	*alloc_join_defrag(t_alloc_header *alloc);
+t_alloc_header	*alloc_join_realloc(t_alloc_header *alloc, size_t size);
 void			alloc_set_available(t_alloc_header *alloc);
 void			alloc_set_unavailable(t_alloc_header *alloc);
 int8_t			alloc_split(t_alloc_header *alloc, size_t first_size);

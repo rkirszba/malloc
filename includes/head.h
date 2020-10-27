@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   head.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/25 17:34:44 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/27 11:25:06 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 
 # define ZONE_SIZE					4096
 
-# define TINY__SIZE_MAX_FACTOR		32
+# define TINY_SIZE_MAX_FACTOR		32
 # define SMALL_SIZE_MAX_FACTOR		32
 
-# define AVAILABLE_TABLE_SIZE		(SMALL_SIZE_MAX_FACTOR > TINY__SIZE_MAX_FACTOR ? SMALL_SIZE_MAX_FACTOR : TINY__SIZE_MAX_FACTOR) + 1
+# define AVAILABLE_TABLE_SIZE		(SMALL_SIZE_MAX_FACTOR > TINY_SIZE_MAX_FACTOR ? SMALL_SIZE_MAX_FACTOR : TINY_SIZE_MAX_FACTOR) + 1
 # define UNAVAILABLE_TABLE_SIZE		13
 
 # define ERROR						-1
@@ -56,6 +56,13 @@
 # define ZONE_TINY					HDR_TYPE_TINY
 # define ZONE_SMALL					HDR_TYPE_SMALL
 # define ZONE_LARGE					HDR_TYPE_LARGE
+
+# define RES_TINY					16
+# define RES_TINY_SHIFT			4
+# define RES_SMALL					512
+# define RES_SMALL_SHIFT			9
+# define RES_LARGE					4096
+# define RES_LARGE_SHIFT			12
 
 
 typedef	struct				s_alloc_header

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_join.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 15:30:30 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/27 11:17:25 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ static int8_t	alloc_join_get_pos_flags(t_alloc_header *alloc,
 	return (flags);
 }
 
-t_alloc_header	*alloc_join(t_alloc_header *alloc)
+t_alloc_header	*alloc_join(t_alloc_header *alloc, t_alloc_header *del_alloc)
 {
-	t_alloc_header		*del_alloc;
 	size_t				new_size;
 	size_t				size_prev;
 	uint8_t				flags;
@@ -42,4 +41,32 @@ t_alloc_header	*alloc_join(t_alloc_header *alloc)
 		return (alloc);
 	}
 	return (NULL);
+}
+
+t_alloc_header	*alloc_join_defrag(t_alloc_header *alloc)
+{
+	t_alloc_header		*del_alloc;
+
+	if (NULL == alloc)
+		return (NULL);
+	del_alloc = alloc_access_next(alloc);
+	if (alloc->flags & HDR_AVAILABLE
+	&& del_alloc && del_alloc->flags & HDR_AVAILABLE)
+		return (alloc_join(alloc, del_alloc));
+	return NULL;
+}
+
+
+t_alloc_header	*alloc_join_realloc(t_alloc_header *alloc, size_t size)
+{
+	t_alloc_header		*del_alloc;
+
+	if (NULL == alloc)
+		return (NULL);
+	del_alloc = alloc_access_next(alloc);
+	if (del_alloc && del_alloc->flags & HDR_AVAILABLE
+	&& alloc->size + sizeof(t_alloc_header) + del_alloc->size
+	<= align_size(alloc->flags & HDR_TYPE, size))
+		return (alloc_join(alloc, del_alloc));
+	return NULL;
 }
