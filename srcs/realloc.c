@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/27 11:25:56 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 12:23:46 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,35 @@ void    ft_memncpy(void* dest, void* src, size_t n)
     }
 }
 
-void    *realloc(void* ptr, size_t size)
+static void    *realloc_cant(t_alloc_header *alloc_header, size_t size)
+{
+    t_alloc_header  *alloc_header;
+    void            *new_ptr;
+    
+    new_ptr = our_malloc(size);
+    if (new_ptr)
+        ft_memncpy(new_ptr, (void*)alloc_header, alloc_header->size);
+    our_free((void*)alloc_header);
+    return new_ptr;
+}
+
+static void    *realloc_smaller(t_alloc_header *alloc_header, size_t size)
+{
+    if (SUCCESS == alloc_split(alloc_header, size))
+        available_add(alloc_access_next(alloc_header));
+    return (alloc_header);
+}
+
+static void    *realloc_can(t_alloc_header *alloc_header, size_t size)
+{
+    if (NULL == alloc_join_realloc(alloc_header, size))
+        return (realloc_cant(alloc_header, size));
+    unavailable_add(realloc);
+    return realloc;
+}
+
+
+void    *realloc(void *ptr, size_t size)
 {
     (void)ptr;
     (void)size;
@@ -32,23 +60,23 @@ void    *realloc(void* ptr, size_t size)
     t_alloc_header  *alloc_header;
     void            *new_ptr;
 
-    if (static_mem()->is_init != TRUE)
-		return NULL;
+    if (static_mem()->is_init != TRUE || NULL == ptr)
+		return (NULL);
+    size = secure_align_size(size);
     alloc_header = ptr - sizeof(t_alloc_header);
     if (unavailable_exists((void*)alloc_header) == FALSE)
-        return NULL;
-    // faire un if avec tentative de join
-        // remove le next header
-        // remove alloc_header
-        // split
-            // si marche, ajout du next header
-        // add new_alloc header 
+        return (NULL);
+    if (alloc_header->size <= size)
+        return (realloc_smaller(alloc_header, size));
+    else if (alloc_header->flags & HDR_TYPE_LARGE)
+        return (realloc_cant(ptr, size));
+    else if (0 == (alloc_header->flags
+    & mem_type_get_from_size(size)->type))
+    {
+        return (realloc_cant(ptr, size));
+    }
     else
     {
-        new_ptr = our_malloc(size);
-        our_free(ptr);
-        ft_memncpy(new_ptr, ptr, alloc_header->size);
-        return new_ptr;
+        return (realloc_can(ptr, size));
     }
-    return NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 11:17:25 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 12:04:09 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ static int8_t	alloc_join_get_pos_flags(t_alloc_header *alloc,
 	return (flags);
 }
 
+static int8_t		remove_alloc_from_ds(t_alloc_header *alloc)
+{
+	if (alloc->flags & HDR_AVAILABLE)
+		return unavailable_remove(alloc);
+	else
+		return available_remove(alloc);
+}
+
+
 t_alloc_header	*alloc_join(t_alloc_header *alloc, t_alloc_header *del_alloc)
 {
 	size_t				new_size;
@@ -34,6 +43,8 @@ t_alloc_header	*alloc_join(t_alloc_header *alloc, t_alloc_header *del_alloc)
 	if (alloc->flags & HDR_AVAILABLE
 	&& del_alloc && del_alloc->flags & HDR_AVAILABLE)
 	{
+		remove_alloc_from_ds(alloc);
+		remove_alloc_from_ds(del_alloc);
 		new_size = alloc->size + sizeof(*alloc) + del_alloc->size;
 		size_prev = alloc->size_prev;
 		flags = alloc_join_get_pos_flags(alloc, del_alloc);
@@ -62,6 +73,8 @@ t_alloc_header	*alloc_join_realloc(t_alloc_header *alloc, size_t size)
 	t_alloc_header		*del_alloc;
 
 	if (NULL == alloc)
+		return (NULL);
+	if (alloc->flags & HDR_TYPE_LARGE && alloc->size < size)
 		return (NULL);
 	del_alloc = alloc_access_next(alloc);
 	if (del_alloc && del_alloc->flags & HDR_AVAILABLE

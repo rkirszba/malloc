@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:20:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/26 11:47:06 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 12:15:34 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_alloc_header		*alloc_get(size_t size)
 		if (NULL == alloc)
 			return (NULL);
 		available_remove(alloc);
-		if (SUCCESS == alloc_split(alloc, size))
+		if (SUCCESS == alloc_split_malloc(alloc, size))
 			available_add(alloc_access_next(alloc));
 	}
 	alloc_set_unavailable(alloc);

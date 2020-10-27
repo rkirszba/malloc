@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:55 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/26 11:47:40 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 12:17:36 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int8_t			alloc_split(t_alloc_header *alloc, size_t first_size)
 	retval = ERROR;
 	old_size = alloc->size;
 	first_size = align_size(alloc->flags & HDR_TYPE, first_size);
-	if (alloc_split_check_size(alloc, first_size)
-	&& (alloc->flags & HDR_AVAILABLE))
+	if (alloc_split_check_size(alloc, first_size))
 	{
 		retval = SUCCESS;
 		old_flags = alloc->flags;
@@ -70,6 +69,19 @@ int8_t			alloc_split(t_alloc_header *alloc, size_t first_size)
 		alloc_header_init(new_alloc,
 			old_size - first_size - sizeof(*alloc), first_size,
 			flag_set_pos(old_flags, old_flags & HDR_POS_LAST));
+		alloc_set_available(new_alloc);
+	}
+	return (retval);
+}
+
+int8_t			alloc_split_malloc(t_alloc_header *alloc, size_t first_size)
+{
+	int8_t				retval;
+
+	retval = ERROR;
+	if (alloc->flags & HDR_AVAILABLE)
+	{
+		retval = alloc_split(alloc, first_size);
 	}
 	return (retval);
 }
