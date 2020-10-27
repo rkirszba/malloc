@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_available.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 00:00:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 02:42:51 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/27 18:09:16 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_rbt		**available_get_tree(t_alloc_header *alloc)
 	index = (alloc->size / mem_type->alloc_resolution_size) - 1;
 	if (index > mem_type->factor_size_max)
 		index = mem_type->factor_size_max;
+	// printf("%s with index = %lu\n", __func__, index);
 	return &mem_type->available[index];
 }
 

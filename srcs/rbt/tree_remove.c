@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tree_remove.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 14:11:36 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 02:58:09 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/27 17:59:34 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
+
+
 
 void		tree_replace_node(t_rbt *node, t_rbt *child)
 {
@@ -49,6 +51,8 @@ void		tree_delete_one_child(t_rbt *node)
 	// ft_memdel((void**)&node);
 }
 
+
+
 /*
 **	This function return new root
 */
@@ -62,8 +66,17 @@ t_rbt		*tree_delete_node(t_rbt *node)
 	else
 		child = node->right;
 	if (child)
-	{
 		tree_replace_node(node, child);
+	else if (node->parent)//Has been randomly added, might be source of problems
+	{
+		child = node->parent;
+		if (node == child->left)
+			child->left = NULL;
+		else
+			child->right = NULL;
+	}
+	if (child)
+	{
 		if (node->color == BLACK)
 		{
 			if (child->color == RED)
@@ -74,8 +87,5 @@ t_rbt		*tree_delete_node(t_rbt *node)
 		return (tree_root(child));
 	}
 	return (NULL);
-	// return (node);
-	// if (func)
-	// 	func(&node->content);
-	// ft_memdel((void**)&node);
 }
+

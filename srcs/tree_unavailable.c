@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:09:56 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/26 20:22:05 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 18:09:26 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_rbt		**unavailable_get_tree(void *ptr)
 
 	infos = static_mem();
     hash = hash_djb2((unsigned char*)&ptr) % UNAVAILABLE_TABLE_SIZE;
+	// printf("%s with index = %lu\n", __func__, hash);
     return &infos->unavailable[hash];
 }
 
@@ -39,6 +40,8 @@ int8_t		unavailable_remove(void *maybe_alloc_header)
     t_rbt	*node;
 
 	tree = unavailable_get_tree(maybe_alloc_header);
+	// printf("TREE PRINT INSIDE UN REMOVE 1\n");
+	// tree_print(*tree, 4);
 	if (!(node = tree_get_recurse_func_ll(*tree, maybe_alloc_header,
 			&compare_adresses)))
 	{
@@ -46,7 +49,12 @@ int8_t		unavailable_remove(void *maybe_alloc_header)
 		return FAILURE;
 	}
 	alloc_set_available(maybe_alloc_header);
+	// printf("TREE PRINT INSIDE UN REMOVE 2 \n");
+	// tree_print(*tree, 4);
 	*tree = tree_delete_node(node);
+	// printf("TREE PRINT INSIDE UN REMOVE 3 \n");
+	// tree_print(*tree, 4);
+	// printf("%s: Tree address: %p\n", __func__, *tree);
     return SUCCESS;
 }
 

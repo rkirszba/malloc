@@ -6,30 +6,32 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 15:30:14 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 18:07:56 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
-/*
-**	Defragment elem:	[prev]	[x]	[next]
-**	
-**	Prev is true, when the alloc_header sent by defragment correspond to [prev].
-*/
 
-t_alloc_header	*defrag_elem(t_alloc_header *alloc_header, int8_t prev)
+void			defrag_elem_right(t_alloc_header *alloc_header)
 {
-	//t_rbt  			**tree;
-	t_alloc_header	*new;
-	t_alloc_header	*old;
-
 	if (NULL != alloc_header)
+		alloc_join_defrag(alloc_header, FALSE, TRUE);
+
+}
+
+t_alloc_header	*defrag_elem_left(t_alloc_header *middle)
+{
+	t_alloc_header	*left;
+	t_alloc_header	*joined;
+
+	left = alloc_access_prev(middle);
+	if (NULL != left)
 	{
-		old = alloc_access_next(alloc_header);
-		if (NULL != (new = alloc_join_defrag(alloc_header, prev, !prev)))
-			alloc_header = new;
+		joined = alloc_join_defrag(left, TRUE, FALSE);
+		if (NULL != joined)
+			return (joined);
 	}
-	return (alloc_header);
+	return (middle);
 }
 
 /*
@@ -45,13 +47,9 @@ t_alloc_header	*defrag_elem(t_alloc_header *alloc_header, int8_t prev)
 
 t_alloc_header	*defragment(t_alloc_header *alloc_header)
 {
-	t_alloc_header	*new;
-	
-	alloc_header = defrag_elem(alloc_header, FALSE);
-	if (NULL != (new = alloc_access_prev(alloc_header)))
-	{
-		alloc_header = defrag_elem(new, TRUE);
-	}
+	defrag_elem_right(alloc_header);	
+	alloc_header = defrag_elem_left(alloc_header);
+	// printf("2%s flag av %d\n", __func__, alloc_header->flags & HDR_AVAILABLE);
 	return (alloc_header);
 }
 
@@ -66,7 +64,7 @@ void		our_free(void *ptr)
 		return ;
 	alloc_set_available(alloc_header);
 	alloc_header = defragment(alloc_header);
-	print_alloc(alloc_header);
+	// printf("%s flag av %d\n", __func__, alloc_header->flags & HDR_AVAILABLE);
 	if (TRUE == can_zone_liberate(alloc_header))
 	{
 		zone_liberate(alloc_access_zone(alloc_header));

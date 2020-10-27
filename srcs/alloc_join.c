@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 15:21:56 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 18:09:00 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ static int8_t	alloc_join_get_pos_flags(t_alloc_header *alloc,
 {
 	uint8_t				flags;
 
+	// printf("alloc %d del_alloc %d\n", alloc->flags & HDR_AVAILABLE, del_alloc->flags & HDR_AVAILABLE);
 	flags = flag_set_pos(alloc->flags, (alloc->flags & HDR_POS_FIRST)
 		| (del_alloc->flags & HDR_POS_LAST));
+	// printf("Res: %d\n", flags & HDR_AVAILABLE);
 	return (flags);
 }
 
@@ -47,6 +49,7 @@ t_alloc_header	*alloc_join(t_alloc_header *alloc, t_alloc_header *del_alloc)
 		size_prev = alloc->size_prev;
 		flags = alloc_join_get_pos_flags(alloc, del_alloc);
 		alloc_header_init(alloc, new_size - sizeof(*alloc), size_prev, flags);
+		// printf("%s flag av %d\n", __func__, alloc->flags & HDR_AVAILABLE);
 		return (alloc);
 	}
 	return (NULL);
@@ -59,13 +62,20 @@ t_alloc_header	*alloc_join_defrag(t_alloc_header *alloc, int8_t r_left, int8_t r
 	if (NULL == alloc)
 		return (NULL);
 	del_alloc = alloc_access_next(alloc);
+	// printf("%s left:%d right:%d\n", __func__, r_left, r_right);
 	if (alloc->flags & HDR_AVAILABLE
 	&& del_alloc && del_alloc->flags & HDR_AVAILABLE)
 	{
 		if (TRUE == r_left)
+		{
+			// printf("TRYING TO REMOVE LEFT\n");
 			remove_alloc_from_ds(alloc);//TODO: check return ?
+		}
 		if (TRUE == r_right)
+		{
+			// printf("TRYING TO REMOVE RIGHT\n");
 			remove_alloc_from_ds(del_alloc);//TODO: check return ?
+		}
 		return (alloc_join(alloc, del_alloc));
 	}
 	return NULL;

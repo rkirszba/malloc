@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/27 12:31:32 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/27 15:44:04 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,13 @@ int8_t		unit_test(char **tab)
 
 	r = rand() % SIZE_TAB;
 
+	printf("r = %d\n", r);
 	our_free(tab[r]);
+	printf("AFTER FREE\n");
 	size = SIZE_ALLOC;
 	if (!(tab[r] = our_malloc(size)))
 		return (ERROR);
+	printf("AFTER NEW MALLOC\n");
 	test_write(tab[r], secure_align_size(size));
 	return (SUCCESS);
 }
@@ -93,11 +96,13 @@ int			main(int ac, char **av)
 	srand(42);
 
 	write(1, "Begin tests\n", 12);
+	printf("SIZE TAB = %d\n", SIZE_TAB);
 	if (!(tab = init()))
 		return (10);
 	write(1, "\n", 1);
 	i = -1;
-	while (++i < NB_TEST)
+	// while (++i < NB_TEST)
+	while (++i < 5)
 	{
 		write(1, "?", 1);
 		if (ERROR == unit_test(tab))
