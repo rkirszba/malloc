@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 20:59:37 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/28 10:43:08 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/28 14:34:13 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	padding_after(t_rbt *node)
 
 	if (node->left != NULL || node->right != NULL)
 	{
-		padding = NB_OF_SPACE - 15 - 3;//'0x7f2268500298 '= 15
+		padding = NB_OF_SPACE - 15 /*- 3*/;//'0x7f2268500298 '= 15
 		i = 0;
 		while (i < padding)
 		{
