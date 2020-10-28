@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/28 11:23:28 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/28 14:31:34 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <time.h>
 
 #define SIZE_TAB 10
-#define NB_TEST 10000000
+#define NB_TEST 100
 #define SIZE_ALLOC 16
 
 void	print_av_tab(t_rbt **tab)
@@ -91,6 +91,7 @@ int8_t		unit_test(char **tab)
 	printf("unavailable tree--------------------------------------------\n");
 	print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	printf("r = %d\n", r);
+	printf("LOOKING TO FREE %p\n", tab[r] - sizeof(t_alloc_header));
 	our_free(tab[r]);
 	printf("AFTER FREE\n");
 	printf("unavailable tree--------------------------------------------\n");
@@ -159,7 +160,7 @@ int			main(int ac, char **av)
 	write(1, "\n", 1);
 	i = -1;
 	// while (++i < NB_TEST)
-	while (++i < 1)
+	while (++i < 1000)
 	{
 		write(1, "?", 1);
 		if (ERROR == unit_test(tab))
