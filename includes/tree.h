@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 18:51:38 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/24 12:45:19 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/28 11:21:18 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_rbt	*tree_root(t_rbt *node);
 void	tree_rot_left(t_rbt *node);
 void	tree_rot_right(t_rbt *node);
 t_rbt	*tree_sibling(t_rbt *node);
+int		tree_len(t_rbt *tree);
 t_rbt	*tree_uncle(t_rbt *node);
 
 #endif

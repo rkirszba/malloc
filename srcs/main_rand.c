@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_rand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/27 15:44:04 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/28 11:23:28 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,54 @@
 #define SIZE_TAB 10
 #define NB_TEST 10000000
 #define SIZE_ALLOC 16
+
+void	print_av_tab(t_rbt **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (i <= TINY_SIZE_MAX_FACTOR)
+	{
+		if (tab[i])
+		{
+			printf("Tab[%lu]: %p\n", i, tab[i]);
+			tree_print(tab[i], 4);
+			tree_inorder(tab[i], print_alloc_wrapper);
+		}
+		i++;
+	}
+}
+
+int		print_alloc_wrapper(t_rbt *rbt)
+{
+		print_alloc((t_alloc_header*)rbt);
+	return (1);
+}
+
+void	print_debug_tree(char *s, t_rbt *tree, int8_t allocs)
+{
+	printf("\t%s\n", s);
+	if (tree)
+		tree_print(tree, 0);
+	if (allocs)
+		tree_inorder(tree, print_alloc_wrapper);
+	printf("There is %d node\n", tree_len(tree));
+}
+
+void	print_debug(size_t size)
+{
+	(void)size;
+	return ;
+	size = align_size(HDR_TYPE_TINY, size);
+	printf("\n\n");
+	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+	printf("available tree---------------------------------------------\n");
+	print_av_tab(static_mem()->tiny.available);
+	// print_debug_tree("Max size", static_mem()->tiny.available[TINY_SIZE_MAX_FACTOR], TRUE);
+	// print_debug_tree("Current size", static_mem()->tiny.available[(size / RES_TINY) - 1], TRUE);
+	printf("unavailable tree--------------------------------------------\n");
+	print_debug_tree("", static_mem()->unavailable[0], TRUE);
+}
 
 int			get_size_alloc()
 {
@@ -40,13 +88,19 @@ int8_t		unit_test(char **tab)
 
 	r = rand() % SIZE_TAB;
 
+	printf("unavailable tree--------------------------------------------\n");
+	print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	printf("r = %d\n", r);
 	our_free(tab[r]);
 	printf("AFTER FREE\n");
+	printf("unavailable tree--------------------------------------------\n");
+	print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	size = SIZE_ALLOC;
 	if (!(tab[r] = our_malloc(size)))
 		return (ERROR);
 	printf("AFTER NEW MALLOC\n");
+	printf("unavailable tree--------------------------------------------\n");
+	print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	test_write(tab[r], secure_align_size(size));
 	return (SUCCESS);
 }
@@ -79,7 +133,10 @@ void		finish(char **tab)
 	while (i < SIZE_TAB)
 	{
 		write(1, "o", 1);
+		printf("FREE LOOKING FOR: %p", tab[i] - sizeof(t_alloc_header));
+		print_debug_tree("", static_mem()->unavailable[0], FALSE);
 		our_free(tab[i]);
+		printf("\n\n\n\n");
 		i++;
 	}
 	our_free(tab);
@@ -102,14 +159,14 @@ int			main(int ac, char **av)
 	write(1, "\n", 1);
 	i = -1;
 	// while (++i < NB_TEST)
-	while (++i < 5)
+	while (++i < 1)
 	{
 		write(1, "?", 1);
 		if (ERROR == unit_test(tab))
 			return (10);
 	}
 	write(1, "\n", 1);
-	finish(tab);
+	// finish(tab);
 
 	write(1, "\nEnd tests\n", 11);
 	return (0);
