@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:35:41 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/25 01:26:31 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/28 13:42:30 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,16 @@ t_rbt	*tree_get_node_th(t_rbt *root, int *umpteenth)
 		node = tree_get_node_th(root->right, umpteenth);
 	}
 	return (node);
+}
+
+t_rbt	*tree_get_in_order_pred(t_rbt *node)
+{
+	t_rbt *in_order_pred;
+	
+	if (!node)
+		return (NULL);
+	in_order_pred = node->left;
+	while (in_order_pred && in_order_pred->right)
+		in_order_pred = in_order_pred->right;
+	return (in_order_pred);
 }

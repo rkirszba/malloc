@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 18:51:38 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/24 12:45:19 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/28 18:54:49 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,8 @@ void	tree_rot_left(t_rbt *node);
 void	tree_rot_right(t_rbt *node);
 t_rbt	*tree_sibling(t_rbt *node);
 t_rbt	*tree_uncle(t_rbt *node);
+t_rbt	*tree_get_in_order_pred(t_rbt *node);
+void	tree_permute_nodes(t_rbt *node1, t_rbt* node2);
+
 
 #endif

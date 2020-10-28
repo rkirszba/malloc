@@ -73,6 +73,7 @@ void			show_alloc_zone(t_zone *z);
 t_infos			*static_mem(void);
 void			test_read(void *mem, size_t size);
 void			test_write(void *mem, size_t size);
+void			tree_copy_values(t_rbt *dest, t_rbt *src);
 void			tree_delete_case_1(t_rbt *node);
 void			tree_delete_case_2(t_rbt *node);
 void			tree_delete_case_3(t_rbt *node);
@@ -82,10 +83,12 @@ void			tree_delete_case_6(t_rbt *node);
 t_rbt			*tree_delete_node(t_rbt *node);
 void			tree_delete_one_child(t_rbt *node);
 void			tree_free(t_rbt *root, t_rbt_free_content *func);
+t_rbt			*tree_get_in_order_pred(t_rbt *node);
 t_rbt			*tree_get_node_th(t_rbt *root, int *umpteenth);
 t_rbt			*tree_get_recurse_func(t_rbt *root,
 				void *content,
 				t_rbt_compare *func);
+t_rbt			*tree_get_in_order_pred(t_rbt *node);
 t_rbt			*tree_get_recurse_func_ll(t_rbt *root, void *content,
 				t_rbt_compare_long_long *func);
 t_rbt			*tree_grand_parent(t_rbt *node);
