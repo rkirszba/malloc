@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_remove.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 14:11:36 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/29 12:17:09 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/29 14:41:15 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,37 @@ void		tree_replace_node(t_rbt *node, t_rbt *child)
 
 void		tree_copy_values(t_rbt *dest, t_rbt *src)
 {
+	t_rbt		**tmp_left = NULL;
+	t_rbt		**tmp_right = NULL;
+	t_rbt		**tmp_parent = NULL;
+
+	dest->color = src->color; // peut etre qu'il ne faut pas copier la couleur
 	dest->parent = src->parent;
 	dest->left = src->left;
 	dest->right = src->right;
 	if (dest->parent)
 	{
 		if (dest == dest->parent->left)
-			dest->parent->left = dest;
+		{
+			tmp_parent = &dest->parent->left;
+			printf("Parent left\n");
+		}
 		else
-			dest->parent->right = dest;
+		{
+			tmp_parent = &dest->parent->right;
+			printf("Parent right\n");
+		}
 	}
 	if (dest->left)
-		dest->left->parent = dest;
+		tmp_left = &dest->left->parent;
 	if (dest->right)
-		dest->right->parent = dest;
-	dest->color = src->color; // peut etre qu'il ne faut pas copier la couleur
+		tmp_right = &dest->right->parent;
+	if (tmp_parent)
+		*tmp_parent = dest;
+	if (tmp_right)
+		*tmp_right = dest;
+	if (tmp_left)
+		*tmp_left = dest;
 	// dest->content = src->content;
 }
 
@@ -52,27 +68,35 @@ void		tree_permute_nodes(t_rbt *node1, t_rbt* node2)
 	t_rbt	tmp1;
 	t_rbt	tmp2;
 
-	tmp1.content = 0;
-	tmp2.content = 0;
+	tmp1.content = (void*)(size_t)1;
+	tmp2.content = (void*)(size_t)2;
 	if (!node1 || !node2)
 		return ;
 	printf("Node1 origin\n");
 	tree_print_node(node1);
 	printf("Node2 origin\n");
 	tree_print_node(node2);
-	tree_copy_values(&tmp1, node1);
+
 	printf("tmp1 receive node1\n");
+	tree_copy_values(&tmp1, node1);
 	tree_print_node(&tmp1);
-	tree_copy_values(&tmp2, node2);
+	printf("Node2 at this moment\n");
+	tree_print_node(node2);
+
 	printf("tmp2 receive node2\n");
+	tree_copy_values(&tmp2, node2);
 	tree_print_node(&tmp2);
-	tree_copy_values(node1, &tmp2);
+	printf("tmp1 at this moment\n");
+	tree_print_node(&tmp1);
+
 	printf("Node1 receive tmp2\n");
+	tree_copy_values(node1, &tmp2);
 	tree_print_node(node1);
 	printf("tmp1 at this moment\n");
 	tree_print_node(&tmp1);
-	tree_copy_values(node2, &tmp1);
+
 	printf("Node2 receive tmp1\n");
+	tree_copy_values(node2, &tmp1);
 	tree_print_node(node2);
 }
 
