@@ -28,21 +28,16 @@ t_rbt			**available_get_tree_with_memory(size_t size_to_find);
 int8_t			available_remove(t_alloc_header *alloc);
 uint8_t			can_zone_liberate(t_alloc_header *alloc);
 long long		compare_adresses(void *content1, void *content2);
-int				count2(t_rbt *rbt);
 t_alloc_header	*defrag_elem_left(t_alloc_header *middle);
 void			defrag_elem_right(t_alloc_header *alloc_header);
 t_alloc_header	*defragment(t_alloc_header *alloc_header);
-void			finish(char **tab);
 size_t			first_biggest_than(t_zone *zone, size_t bound);
 uint8_t			flag_set_availabilty(uint8_t flag, uint8_t option);
 uint8_t			flag_set_pos(uint8_t flag, uint8_t option);
 uint8_t			flag_set_type(uint8_t flag, uint8_t option);
 size_t			ft_nb_len(intmax_t n, size_t base);
-int				get_size_alloc();
 size_t			hash_djb2(unsigned char *ptr);
-char			**init(void);
 uint8_t			is_large_zone(size_t size);
-int				main(int ac, char **av);
 int8_t			malloc_exit(void);
 void			malloc_init(void);
 void 			mem_put_color(t_alloc_header *alloc,
@@ -60,10 +55,6 @@ void			print_alloc(t_alloc_header *alloc);
 void			print_alloc_header(t_alloc_header *alloc, size_t *total_octet);
 void			print_alloc_memory(t_alloc_header *alloc, size_t *total_octet,
 				size_t alloc_nb);
-int				print_alloc_wrapper(t_rbt *rbt);
-void			print_av_tab(t_rbt **tab);
-void			print_debug(size_t size);
-void			print_debug_tree(char *s, t_rbt *tree, int8_t allocs);
 void			print_hex(size_t n);
 void			print_hex_zeroes(size_t n);
 void			print_malloc_mem(void);
@@ -78,7 +69,6 @@ t_infos			*static_mem(void);
 void			test_read(void *mem, size_t size);
 void			test_write(void *mem, size_t size);
 void			tree_copy_values(t_rbt *dest, t_rbt *src);
-void			test_write2(void *mem, size_t size);
 void			tree_delete_case_1(t_rbt *node);
 void			tree_delete_case_2(t_rbt *node);
 void			tree_delete_case_3(t_rbt *node);
@@ -93,7 +83,6 @@ t_rbt			*tree_get_node_th(t_rbt *root, int *umpteenth);
 t_rbt			*tree_get_recurse_func(t_rbt *root,
 				void *content,
 				t_rbt_compare *func);
-t_rbt			*tree_get_in_order_pred(t_rbt *node);
 t_rbt			*tree_get_recurse_func_ll(t_rbt *root, void *content,
 				t_rbt_compare_long_long *func);
 t_rbt			*tree_grand_parent(t_rbt *node);
@@ -121,8 +110,10 @@ void			tree_insert_repair(t_rbt *n);
 int				tree_len(t_rbt *tree);
 t_rbt			*tree_new_node(void *content, t_rbt *new_node);
 t_rbt			*tree_parent(t_rbt *node);
+void			tree_permute_nodes(t_rbt *node1, t_rbt* node2);
 void			tree_print(t_rbt *node, size_t deep);
 void			tree_print_elem(t_rbt *node);
+void			tree_print_node(t_rbt *node);
 void			tree_recoloring(t_rbt *node);
 void			tree_replace_node(t_rbt *node, t_rbt *child);
 t_rbt			*tree_root(t_rbt *node);
@@ -134,7 +125,6 @@ void			unavailable_add(t_alloc_header *alloc_header);
 uint8_t			unavailable_exists(void *maybe_alloc_header);
 t_rbt			**unavailable_get_tree(void *ptr);
 int8_t			unavailable_remove(void *maybe_alloc_header);
-int8_t			unit_test(char **tab);
 int8_t			zone_create(t_mem_type *mem_type);
 t_alloc_header	*zone_create_large(size_t size);
 void			zone_header_init(t_zone_header *header,
