@@ -81,6 +81,7 @@ def generate_header(protos, name="test", subname=""):
     return(header)
 
 def write_header(content, file_name):
+	# print(content)
 	with open(file_name,"r+") as f:
 		f.truncate(0)
 		f.write(content)
