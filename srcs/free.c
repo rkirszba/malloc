@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 18:07:56 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:42:37 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		our_free(void *ptr)
 	if (unavailable_remove((void*)alloc_header) == FAILURE)
 		return ;
 	alloc_set_available(alloc_header);
-	alloc_header = defragment(alloc_header);
+	// alloc_header = defragment(alloc_header);
 	// printf("%s flag av %d\n", __func__, alloc_header->flags & HDR_AVAILABLE);
 	if (TRUE == can_zone_liberate(alloc_header))
 	{

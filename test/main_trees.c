@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 10:32:36 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/29 15:13:50 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:35:30 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int ac, char **av)
 	t_rbt	*tab_nodes;
 	t_rbt	*tree;
 
-	srand(0);
+	srand(10);
 	(void)ac;
 	nodes = atoi(av[1]);
 	tab_nodes = (t_rbt*)malloc(sizeof(*tab_nodes) * nodes);
@@ -40,7 +40,7 @@ int main(int ac, char **av)
 	i = -1;
 	while (++i < nodes)
 	{
-		tab_nodes[i].content = (void*)(size_t)(rand() % 101);
+		tab_nodes[i].content = (void*)(size_t)(rand() % 997);
 		// tab_nodes[i].content = (void*)((size_t)tab_nodes[i].content == 62 ? (size_t)65 : (size_t)tab_nodes[i].content);
 	}
 	i = -1;
@@ -48,17 +48,24 @@ int main(int ac, char **av)
 	while (++i < nodes)
 	{
 		tree = tree_insert_func(tree, &tab_nodes[i], (void*)tab_nodes[i].content, &compare_values);
-		printf("After insertion of value %zu\n\n", (size_t)tab_nodes[i].content);
-		tree_print(tree, 0);
-		printf("\n\n");
+		// printf("After insertion of value %zu\n\n", (size_t)tab_nodes[i].content);
+		// tree_print(tree, 0);
+		// printf("\n\n");
 	}
-	i = -1;
-	while(++i < nodes)
+//	tree_print(tree, 0);
+	i = nodes;
+
+	while(--i >= 0)
 	{
+		// printf("Del %d/%d\n", i, nodes);
 		tree = tree_delete_node(&tab_nodes[i]);
-		printf("After deletion of value %zu\n\n", (size_t)tab_nodes[i].content);
-		tree_print(tree, 0);
-		printf("\n\n");
+		// printf("After deletion of value %zu\n\n", (size_t)tab_nodes[i].content);
+		// tree_print(tree, 0);
+		// printf("\nRemaining nodes = %d", tree_len(tree));
+		// printf("\n\n");
 	}
+	// tree_print(tree, 0);
+	
 	return (0);
 }
+

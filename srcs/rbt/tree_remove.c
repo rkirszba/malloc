@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   tree_remove.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 14:11:36 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/29 15:13:36 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:35:35 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 
+void		tree_cut_leaf(t_rbt *node)
+{
+	if (node->parent)
+	{
+		if (node == node->parent->left)
+			node->parent->left = NULL;
+		else
+			node->parent->right = NULL;
+	}
+}
 
 
 void		tree_replace_node(t_rbt *node, t_rbt *child)
@@ -100,18 +110,19 @@ t_rbt		*tree_delete_node(t_rbt *node)
 	t_rbt	*child;
 	t_rbt	*in_order_pred;
 
-	printf("Node to delete = %zu\n", (size_t)node->content);
+	// printf("Node to delete = %zu\n", (size_t)node->content);
 	if (node->right && node->left)
 	{
+		// printf("1\n");
 		in_order_pred = tree_get_in_order_pred(node);
-		printf("In order pred = %zu\n", (size_t)in_order_pred->content);
+		// printf("In order pred = %zu\n", (size_t)in_order_pred->content);
 		tree_permute_nodes(node, in_order_pred);
-		printf("Two children\nTree after permut:%zu\n", (size_t)node->content);
-		tree_print_node(node);
-		printf("\n\n");
-		tree_print_node(in_order_pred);
-		tree_print(tree_root(node), 0);
-		printf("\n\n");
+		// printf("Two children\nTree after permut:%zu\n", (size_t)node->content);
+		// tree_print_node(node);
+		// printf("\n\n");
+		// tree_print_node(in_order_pred);
+		// tree_print(tree_root(node), 0);
+		// printf("\n\n");
 		return (tree_delete_node(node));
 	}
 	if (node->color == RED) /*
@@ -119,9 +130,10 @@ t_rbt		*tree_delete_node(t_rbt *node)
 							** seul enfant (pas d'enfant rouge + 0 ou 2 enfants noirs)
 							*/
 	{
-		if (node->left || node->right)
-			printf("CHILD FOR A RED NODE !!!!!!\n");
-		tree_replace_node(node, NULL);
+		// printf("2\n");
+		// if (node->left || node->right)
+			// printf("CHILD FOR A RED NODE !!!!!!\n");
+		tree_cut_leaf(node);
 		return (tree_root(node->parent)); // pas genial si free
 	}
 	// case node is BLACK
@@ -131,13 +143,15 @@ t_rbt		*tree_delete_node(t_rbt *node)
 		child = node->right;
 	if (child) // case the node has one child, necessarily RED
 	{
+		// printf("3\n");
 		child->color = BLACK;
+		tree_replace_node(node, child);
 		return (tree_root(child));
 	}
 	// case node is BLACK and has no child
-	printf("HARD CASE\n");
+	// printf("HARD CASE\n");
 	tree_delete_case_1(node);
-	tree_replace_node(node, NULL);
+	tree_cut_leaf(node);
 	return (tree_root(node->parent));
 }
 

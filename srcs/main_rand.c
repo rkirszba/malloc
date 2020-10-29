@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_rand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/28 14:31:34 by ldevelle         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:46:39 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 #include <unistd.h>
 #include <time.h>
 
-#define SIZE_TAB 10
+#define SIZE_TAB 62
 #define NB_TEST 100
 #define SIZE_ALLOC 16
+
+int		print_alloc_wrapper(t_rbt *rbt)
+{
+		print_alloc((t_alloc_header*)rbt);
+	return (1);
+}
 
 void	print_av_tab(t_rbt **tab)
 {
@@ -34,12 +40,6 @@ void	print_av_tab(t_rbt **tab)
 		}
 		i++;
 	}
-}
-
-int		print_alloc_wrapper(t_rbt *rbt)
-{
-		print_alloc((t_alloc_header*)rbt);
-	return (1);
 }
 
 void	print_debug_tree(char *s, t_rbt *tree, int8_t allocs)
@@ -140,7 +140,13 @@ void		finish(char **tab)
 		printf("\n\n\n\n");
 		i++;
 	}
+	write(1, "o", 1);
+	printf("FREE LOOKING FOR: %p", tab[i] - sizeof(t_alloc_header));
+	print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	our_free(tab);
+	printf("\n\n\n\n");
+	write(1, "o", 1);
+	print_debug_tree("", static_mem()->unavailable[0], FALSE);
 
 }
 
@@ -160,14 +166,14 @@ int			main(int ac, char **av)
 	write(1, "\n", 1);
 	i = -1;
 	// while (++i < NB_TEST)
-	while (++i < 1000)
-	{
-		write(1, "?", 1);
-		if (ERROR == unit_test(tab))
-			return (10);
-	}
+	// while (++i < 1000)
+	// {
+	// 	write(1, "?", 1);
+	// 	if (ERROR == unit_test(tab))
+	// 		return (10);
+	// }
 	write(1, "\n", 1);
-	// finish(tab);
+	finish(tab);
 
 	write(1, "\nEnd tests\n", 11);
 	return (0);
