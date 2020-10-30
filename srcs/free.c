@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/10/30 18:14:36 by rkirszba         ###   ########.fr       */
-=======
-/*   Updated: 2020/10/30 18:35:24 by ezalos           ###   ########.fr       */
->>>>>>> master
+/*   Updated: 2020/10/30 18:46:53 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +63,6 @@ void		our_free(void *ptr)
 		return ;
 	alloc_set_available(alloc_header);
 	alloc_header = defragment(alloc_header);
-<<<<<<< HEAD
-	// printf("%s flag av %d\n", __func__, alloc_header->flags & HDR_AVAILABLE);
-=======
->>>>>>> master
 	if (TRUE == can_zone_liberate(alloc_header))
 		zone_liberate(alloc_access_zone(alloc_header));
 	else
