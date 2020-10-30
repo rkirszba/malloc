@@ -6,13 +6,13 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 20:59:37 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/29 16:37:30 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 13:15:04 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 
-#define NB_OF_SPACE		16
+#define NB_OF_SPACE		12
 
 size_t		ft_nb_len(intmax_t n, size_t base)
 {
@@ -62,7 +62,7 @@ void	padding_after(t_rbt *node)
 
 	if (node->left != NULL || node->right != NULL)
 	{
-		padding = NB_OF_SPACE - 15 /*- 3*/;//'0x7f2268500298 '= 15
+		padding = NB_OF_SPACE - 7 /*- 3*/;//'0x7f2268500298 '= 15
 		i = 0;
 		while (i < padding)
 		{
@@ -124,8 +124,8 @@ void	tree_print_elem(t_rbt *node)
 		printf("\033[31m");
 	else
 		printf("\033[34m");
+	printf("%3zu \033[00m", (size_t)content);
 	// printf("%p \033[00m", content);
-	printf("%p \033[00m", (content));
 }
 
 void	tree_print(t_rbt *node, size_t deep)

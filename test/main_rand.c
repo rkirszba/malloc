@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/29 16:46:39 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 11:37:27 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int			main(int ac, char **av)
 
 	(void)ac;
 	(void)av;
-	srand(42);
+	srand(1);
 
 	write(1, "Begin tests\n", 12);
 	printf("SIZE TAB = %d\n", SIZE_TAB);

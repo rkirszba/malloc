@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 14:11:36 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/29 16:35:35 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 11:21:25 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		tree_replace_node(t_rbt *node, t_rbt *child)
 
 void		tree_copy_values(t_rbt *dest, t_rbt *src)
 {
-	dest->color = src->color; // peut etre qu'il ne faut pas copier la couleur
+	dest->color = src->color;
 	dest->parent = src->parent;
 	dest->left = src->left;
 	dest->right = src->right;
@@ -54,7 +54,6 @@ void		tree_copy_values(t_rbt *dest, t_rbt *src)
 		dest->left->parent = dest;
 	if (dest->right)
 		dest->right->parent = dest;
-	// dest->content = src->content;
 }
 
 void		tree_permute_nodes(t_rbt *node1, t_rbt* node2)
@@ -64,40 +63,11 @@ void		tree_permute_nodes(t_rbt *node1, t_rbt* node2)
 
 	if (!node1 || !node2)
 		return ;
-
 	tree_copy_values(&tmp1, node1);
 	tree_copy_values(&tmp2, node2);
 	tree_copy_values(node1, &tmp2);
 	tree_copy_values(node2, &tmp1);
 }
-
-
-void		tree_delete_one_child(t_rbt *node)
-{
-	t_rbt	*child;
-
-	if (node->right == NULL)
-		child = node->left;
-	else
-		child = node->right;
-	if (child)
-	{
-		tree_replace_node(node, child);
-		if (node->color == BLACK)
-		{
-			if (child->color == RED)
-				child->color = BLACK;
-			else
-				tree_delete_case_1(child);
-		}
-	}
-	// return (node);
-	// if (func)
-	// 	func(&node->content);
-	// ft_memdel((void**)&node);
-}
-
-
 
 /*
 **	This function return new root
@@ -154,39 +124,3 @@ t_rbt		*tree_delete_node(t_rbt *node)
 	tree_cut_leaf(node);
 	return (tree_root(node->parent));
 }
-
-
-/*
-t_rbt		*tree_delete_node(t_rbt *node)
-{
-	t_rbt	*child;
-
-	if (node->right == NULL)
-		child = node->left;
-	else
-		child = node->right;
-	if (child)
-		tree_replace_node(node, child);
-	else if (node->parent)//Has been randomly added, might be source of problems
-	{
-		child = node->parent;
-		if (node == child->left)
-			child->left = NULL;
-		else
-			child->right = NULL;
-	}
-	if (child)
-	{
-		if (node->color == BLACK)
-		{
-			if (child->color == RED)
-				child->color = BLACK;
-			else
-				tree_delete_case_1(child);
-		}
-		return (tree_root(child));
-	}
-	return (NULL);
-}
-
-*/
