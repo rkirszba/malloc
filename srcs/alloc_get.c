@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_get.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:20:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/27 12:15:34 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 18:33:13 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_alloc_header		*alloc_get_available(size_t size)
 	}
 	return ((t_alloc_header*)node);
 }
-
 
 t_alloc_header		*alloc_get(size_t size)
 {

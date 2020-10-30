@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 17:23:30 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/27 13:40:34 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 18:35:30 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ size_t			hash_djb2(unsigned char *ptr)
     {
         hash = ((hash << 5) + hash) + ptr[i];
     }
-    return 0;
-    // return hash;
+    return hash;
 }
