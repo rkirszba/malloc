@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 18:51:38 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/29 11:42:30 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 13:20:10 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef	void			*(t_rbt_inorder_ptr)		(t_rbt *);
 typedef	void			(t_rbt_free_content)		(void **);
 
 
+t_rbt	**susu(void);
 size_t  ft_nb_len(intmax_t n, size_t base);
 void    padding_after(t_rbt *node);
 void    padding_before(t_rbt *node, size_t space);

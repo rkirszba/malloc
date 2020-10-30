@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_get.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:20:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/27 12:15:34 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 17:18:52 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,17 @@ t_alloc_header		*alloc_get_available(size_t size)
 	return ((t_alloc_header*)node);
 }
 
+//110111011110100000011111011100011100010100101100111100000000
+//             10101010101010101010101010101010111001111101010
+//                                       11100000
 
 t_alloc_header		*alloc_get(size_t size)
 {
 	t_alloc_header	*alloc;
 
+	// printf("size: %lu\n", size);
 	size = secure_align_size(size);
+	// printf("saze: %lu\n", size);
 	if (TRUE == is_large_zone(size))
 	{
 		alloc = zone_create_large(size);
@@ -51,13 +56,19 @@ t_alloc_header		*alloc_get(size_t size)
 	else
 	{
 		alloc = alloc_get_available(size);
+		// printf("salo: %d\n", alloc->size);
 		if (NULL == alloc)
 			return (NULL);
 		available_remove(alloc);
 		if (SUCCESS == alloc_split_malloc(alloc, size))
+		{
+			// printf("---Splitted %u\n", alloc_access_next(alloc)->size);
 			available_add(alloc_access_next(alloc));
+		}
+		// printf("spli: %d\n", alloc->size);
 	}
 	alloc_set_unavailable(alloc);
 	unavailable_add(alloc);
+	// printf("send: %d\n", alloc->size);
 	return (alloc);
 }

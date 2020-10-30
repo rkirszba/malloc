@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:35:41 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/30 12:11:55 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/30 17:28:19 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,7 @@ t_rbt	*tree_get_in_order_pred(t_rbt *node)
 	in_order_pred = node->left;
 	while (in_order_pred && in_order_pred->right)
 	{
-		// if (in_order_pred->right == (void*)0x4242424242424242)
-		// 	printf("WTF man\n");
 		in_order_pred = in_order_pred->right;
-
 	}
 	return (in_order_pred);
 }

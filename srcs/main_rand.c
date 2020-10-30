@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/30 12:01:29 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/30 18:23:23 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	print_av_tab(t_rbt **tab)
 void	print_debug_tree(char *s, t_rbt *tree, int8_t allocs)
 {
 	printf("\t%s\n", s);
+	// tree_print_node(tree);
 	if (tree)
 		tree_print(tree, 0);
 	if (allocs)
@@ -69,6 +70,12 @@ void	print_debug(size_t size)
 
 int			get_size_alloc()
 {
+	// size_t	size;
+
+	// size = rand() % (TINY_SIZE_MAX_FACTOR * RES_TINY - 1);
+	// size++;
+	// size = (size >> 3) << 3;
+	// return (size);
 	return (rand() % (2 << 16));
 }
 
@@ -76,36 +83,99 @@ void		test_write2(void *mem, size_t size)
 {
 	size_t	i;
 
+	// printf("Addr: %p\n", mem);
+	// printf("mize: %x\n", (unsigned int)size);
+	// printf("mize: %d\n", (unsigned int)size);
 	i = 0;
 	while (i < size)
-		((char*)mem)[i++] = 0x42;
+		((char*)mem)[i++] = size;
 }
 
-int8_t		unit_test(char **tab)
+void		find_shit(t_rbt *root)
+{
+	if (root != NULL)
+	{
+		if (root->right == (void*)0x4242424242424242)
+			printf("WTF l man %p\n", root);
+		if (root->left == (void*)0x4242424242424242)
+			printf("WTF r man %p\n", root);
+
+		find_shit(root->left);
+		find_shit(root->right);
+	}
+}
+
+// void		find_shit2(t_rbt *root, t_rbt *suspect)
+// {
+// 	if (root != NULL)
+// 	{
+// 		if (root == suspect)
+// 			printf("WTF l man %p\n", root);
+// 		if (root->left == (void*)0x4242424242424242)
+// 			printf("WTF r man %p\n", root);
+//
+// 		find_shit(root->left);
+// 		find_shit(root->right);
+// 	}
+// }
+
+t_rbt	**susu(void)
+{
+	static t_rbt	*suspect = NULL;
+
+	return (&suspect);
+}
+void lstp()
+{
+
+}
+
+# define IN_START		999999999
+
+int8_t		unit_test(char **tab, int index)
 {
 	size_t		size;
 	int			r;
 
 	r = rand() % SIZE_TAB;
-
-	// printf("unavailable tree--------------------------------------------\n");
-	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
+	(void)index;
+	// printf("--------------------------------------------\n");
 	// printf("r = %d\n", r);
 	// printf("LOOKING TO FREE %p\n", tab[r] - sizeof(t_alloc_header));
+	// printf("unavailable tree--------------------------------------------\n");
+	// find_shit(static_mem()->unavailable[0]);
+	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	our_free(tab[r]);
+	// if (*susu())
+	// 	tree_print_node(*susu());
 	// printf("AFTER FREE\n");
+	// if (index > IN_START)
+	// 	print_malloc_mem();
+	// print_malloc_mem();
+	// print_malloc_mem();
 	// printf("unavailable tree--------------------------------------------\n");
 	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	size = get_size_alloc();
 	// printf("LOOKING TO MALLOC %zu\n", size);
+	// if (size == 221)
+	// 	lstp();
 	if (!(tab[r] = our_malloc(size)))
 		return (ERROR);
-	if (tab[r] == (void*)0x4242424242424242)
-		printf("R = %d\n", r);
-	// printf("AFTER NEW MALLOC\n");
+	// if (size == 221)
+	// 	*susu() = (void*)tab[r];
+	// if (*susu())
+	// 	tree_print_node(*susu());
+	// if (tab[r] == (void*)0x4242424242424242)
+	// 	printf("R = %d\n", r);
+	// printf("AFTER NEW MALLOC %p\n", tab[r] - sizeof(t_alloc_header));
 	// printf("unavailable tree--------------------------------------------\n");
 	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
-	test_write(tab[r], secure_align_size(size));
+	// if (index > IN_START)
+	// 	print_malloc_mem();
+	// print_malloc_mem();
+	test_write2(tab[r], secure_align_size(size));
+	// if (index > IN_START)
+	// 	print_malloc_mem();
 	return (SUCCESS);
 }
 
@@ -164,7 +234,10 @@ int			main(int ac, char **av)
 	(void)i;
 	if (ac > 1)
 		nb_tests = atoi(av[1]);
-	srand(42);
+	else
+		nb_tests = NB_TEST;
+		// srand(atoi(av[2]));
+	srand(17);
 
 	write(1, "Begin tests\n", 12);
 	printf("SIZE TAB = %d\n", SIZE_TAB);
@@ -176,8 +249,15 @@ int			main(int ac, char **av)
 	while (++i < nb_tests)
 	{
 		// write(1, "?", 1);
-		if (ERROR == unit_test(tab))
+		if (0 == i % 1000)
+			printf("%d\n", i);
+		if (ERROR == unit_test(tab, i))
 			return (10);
+		// if (i % 100000 == 0)
+		// {
+		// 	print_malloc_mem();
+		// 	show_alloc_mem();
+		// }
 	}
 	write(1, "\n", 1);
 	finish(tab);
