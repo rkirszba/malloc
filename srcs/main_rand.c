@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_rand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/29 16:46:39 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 12:01:29 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <unistd.h>
 #include <time.h>
 
-#define SIZE_TAB 62
-#define NB_TEST 100
-#define SIZE_ALLOC 16
+#define SIZE_TAB	50000
+#define NB_TEST		1000000
+#define SIZE_ALLOC	16
 
 int		print_alloc_wrapper(t_rbt *rbt)
 {
@@ -88,20 +88,23 @@ int8_t		unit_test(char **tab)
 
 	r = rand() % SIZE_TAB;
 
-	printf("unavailable tree--------------------------------------------\n");
-	print_debug_tree("", static_mem()->unavailable[0], FALSE);
-	printf("r = %d\n", r);
-	printf("LOOKING TO FREE %p\n", tab[r] - sizeof(t_alloc_header));
+	// printf("unavailable tree--------------------------------------------\n");
+	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
+	// printf("r = %d\n", r);
+	// printf("LOOKING TO FREE %p\n", tab[r] - sizeof(t_alloc_header));
 	our_free(tab[r]);
-	printf("AFTER FREE\n");
-	printf("unavailable tree--------------------------------------------\n");
-	print_debug_tree("", static_mem()->unavailable[0], FALSE);
-	size = SIZE_ALLOC;
+	// printf("AFTER FREE\n");
+	// printf("unavailable tree--------------------------------------------\n");
+	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
+	size = get_size_alloc();
+	// printf("LOOKING TO MALLOC %zu\n", size);
 	if (!(tab[r] = our_malloc(size)))
 		return (ERROR);
-	printf("AFTER NEW MALLOC\n");
-	printf("unavailable tree--------------------------------------------\n");
-	print_debug_tree("", static_mem()->unavailable[0], FALSE);
+	if (tab[r] == (void*)0x4242424242424242)
+		printf("R = %d\n", r);
+	// printf("AFTER NEW MALLOC\n");
+	// printf("unavailable tree--------------------------------------------\n");
+	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	test_write(tab[r], secure_align_size(size));
 	return (SUCCESS);
 }
@@ -134,19 +137,19 @@ void		finish(char **tab)
 	while (i < SIZE_TAB)
 	{
 		write(1, "o", 1);
-		printf("FREE LOOKING FOR: %p", tab[i] - sizeof(t_alloc_header));
-		print_debug_tree("", static_mem()->unavailable[0], FALSE);
+		// printf("FREE LOOKING FOR: %p\n", tab[i] - sizeof(t_alloc_header));
+		// print_debug_tree("", static_mem()->unavailable[0], FALSE);
 		our_free(tab[i]);
-		printf("\n\n\n\n");
+		// printf("\n\n\n\n");
 		i++;
 	}
-	write(1, "o", 1);
-	printf("FREE LOOKING FOR: %p", tab[i] - sizeof(t_alloc_header));
-	print_debug_tree("", static_mem()->unavailable[0], FALSE);
+	write(1, "e", 1);
+	// printf("FREE LOOKING FOR: %p\n", tab - sizeof(t_alloc_header));
+	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	our_free(tab);
-	printf("\n\n\n\n");
-	write(1, "o", 1);
-	print_debug_tree("", static_mem()->unavailable[0], FALSE);
+	// printf("\n\n\n\n");
+	// write(1, "o", 1);
+	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
 
 }
 
@@ -154,9 +157,13 @@ int			main(int ac, char **av)
 {
 	char		**tab;
 	int			i;
+	int			nb_tests = NB_TEST;
 
 	(void)ac;
 	(void)av;
+	(void)i;
+	if (ac > 1)
+		nb_tests = atoi(av[1]);
 	srand(42);
 
 	write(1, "Begin tests\n", 12);
@@ -166,12 +173,12 @@ int			main(int ac, char **av)
 	write(1, "\n", 1);
 	i = -1;
 	// while (++i < NB_TEST)
-	// while (++i < 1000)
-	// {
-	// 	write(1, "?", 1);
-	// 	if (ERROR == unit_test(tab))
-	// 		return (10);
-	// }
+	while (++i < nb_tests)
+	{
+		// write(1, "?", 1);
+		if (ERROR == unit_test(tab))
+			return (10);
+	}
 	write(1, "\n", 1);
 	finish(tab);
 

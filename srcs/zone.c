@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 11:03:29 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 12:05:30 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ int8_t	zone_create(t_mem_type *mem_type)
 {
 	t_zone			*zone;
 	uint8_t			flags;
+	uint64_t		sisi;
 
-	// printf("mmap of %s zone\n", mem_type->type & HDR_TYPE_SMALL ? "small" : "tiny");
-
+	printf("mmap of %s zone of size %lu\n", mem_type->type & HDR_TYPE_SMALL ? "small" : "tiny", mem_type->size);
+	sisi = -1;
+	// printf("Max zone : %d\n",  getpagesize() * 4096);
+	printf("Max uint16_t : %lu\n", sisi);
 	zone = mmap(NULL, mem_type->size, PROT_READ | PROT_WRITE,
 				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 
@@ -48,7 +51,7 @@ int8_t	zone_create(t_mem_type *mem_type)
 
 	flags = HDR_AVAILABLE | HDR_POS_LAST | HDR_POS_FIRST | mem_type->type;
 	alloc_header_init(&zone->first_alloc_header,
-		mem_type->size - sizeof(zone->header) - sizeof(t_alloc_header), 0, flags);
+		mem_type->size - sizeof(t_zone_header) - sizeof(t_alloc_header), 0, flags);
 	available_add(&zone->first_alloc_header);
 	return (SUCCESS);
 }
@@ -78,7 +81,7 @@ t_alloc_header	*zone_create_large(size_t size)
 
 	flags = HDR_AVAILABLE | HDR_POS_LAST | HDR_POS_FIRST | HDR_TYPE_LARGE;
 	alloc_header_init(&zone->first_alloc_header,
-		size - sizeof(zone->header) - sizeof(t_alloc_header), 0, flags);
+		size - sizeof(t_zone_header) - sizeof(t_alloc_header), 0, flags);
 	return (&zone->first_alloc_header);
 }
 
@@ -96,6 +99,7 @@ uint8_t		can_zone_liberate(t_alloc_header *alloc)
 int8_t		zone_liberate(t_zone *zone)
 {
 	int8_t			retval;
+	int32_t			size_add;
 
 	retval = SUCCESS;
 
@@ -116,8 +120,21 @@ int8_t		zone_liberate(t_zone *zone)
 		else if (zone == static_mem()->large)
 			static_mem()->large = zone->header.next_zone;
 	}
-	if (-1 == munmap((void*)zone, zone->header.size))
+	if (zone->first_alloc_header.flags & HDR_TYPE_LARGE)
+	{
+		size_add = sizeof(t_zone_header) + sizeof(t_alloc_header);
+		size_add += 10;
+		// write(1, "=======", 7);
+	}
+	else
+		size_add = 0;
+	if (-1 == munmap((void*)zone, zone->header.size + size_add))
+	{
 		retval = ERROR;
+		// write(1, ".......", 7);
+	}
+	// else
+	// 	write(1, "&&&", 3);
 		//if error, should we put zone back in list ?
 	return (retval);
 }

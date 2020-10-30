@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:09:56 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/27 18:09:26 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 11:58:33 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ int8_t		unavailable_remove(void *maybe_alloc_header)
 		dprintf(2, "Error: can't find %p in unavailable tree\n", maybe_alloc_header);
 		return FAILURE;
 	}
+	// if (((t_alloc_header*)maybe_alloc_header)->flags & HDR_TYPE_TINY)
+	// 	write(1, "t", 1);
+	// else if (((t_alloc_header*)maybe_alloc_header)->flags & HDR_TYPE_SMALL)
+	// 	write(1, "s", 1);
+	// else
+	// 	write(1, "l", 1);
+	// printf("%u|%u\n", ((t_alloc_header*)maybe_alloc_header)->size, ((t_alloc_header*)maybe_alloc_header)->size_prev);
+	// if (((t_alloc_header*)maybe_alloc_header)->size == 512 && ((t_alloc_header*)maybe_alloc_header)->size_prev == 416)
+	// 	show_alloc_mem();
 	alloc_set_available(maybe_alloc_header);
 	// printf("TREE PRINT INSIDE UN REMOVE 2 \n");
 	// tree_print(*tree, 4);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   head.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/27 11:25:06 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 11:41:57 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@
 
 # define PRINT_LINE_SIZE			32
 
-# define ABS(x)						((x < 0) ? -x : x)
-
 # define HDR_POS					0b00000011
 # define HDR_POS_FIRST				0b00000001
 # define HDR_POS_LAST				0b00000010
@@ -58,7 +56,7 @@
 # define ZONE_LARGE					HDR_TYPE_LARGE
 
 # define RES_TINY					16
-# define RES_TINY_SHIFT			4
+# define RES_TINY_SHIFT				4
 # define RES_SMALL					512
 # define RES_SMALL_SHIFT			9
 # define RES_LARGE					4096
@@ -68,8 +66,8 @@
 typedef	struct				s_alloc_header
 {
 	t_rbt					rbt;
-	uint16_t				size;
-	uint16_t				size_prev;
+	uint32_t				size;
+	uint32_t				size_prev;
 	uint8_t					flags;
 }							t_alloc_header;
 

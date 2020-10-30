@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 13:18:37 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 11:24:31 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void		malloc_init(void)
 
 	base = static_mem();
 
-	mem_type_init(&base->small, ZONE_SMALL);
 	mem_type_init(&base->tiny, ZONE_TINY);
+	mem_type_init(&base->small, ZONE_SMALL);
 
 	base->is_init = TRUE;
 }

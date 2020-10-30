@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 20:01:57 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/25 17:11:36 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/30 11:27:09 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void			print_alloc_memory(t_alloc_header *alloc, size_t *total_octet,
 	size_t		octet;
 
 	octet = 0;
-	while (octet < (size_t)ABS(alloc->size))
+	while (octet < (size_t)(alloc->size))
 	{
 		if (0 == *total_octet % PRINT_LINE_SIZE)
 		{

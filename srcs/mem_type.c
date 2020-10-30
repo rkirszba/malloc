@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 00:05:07 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 11:25:43 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 11:25:41 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_mem_type		*mem_type_get_from_size(size_t size)
 
 	mem_type = NULL;
 	base = static_mem();
-	if (size < base->tiny.alloc_size_max)
+	if (size <= base->tiny.alloc_size_max)
 		mem_type = &base->tiny;
-	else if (size < base->small.alloc_size_max)
+	else if (size <= base->small.alloc_size_max)
 		mem_type = &base->small;
 	//carefull for large
 	return mem_type;
@@ -45,7 +45,7 @@ void	mem_type_init(t_mem_type *mem_type, int8_t zone_type)
 	size_t		page_size;
 
 	page_size = getpagesize();//it's 4096
-	while (page_size < (RES_SMALL + sizeof(t_alloc_header)) * SMALL_SIZE_MAX_FACTOR * 100 + sizeof(t_zone_header) / 4096)
+	while (page_size < ((RES_SMALL + sizeof(t_alloc_header)) * SMALL_SIZE_MAX_FACTOR * 100 + sizeof(t_zone_header)) / 4096)
 		page_size += getpagesize();
 	if (zone_type == ZONE_TINY)
 	{
@@ -67,6 +67,6 @@ void	mem_type_init(t_mem_type *mem_type, int8_t zone_type)
 		mem_type->alloc_size_min = RES_TINY * TINY_SIZE_MAX_FACTOR + 1;
 		mem_type->alloc_size_max = RES_SMALL * SMALL_SIZE_MAX_FACTOR;//normally * 30 wich give : 15360(15KB)
 		mem_type->size = page_size * 4096;//16777216=16MB
-		mem_type->size = ZONE_SIZE;
+		// mem_type->size = ZONE_SIZE;
 	}
 }
