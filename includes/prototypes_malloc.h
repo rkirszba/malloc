@@ -49,6 +49,7 @@ void			mem_type_init(t_mem_type *mem_type, int8_t zone_type);
 t_zone			*next_smallest(size_t smallest);
 void			our_free(void *ptr);
 void			*our_malloc(size_t size);
+void			*our_realloc(void *ptr, size_t size);
 void			padding_after(t_rbt *node);
 void			padding_before(t_rbt *node, size_t space);
 void			print_alloc(t_alloc_header *alloc);

@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 18:09:00 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 17:44:50 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_alloc_header	*alloc_join(t_alloc_header *alloc, t_alloc_header *del_alloc)
 		new_size = alloc->size + sizeof(*alloc) + del_alloc->size;
 		size_prev = alloc->size_prev;
 		flags = alloc_join_get_pos_flags(alloc, del_alloc);
-		alloc_header_init(alloc, new_size - sizeof(*alloc), size_prev, flags);
+		alloc_header_init(alloc, new_size, size_prev, flags);
 		// printf("%s flag av %d\n", __func__, alloc->flags & HDR_AVAILABLE);
 		return (alloc);
 	}
@@ -88,15 +88,16 @@ t_alloc_header	*alloc_join_realloc(t_alloc_header *alloc, size_t size)
 
 	if (NULL == alloc)
 		return (NULL);
-	if (alloc->flags & HDR_TYPE_LARGE && alloc->size < size)
+	if (alloc->flags & HDR_TYPE_LARGE && alloc->size < size) //pourquoi la deuxieme verif?
 		return (NULL);
 	del_alloc = alloc_access_next(alloc);
+	printf("del alloc = %p\n", del_alloc);
 	if (del_alloc && del_alloc->flags & HDR_AVAILABLE
-	&& alloc->size + sizeof(t_alloc_header) + del_alloc->size
-	<= align_size(alloc->flags & HDR_TYPE, size))
+	&& alloc->size + sizeof(t_alloc_header) + del_alloc->size >= size)
 	{
 		remove_alloc_from_ds(del_alloc);//TODO: check return ?
 		return (alloc_join(alloc, del_alloc));
 	}
+	printf("JOIN FAILED\n");
 	return NULL;
 }

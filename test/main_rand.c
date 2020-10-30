@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/30 14:24:31 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 15:15:27 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <time.h>
 
-#define SIZE_TAB	50000
+#define SIZE_TAB	5
 #define NB_TEST		1000000
 #define SIZE_ALLOC	16
 
@@ -78,7 +78,10 @@ void		test_write2(void *mem, size_t size)
 
 	i = 0;
 	while (i < size)
+	{
 		((char*)mem)[i++] = 0x42;
+		printf("%lu\n", i);
+	}
 }
 
 int8_t		unit_test(char **tab)
@@ -164,7 +167,7 @@ int			main(int ac, char **av)
 	(void)i;
 	if (ac > 1)
 		nb_tests = atoi(av[1]);
-	srand(42);
+	srand(17);
 
 	write(1, "Begin tests\n", 12);
 	printf("SIZE TAB = %d\n", SIZE_TAB);

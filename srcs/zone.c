@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 12:05:30 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/30 17:06:08 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int8_t	zone_create(t_mem_type *mem_type)
 	printf("mmap of %s zone of size %lu\n", mem_type->type & HDR_TYPE_SMALL ? "small" : "tiny", mem_type->size);
 	sisi = -1;
 	// printf("Max zone : %d\n",  getpagesize() * 4096);
-	printf("Max uint16_t : %lu\n", sisi);
+	printf("Max uint16_t : %llu\n", sisi);
 	zone = mmap(NULL, mem_type->size, PROT_READ | PROT_WRITE,
 				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 
