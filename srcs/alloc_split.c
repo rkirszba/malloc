@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:55 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 17:07:15 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/30 18:35:08 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ static uint8_t	alloc_split_check_size(t_alloc_header *alloc, size_t first_size)
 	long long			second_size;
 
 	old_size = alloc->size;
-	// first_size = align_size(alloc->flags & HDR_TYPE, first_size);
 	if (first_size + sizeof(*alloc) < old_size)
 	{
 		second_size = old_size - first_size - sizeof(*alloc);
-		// if ((size_t)second_size % 8  != 0)
-		// 	printf("Bad aligned size %lu\n", second_size);
 		if ((alloc->flags & HDR_TYPE) == HDR_TYPE_TINY)
 		{
 			if (second_size >= (long long)static_mem()->tiny.alloc_size_min)
@@ -69,8 +66,6 @@ int8_t			alloc_split(t_alloc_header *alloc, size_t first_size)
 			flag_set_pos(old_flags, old_flags & HDR_POS_FIRST));
 
 		new_alloc = alloc_access_next(alloc);
-		// if ((size_t)new_alloc % 8  != 0)
-		// 	printf("Bad aligned %p\n", new_alloc);
 		second_size = old_size - first_size - sizeof(*alloc);
 		alloc_header_init(new_alloc,
 			second_size, first_size,

@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 17:24:29 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/30 18:34:34 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void		*our_malloc(size_t size)
 
 	if (static_mem()->is_init != TRUE)
 		malloc_init();
-	if (size == 0)
-		size = RES_TINY;
 	mem = alloc_get(size);
 	if (mem)
 		return (mem + sizeof(t_alloc_header));

@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 17:19:35 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/30 18:35:24 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_alloc_header	*defragment(t_alloc_header *alloc_header)
 {
 	defrag_elem_right(alloc_header);
 	alloc_header = defrag_elem_left(alloc_header);
-	// printf("2%s flag av %d\n", __func__, alloc_header->flags & HDR_AVAILABLE);
 	return (alloc_header);
 }
 
@@ -63,16 +62,9 @@ void		our_free(void *ptr)
 	if (unavailable_remove((void*)alloc_header) == FAILURE)
 		return ;
 	alloc_set_available(alloc_header);
-	// print_alloc(alloc_header);
 	alloc_header = defragment(alloc_header);
-	// printf("%s flag av %d\n", __func__, alloc_header->flags & HDR_AVAILABLE);
 	if (TRUE == can_zone_liberate(alloc_header))
-	{
 		zone_liberate(alloc_access_zone(alloc_header));
-	}
 	else
-	{
-		// print_alloc(alloc_header);
 		available_add(alloc_header);
-	}
 }

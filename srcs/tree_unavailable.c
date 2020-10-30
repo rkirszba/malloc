@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:09:56 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/30 11:58:33 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/30 18:36:57 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_rbt		**unavailable_get_tree(void *ptr)
 
 	infos = static_mem();
     hash = hash_djb2((unsigned char*)&ptr) % UNAVAILABLE_TABLE_SIZE;
-	// printf("%s with index = %lu\n", __func__, hash);
     return &infos->unavailable[hash];
 }
 
@@ -40,30 +39,14 @@ int8_t		unavailable_remove(void *maybe_alloc_header)
     t_rbt	*node;
 
 	tree = unavailable_get_tree(maybe_alloc_header);
-	// printf("TREE PRINT INSIDE UN REMOVE 1\n");
-	// tree_print(*tree, 4);
 	if (!(node = tree_get_recurse_func_ll(*tree, maybe_alloc_header,
 			&compare_adresses)))
 	{
 		dprintf(2, "Error: can't find %p in unavailable tree\n", maybe_alloc_header);
 		return FAILURE;
 	}
-	// if (((t_alloc_header*)maybe_alloc_header)->flags & HDR_TYPE_TINY)
-	// 	write(1, "t", 1);
-	// else if (((t_alloc_header*)maybe_alloc_header)->flags & HDR_TYPE_SMALL)
-	// 	write(1, "s", 1);
-	// else
-	// 	write(1, "l", 1);
-	// printf("%u|%u\n", ((t_alloc_header*)maybe_alloc_header)->size, ((t_alloc_header*)maybe_alloc_header)->size_prev);
-	// if (((t_alloc_header*)maybe_alloc_header)->size == 512 && ((t_alloc_header*)maybe_alloc_header)->size_prev == 416)
-	// 	show_alloc_mem();
 	alloc_set_available(maybe_alloc_header);
-	// printf("TREE PRINT INSIDE UN REMOVE 2 \n");
-	// tree_print(*tree, 4);
 	*tree = tree_delete_node(node);
-	// printf("TREE PRINT INSIDE UN REMOVE 3 \n");
-	// tree_print(*tree, 4);
-	// printf("%s: Tree address: %p\n", __func__, *tree);
     return SUCCESS;
 }
 
