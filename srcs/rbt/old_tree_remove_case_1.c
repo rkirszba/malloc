@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree_remove_case_1.c                               :+:      :+:    :+:   */
+/*   old_tree_remove_case_1.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 11:37:36 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/29 15:55:42 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 12:57:05 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 #include "tree.h"
 # define TREE_LEFT 1
 # define TREE_RIGHT 2
 # define TREE_NONE 0
 # define TREE_ERROR -1
 
-int8_t		tree_which_child(t_rbt *node)
+
+int8_t		old_tree_which_child(t_rbt *node)
 {
 	if (!node->parent)
 		return (TREE_NONE);
@@ -28,6 +30,9 @@ int8_t		tree_which_child(t_rbt *node)
 		return (TREE_ERROR);
 }
 
+
+
+
 void		tree_del_gg(t_rbt *x)
 {
     if (x->parent == NULL) 
@@ -36,94 +41,94 @@ void		tree_del_gg(t_rbt *x)
   
     t_rbt *sibling = tree_sibling(x);
 	t_rbt *parent = x->parent; 
-    if (sibling == NULL) 
-	{ 
-      // No sibiling, double black pushed up 
-      tree_del_gg(parent); 
+    if (sibling == NULL) // in theory, not possible
+	{
+		printf("VEEERRRRY WWEEEEEEEEIIIIIIIIRD\n");
+		// No sibiling, double black pushed up 
+		tree_del_gg(parent); 
     }
 	else
 	{ 
-      if (sibling->color == RED) 
-	  { 
-        // Sibling red 
-        parent->color = RED; 
-        sibling->color = BLACK; 
-        if (tree_which_child(sibling) == TREE_LEFT) 
+		if (sibling->color == RED) 
 		{ 
-          // left case 
-          tree_rot_right(parent); 
-        } 
-		else
-		{ 
-          // right case 
-          tree_rot_left(parent); 
-        } 
-        tree_del_gg(x); 
-      }
-	  else
-	  { 
-        // Sibling black 
-		if ((sibling->left && sibling->left->color == RED)
-		|| (sibling->right && sibling->right->color == RED))
-		{ 
-          // at least 1 red children 
-          if (sibling->left != NULL && sibling->left->color == RED)
-		  { 
-            if (tree_which_child(sibling) == TREE_LEFT)
+			// Sibling red 
+			parent->color = RED; 
+			sibling->color = BLACK; 
+			if (tree_which_child(sibling) == TREE_LEFT) 
 			{ 
-              // left left 
-              sibling->left->color = sibling->color; 
-              sibling->color = parent->color; 
-              tree_rot_right(parent); 
-            }
+				// left case 
+				tree_rot_right(parent); 
+			} 
 			else
 			{ 
-              // right left 
-              sibling->left->color = parent->color; 
-              tree_rot_right(sibling); 
-              tree_rot_left(parent); 
-            } 
-          }
-		  else
-		  { 
-            if (tree_which_child(sibling) == TREE_LEFT)
-			{ 
-              // left right 
-              sibling->right->color = parent->color; 
-              tree_rot_left(sibling); 
-              tree_rot_right(parent); 
-            }
-			else
-			{ 
-              // right right 
-              sibling->right->color = sibling->color; 
-              sibling->color = parent->color; 
-              tree_rot_left(parent); 
-            } 
-          } 
-          parent->color = BLACK; 
-        }
+				// right case 
+				tree_rot_left(parent); 
+			} 
+			tree_del_gg(x); 
+		}
 		else
 		{ 
-          // 2 black children 
-          sibling->color = RED; 
-          if (parent->color == BLACK) 
-            tree_del_gg(parent); 
-          else
-            parent->color = BLACK; 
-        } 
-      } 
+			// Sibling black 
+			if ((sibling->left && sibling->left->color == RED)
+			|| (sibling->right && sibling->right->color == RED))
+			{ 
+				// at least 1 red children 
+				if (sibling->left != NULL && sibling->left->color == RED)
+				{ 
+					if (tree_which_child(sibling) == TREE_LEFT)
+					{ 
+						// left left 
+						sibling->left->color = sibling->color; 
+						sibling->color = parent->color; 
+						tree_rot_right(parent); 
+					}
+					else
+					{ 
+						// right left 
+						sibling->left->color = parent->color; 
+						tree_rot_right(sibling); 
+						tree_rot_left(parent); 
+					} 
+				}
+				else
+				{ 
+					if (tree_which_child(sibling) == TREE_LEFT)
+					{ 
+						// left right 
+						sibling->right->color = parent->color; 
+						tree_rot_left(sibling); 
+						tree_rot_right(parent); 
+					}
+					else
+					{ 
+						// right right 
+						sibling->right->color = sibling->color; 
+						sibling->color = parent->color; 
+						tree_rot_left(parent); 
+					} 
+				} 
+				parent->color = BLACK; 
+			}
+			else
+			{ 
+				// 2 black children 
+				sibling->color = RED; 
+				if (parent->color == BLACK) 
+					tree_del_gg(parent); 
+				else
+					parent->color = BLACK; 
+			} 
+		} 
     } 
-
 }
 
-void		tree_delete_case_1(t_rbt *x)
+void		old_tree_delete_case_1(t_rbt *x)
 {
 	tree_del_gg(x);
 }
 
 
-// void		tree_delete_case_1(t_rbt *node)
+// void		old_tree_delete_case_1(t_rbt *node)
 // {
 // 	if (node->parent != NULL) // 3.2 resolu = pas root 
 // 	{
@@ -153,7 +158,7 @@ void		tree_delete_case_2_gg(t_rbt *node)
 	tree_delete_case_3(node);
 }
 
-void		tree_delete_case_2(t_rbt *node)
+void		old_tree_delete_case_2(t_rbt *node)
 {
 	t_rbt	*sibling;
 
@@ -164,11 +169,11 @@ void		tree_delete_case_2(t_rbt *node)
 		sibling->color = BLACK;
 		if (node == node->parent->left)
 		{
-			tree_rot_left(node->parent);
+			tree_rot_right(node->parent);
 		}
 		else
 		{
-			tree_rot_right(node->parent);
+			tree_rot_left(node->parent);
 		}
 	}
 	tree_delete_case_3(node);
@@ -232,3 +237,4 @@ void		tree_delete_case_5(t_rbt *node)
 	}
 	tree_delete_case_6(node);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 10:32:36 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/29 16:35:30 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 14:10:26 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int main(int ac, char **av)
 		// tree_print(tree, 0);
 		// printf("\n\n");
 	}
-//	tree_print(tree, 0);
-	i = nodes;
+	// tree_print(tree, 0);
+	i = -1;
 
-	while(--i >= 0)
+	while(++i < nodes)
 	{
 		// printf("Del %d/%d\n", i, nodes);
 		tree = tree_delete_node(&tab_nodes[i]);
@@ -68,4 +68,5 @@ int main(int ac, char **av)
 	
 	return (0);
 }
+
 

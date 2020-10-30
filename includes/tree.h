@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 18:51:38 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/29 11:42:30 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 13:03:47 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <stdlib.h>
 # include <inttypes.h>
 # include <stdio.h>
+
+# define TREE_LEFT 1
+# define TREE_RIGHT 2
+# define TREE_NONE 0
+# define TREE_ERROR -1
 
 enum	e_color {BLACK, RED};
 
@@ -42,9 +47,11 @@ void    padding_before(t_rbt *node, size_t space);
 void    tree_copy_values(t_rbt *dest, t_rbt *src);
 void    tree_delete_case_1(t_rbt *node);
 void    tree_delete_case_2(t_rbt *node);
-void    tree_delete_case_3(t_rbt *node);
-void    tree_delete_case_4(t_rbt *node);
-void    tree_delete_case_5(t_rbt *node);
+void    tree_delete_case_2a(t_rbt *node);
+void    tree_delete_case_2b(t_rbt *node);
+void    tree_delete_case_2bi_i(t_rbt *node);
+void    tree_delete_case_2bi_ii(t_rbt *node);
+void    tree_delete_case_2bii(t_rbt *node);
 void    tree_delete_case_6(t_rbt *node);
 t_rbt   *tree_delete_node(t_rbt *node);
 void    tree_delete_one_child(t_rbt *node);
