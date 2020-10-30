@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:42:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/27 14:47:51 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 16:46:26 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,19 @@ void	alloc_update_size_next(t_alloc_header *alloc)
 		next_alloc->size_prev = alloc->size;
 }
 
+void		ft_bzero(void *mem, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+		((char*)mem)[i++] = 0;
+}
+
 void	alloc_header_init(t_alloc_header *header, size_t size, size_t size_prev,
 		uint8_t flags)
 {
+	// ft_bzero(header, sizeof(t_alloc_header));
 	header->size = size;
 	header->size_prev = size_prev;
 	header->flags = flags;

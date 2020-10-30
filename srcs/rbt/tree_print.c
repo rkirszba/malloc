@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 20:59:37 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 14:25:36 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 18:27:19 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	padding_after(t_rbt *node)
 
 void	tree_print_node_color(t_rbt *node)
 {
+	return ;
 	if (node == NULL)
 		printf("\033[33m");
 	else if (node->color == RED)

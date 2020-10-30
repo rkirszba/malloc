@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 00:00:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 11:29:09 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/10/30 17:20:04 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void		available_add(t_alloc_header *alloc)
 {
     t_rbt   **tree;
 
+	// if (alloc->size == 0)
+	// 	exit(0);
     tree = available_get_tree(alloc);
 	alloc->rbt.content = alloc;
     *tree = tree_insert_func_ll(*tree, &alloc->rbt,

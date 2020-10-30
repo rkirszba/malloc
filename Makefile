@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+         #
+#    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/10/27 15:05:50 by rkirszba         ###   ########.fr        #
+#    Updated: 2020/10/30 15:24:18 by ezalos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SO_FLAG_	=
 
 #For developping purposes:
 CFLAGS 		+= -fsanitize=address,undefined -g3
+# CFLAGS 		+= -g
 
 SRCS_DIR	= srcs/
 HEAD_DIR	= includes/

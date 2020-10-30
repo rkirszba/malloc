@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_join.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/27 18:09:00 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/10/30 16:45:55 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_alloc_header	*alloc_join(t_alloc_header *alloc, t_alloc_header *del_alloc)
 		new_size = alloc->size + sizeof(*alloc) + del_alloc->size;
 		size_prev = alloc->size_prev;
 		flags = alloc_join_get_pos_flags(alloc, del_alloc);
-		alloc_header_init(alloc, new_size - sizeof(*alloc), size_prev, flags);
+		alloc_header_init(alloc, new_size, size_prev, flags);
 		// printf("%s flag av %d\n", __func__, alloc->flags & HDR_AVAILABLE);
 		return (alloc);
 	}
