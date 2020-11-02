@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:09:56 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/30 18:36:57 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 17:51:57 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int8_t		unavailable_remove(void *maybe_alloc_header)
 	if (!(node = tree_get_recurse_func_ll(*tree, maybe_alloc_header,
 			&compare_adresses)))
 	{
-		dprintf(2, "Error: can't find %p in unavailable tree\n", maybe_alloc_header);
+		// dprintf(2, "Error: can't find %p in unavailable tree\n", maybe_alloc_header);
+		write(1, "Error: can't find alloc in unavailable tree: \n", 46);
+		print_hex((size_t)maybe_alloc_header);
+		write(1, "\n", 1);
 		return FAILURE;
 	}
 	alloc_set_available(maybe_alloc_header);
