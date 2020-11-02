@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/02 11:13:21 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 18:41:52 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	*our_realloc(void *ptr, size_t size)
         return (our_malloc(size));
     }
     if (static_mem()->is_init != TRUE)
-		return (NULL);
+		malloc_init();
     alloc_header = ptr - sizeof(t_alloc_header);
     if (unavailable_exists((void*)alloc_header) == FALSE)
         return (NULL);

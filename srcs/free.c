@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/02 17:34:50 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 18:42:31 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ void		our_free(void *ptr)
 {
 	t_alloc_header	*alloc_header;
 
-	if (static_mem()->is_init != TRUE || ptr == NULL)
-		return ;
+	if (ptr == NULL)
+		return;
+	if (static_mem()->is_init != TRUE)
+		malloc_init();
 	alloc_header = ptr - sizeof(t_alloc_header);
 	// hamming_check((void*)alloc_header + sizeof(t_rbt),
 	// 				sizeof(t_alloc_header) - sizeof(t_rbt),

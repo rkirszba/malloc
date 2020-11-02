@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/02 15:51:57 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 18:31:50 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ int8_t	zone_create(t_mem_type *mem_type)
 
 	if (zone == MAP_FAILED)
 	{
-		dprintf(2, "Error: can't do mmap of size %lu\n", mem_type->size);
+		// dprintf(2, "Error: can't do mmap of size %lu\n", mem_type->size);
+		write(1, "Error: can't do mmap of size \n", 36);
+		print_dec((size_t)mem_type->size);
+		write(1, "\n", 1);
 		return (ERROR);
 	}
 
@@ -71,7 +74,10 @@ t_alloc_header	*zone_create_large(size_t size)
 
 	if (zone == MAP_FAILED)
 	{
-		dprintf(2, "Error: can't do mmap of large size %lu\n", size);
+		// dprintf(2, "Error: can't do mmap of large size %lu\n", size);
+		write(1, "Error: can't do mmap of large size \n", 36);
+		print_dec((size_t)size);
+		write(1, "\n", 1);
 		return (NULL);
 	}
 

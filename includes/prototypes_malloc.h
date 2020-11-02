@@ -75,6 +75,7 @@ int				print_alloc_wrapper(t_rbt *rbt);
 void			print_av_tab(t_rbt **tab);
 void			print_debug(size_t size);
 void			print_debug_tree(char *s, t_rbt *tree, int8_t allocs);
+void			print_dec(size_t n);
 void			print_hex(size_t n);
 void			print_hex_zeroes(size_t n);
 void			print_malloc_mem(void);

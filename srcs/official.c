@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:07:39 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/02 15:47:46 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 18:44:06 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void		*calloc(size_t count, size_t size)
 	write(1, "cHello World\n", 13);
 	if (size == 0 || count == 0)
 		return (NULL);
+
+	if (static_mem()->is_init != TRUE)
+		malloc_init();
 
 	size = secure_align_size(size);
 	// size = (((size - 1) >> 4) << 4) + 16;

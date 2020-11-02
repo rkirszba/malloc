@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:34:40 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/02 17:34:41 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 17:39:04 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ size_t			secure_align_size(size_t size)
 	aligned_size = align_size(HDR_TYPE_SMALL, size);
 	if (aligned_size <= base->small.alloc_size_max)
 		return (aligned_size);
-	//as secure align should be used when receiving size in malloc
-	//if large zone is needed, it directly gives the right size for zone_create
 	aligned_size = align_size(HDR_TYPE_LARGE, size);
 	return (aligned_size);
 }

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/30 17:51:58 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 18:29:30 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ void		print_hex_zeroes(size_t n)
 		shift -= 4;
 	}
 }
+
+void		print_dec(size_t n)
+{
+	recur(n, 10);
+}
+
 
 void		print_hex(size_t n)
 {
