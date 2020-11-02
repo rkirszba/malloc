@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/02 19:04:58 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/02 20:18:58 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,17 @@ void    ft_memncpy(void* dest, const void* src, size_t n)
 
 static void    *realloc_cant(t_alloc_header *alloc_header, size_t size)
 {
-    void            *new_ptr;
+    void	*new_ptr;
+	size_t	n;
 
     new_ptr = our_malloc(size);
+	// printf("Hello1\n");
     if (new_ptr)
-        ft_memncpy(new_ptr, (void*)alloc_header + sizeof(t_alloc_header),
-        alloc_header->size);
+	{
+		n = alloc_header->size <= size ? alloc_header->size : size;
+        ft_memncpy(new_ptr, (void*)alloc_header + sizeof(t_alloc_header), n);
+	}
+	// printf("Hello2\n");
     our_free((void*)alloc_header + sizeof(t_alloc_header));
     return new_ptr;
 }
@@ -77,20 +82,35 @@ void	*our_realloc(void *ptr, size_t size)
             our_free(ptr);
         return (our_malloc(size));
     }
+	// printf("HELLLO1\n");
     if (static_mem()->is_init != TRUE)
 		malloc_init();
     alloc_header = ptr - sizeof(t_alloc_header);
+	// printf("HELLLO2\n");
     if (unavailable_exists((void*)alloc_header) == FALSE)
         return (NULL);
     size = secure_align_size(size);
 	mem_type = mem_type_get_from_size(size);
-    if (size <= alloc_header->size)
+	// printf("HELLLO3\n");
+	if ((!mem_type && !(alloc_header->flags & HDR_TYPE_LARGE))
+	|| (mem_type && 0 == (alloc_header->flags & mem_type->type)))
+	{
+		// printf("option1\n");
+		return (realloc_cant(alloc_header, size));
+	}
+    else if (size <= alloc_header->size)
+	{
+		// printf("option2\n");
         return (realloc_smaller(alloc_header, size));
+	}
     else if (alloc_header->flags & HDR_TYPE_LARGE)
+	{
+		// printf("option3\n");
         return (realloc_cant(alloc_header, size));
-    else if (!mem_type || 0 == (alloc_header->flags
-    & mem_type->type))
-        return (realloc_cant(alloc_header, size));
+	}
     else
+	{
+		// printf("option4\n");
         return (realloc_can(alloc_header, size));
+	}
 }
