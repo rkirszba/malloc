@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:31:17 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/30 17:23:48 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/02 10:49:07 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int main(void)
     // free(NULL);
     // ptr = malloc(16);
     // printf("%p\n", ptr);
-    ptr = malloc(0);
-    printf("%p\n", ptr);
+    // ptr = malloc(5);
+    // printf("%p\n", ptr);
+	// ptr = realloc(ptr, 0);
+    ptr = realloc(NULL, 18);
+	printf("%p\n", ptr);
+	// free(ptr);
+	
 }

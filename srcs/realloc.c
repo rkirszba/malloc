@@ -6,13 +6,13 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/31 12:33:34 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/02 11:01:42 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "head.h"
 
-void    ft_memncpy(void* dest, void* src, size_t n)
+void    ft_memncpy(void* dest, const void* src, size_t n)
 {
     size_t i;
 
@@ -77,7 +77,7 @@ void	*our_realloc(void *ptr, size_t size)
             our_free(ptr);
         return (our_malloc(size));
     }
-    if (static_mem()->is_init != TRUE || NULL == ptr)
+    if (static_mem()->is_init != TRUE)
 		return (NULL);
     alloc_header = ptr - sizeof(t_alloc_header);
     if (unavailable_exists((void*)alloc_header) == FALSE)
