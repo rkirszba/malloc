@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/11/02 17:12:27 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 20:16:11 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 #include <unistd.h>
 #include <time.h>
 
-#define SIZE_TAB	5
+#define SIZE_TAB	50
 #define NB_TEST		1000000
 #define SIZE_ALLOC	16
+
+int		size_tab[SIZE_TAB];
 
 int		print_alloc_wrapper(t_rbt *rbt)
 {
@@ -45,7 +47,6 @@ void	print_av_tab(t_rbt **tab)
 void	print_debug_tree(char *s, t_rbt *tree, int8_t allocs)
 {
 	printf("\t%s\n", s);
-	// tree_print_node(tree);
 	if (tree)
 		tree_print(tree, 0);
 	if (allocs)
@@ -62,20 +63,12 @@ void	print_debug(size_t size)
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 	printf("available tree---------------------------------------------\n");
 	print_av_tab(static_mem()->tiny.available);
-	// print_debug_tree("Max size", static_mem()->tiny.available[TINY_SIZE_MAX_FACTOR], TRUE);
-	// print_debug_tree("Current size", static_mem()->tiny.available[(size / RES_TINY) - 1], TRUE);
 	printf("unavailable tree--------------------------------------------\n");
 	print_debug_tree("", static_mem()->unavailable[0], TRUE);
 }
 
 int			get_size_alloc()
 {
-	// size_t	size;
-
-	// size = rand() % (TINY_SIZE_MAX_FACTOR * RES_TINY - 1);
-	// size++;
-	// size = (size >> 3) << 3;
-	// return (size);
 	return (rand() % (2 << 16));
 }
 
@@ -83,105 +76,41 @@ void		test_write2(void *mem, size_t size)
 {
 	size_t	i;
 
-	// printf("Addr: %p\n", mem);
-	// printf("mize: %x\n", (unsigned int)size);
-	// printf("mize: %d\n", (unsigned int)size);
 	i = 0;
 	while (i < size)
-		((char*)mem)[i++] = size;
+		((char*)mem)[i++] = (uint8_t)size;
 }
 
-void		find_shit(t_rbt *root)
+void		test_read2(void *mem, size_t size)
 {
-	if (root != NULL)
-	{
-		if (root->right == (void*)0x4242424242424242)
-			printf("WTF l man %p\n", root);
-		if (root->left == (void*)0x4242424242424242)
-			printf("WTF r man %p\n", root);
+	size_t	i;
 
-		find_shit(root->left);
-		find_shit(root->right);
-	}
-}
-
-// void		find_shit2(t_rbt *root, t_rbt *suspect)
-// {
-// 	if (root != NULL)
-// 	{
-// 		if (root == suspect)
-// 			printf("WTF l man %p\n", root);
-// 		if (root->left == (void*)0x4242424242424242)
-// 			printf("WTF r man %p\n", root);
-//
-// 		find_shit(root->left);
-// 		find_shit(root->right);
-// 	}
-// }
-
-t_rbt	**susu(void)
-{
-	static t_rbt	*suspect = NULL;
-
-	return (&suspect);
-}
-void lstp()
-{
-
+	i = 0;
+	while (i < size)
+		if (((uint8_t*)mem)[i++] != (uint8_t)size)
+			write(1, "ERROR USER MEMORY HAS BEEN ALTERED\n", 35);
 }
 
 # define IN_START		999999999
 
-int8_t		unit_test(char **tab, int index)
+int8_t		unit_test(t_alloc_header **tab, int index)
 {
-	size_t		size;
 	int			r;
 
 	r = rand() % SIZE_TAB;
 	(void)index;
-	// printf("--------------------------------------------\n");
-	// printf("r = %d\n", r);
-	// printf("LOOKING TO FREE %p\n", tab[r] - sizeof(t_alloc_header));
-	// printf("unavailable tree--------------------------------------------\n");
-	// find_shit(static_mem()->unavailable[0]);
-	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
+	test_read2(tab[r], secure_align_size(size_tab[r]));
 	our_free(tab[r]);
-	// if (*susu())
-	// 	tree_print_node(*susu());
-	// printf("AFTER FREE\n");
-	// if (index > IN_START)
-	// 	print_malloc_mem();
-	// print_malloc_mem();
-	// print_malloc_mem();
-	// printf("unavailable tree--------------------------------------------\n");
-	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
-	size = get_size_alloc();
-	// printf("LOOKING TO MALLOC %zu\n", size);
-	// if (size == 221)
-	// 	lstp();
-	if (!(tab[r] = our_malloc(size)))
+	size_tab[r] = get_size_alloc();
+	if (!(tab[r] = our_malloc(size_tab[r])))
 		return (ERROR);
-	// if (size == 221)
-	// 	*susu() = (void*)tab[r];
-	// if (*susu())
-	// 	tree_print_node(*susu());
-	// if (tab[r] == (void*)0x4242424242424242)
-	// 	printf("R = %d\n", r);
-	// printf("AFTER NEW MALLOC %p\n", tab[r] - sizeof(t_alloc_header));
-	// printf("unavailable tree--------------------------------------------\n");
-	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
-	// if (index > IN_START)
-	// 	print_malloc_mem();
-	// print_malloc_mem();
-	test_write2(tab[r], secure_align_size(size));
-	// if (index > IN_START)
-	// 	print_malloc_mem();
+	test_write2(tab[r], secure_align_size(size_tab[r]));
 	return (SUCCESS);
 }
 
-char		**init(void)
+t_alloc_header		**init(void)
 {
-	char		**tab;
+	t_alloc_header		**tab;
 	int			i;
 
 	write(1, "v", 1);
@@ -195,52 +124,33 @@ char		**init(void)
 		write(1, "x", 1);
 		if (!(tab[i] = our_malloc(SIZE_ALLOC)))
 			return (NULL);
+		size_tab[i] = SIZE_ALLOC;
+		test_write2(tab[i], secure_align_size(size_tab[i]));
 		i++;
 	}
 	return (tab);
 }
 
-void		finish(char **tab)
+void		finish(t_alloc_header **tab)
 {
 	int			i;
 	i = 0;
 	while (i < SIZE_TAB)
 	{
 		write(1, "o", 1);
-		// printf("FREE LOOKING FOR: %p\n", tab[i] - sizeof(t_alloc_header));
-		// print_debug_tree("", static_mem()->unavailable[0], FALSE);
 		our_free(tab[i]);
-		// printf("\n\n\n\n");
 		i++;
 	}
 	write(1, "e", 1);
-	// printf("FREE LOOKING FOR: %p\n", tab - sizeof(t_alloc_header));
-	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
 	our_free(tab);
-	// printf("\n\n\n\n");
-	// write(1, "o", 1);
-	// print_debug_tree("", static_mem()->unavailable[0], FALSE);
-
 }
 
 int			main(int ac, char **av)
 {
-	t_alloc_header	test;
-	char		**tab;
+	t_alloc_header		**tab;
 	int			i;
 	int			nb_tests = NB_TEST;
 
-	printf("rbt:        %p\n", &test.rbt);
-	printf("size:       %p\n", &test.size);
-	printf("size_prev:  %p\n", &test.size_prev);
-	printf("flags:      %p\n", &test.flags);
-	printf("parity_bit: %p\n", &test.parity_bit);
-	printf("end:        %p\n", (void*)&test + sizeof(test));
-	printf("s:          %lu\n", sizeof(test));
-	printf("s:          %lu\n", sizeof(test) - sizeof(t_rbt));
-	(void)ac;
-	(void)av;
-	(void)i;
 	if (ac > 1)
 		nb_tests = atoi(av[1]);
 	else
@@ -257,7 +167,7 @@ int			main(int ac, char **av)
 	// while (++i < NB_TEST)
 	while (++i < nb_tests)
 	{
-		write(1, "?", 1);
+		// write(1, "?", 1);
 		if (0 == i % 1000)
 			printf("%d\n", i);
 		if (ERROR == unit_test(tab, i))

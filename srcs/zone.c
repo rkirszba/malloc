@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/02 18:31:50 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 20:26:53 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int8_t	zone_create(t_mem_type *mem_type)
 	// printf("mmap of %s zone of size %lu\n", mem_type->type & HDR_TYPE_SMALL ? "small" : "tiny", mem_type->size);
 	// printf("Max zone : %d\n",  getpagesize() * 4096);
 	zone = mmap(NULL,
-				mem_type->size + sizeof(t_zone_header) + sizeof(t_alloc_header),
+				mem_type->size,
 				PROT_READ | PROT_WRITE,
 				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 
@@ -68,7 +68,8 @@ t_alloc_header	*zone_create_large(size_t size)
 	uint8_t			flags;
 
 	// printf("mmap of %s zone\n", "large");
-	zone = mmap(NULL, size + sizeof(t_zone_header) + sizeof(t_alloc_header),
+	size = secure_align_size(size + sizeof(t_alloc_header) + sizeof(t_zone_header));
+	zone = mmap(NULL, size,
 				PROT_READ | PROT_WRITE,
 				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 
@@ -104,7 +105,7 @@ uint8_t		can_zone_liberate(t_alloc_header *alloc)
 int8_t		zone_liberate(t_zone *zone)
 {
 	int8_t			retval;
-	int32_t			size_add;
+	// int32_t			size_add;
 
 	retval = SUCCESS;
 
@@ -125,11 +126,11 @@ int8_t		zone_liberate(t_zone *zone)
 	}
 	// if (zone->first_alloc_header.flags & HDR_TYPE_LARGE)
 	// {
-	size_add = sizeof(t_zone_header) + sizeof(t_alloc_header);
+	// size_add = sizeof(t_zone_header) + sizeof(t_alloc_header);
 	// }
 	// else
-	// 	size_add = 0;
-	if (-1 == munmap((void*)zone, zone->header.size + size_add))
+	// size_add = 0;
+	if (-1 == munmap((void*)zone, zone->header.size))
 	{
 		retval = ERROR;
 	}

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/02 18:29:30 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 19:59:29 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	show_alloc_zone(t_zone *z)
 			else
 				write(1, "\x1b[38;2;255;155;155m", 19);
 			show_alloc_alloc((void*)alloc, alloc->size);
-			write(1, "\x1b[0m\n", 5);
+			write(1, "\x1b[0m", 4);
 			alloc = alloc_access_next(alloc);
 		}
 }
