@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/02 18:41:52 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 19:04:58 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static void    *realloc_smaller(t_alloc_header *alloc_header, size_t size)
     if (SUCCESS == alloc_split(alloc_header, size))
 	{
 		unavailable_remove(alloc_header);
-		alloc_set_unavailable(alloc_header);	/*
-												** only because it is set to
-												** available in unavailable remove
-												*/
+		// alloc_set_unavailable(alloc_header);	/*
+												// ** only because it is set to
+												// ** available in unavailable remove
+												// */
 		unavailable_add(alloc_header);
 		defragment(alloc_access_next(alloc_header));
         available_add(alloc_access_next(alloc_header));
@@ -57,10 +57,10 @@ static void    *realloc_can(t_alloc_header *alloc_header, size_t size)
     if (NULL == alloc_join_realloc(alloc_header, size))
 		return (realloc_cant(alloc_header, size));
 	unavailable_remove(alloc_header);
-	alloc_set_unavailable(alloc_header);	/*
-											** only because it is set to
-											** available in unavailable remove
-											*/
+	// alloc_set_unavailable(alloc_header);	/*
+											// ** only because it is set to
+											// ** available in unavailable remove
+											// */
 	unavailable_add(alloc_header);
 	return (realloc_smaller(alloc_header, size));
 }

@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:09:56 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/02 17:51:57 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/02 19:03:36 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int8_t		unavailable_remove(void *maybe_alloc_header)
 		write(1, "\n", 1);
 		return FAILURE;
 	}
-	alloc_set_available(maybe_alloc_header);
+	// alloc_set_available(maybe_alloc_header);
 	*tree = tree_delete_node(node);
     return SUCCESS;
 }
