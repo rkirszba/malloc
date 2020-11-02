@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
+#    By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/11/02 12:00:20 by ezalos           ###   ########.fr        #
+#    Updated: 2020/11/02 17:46:40 by rkirszba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ tests: $(NAME)
 	sh .tmp/script_linux.sh $(COMMAND_ARGS)
 else
 tests: $(NAME)
-	sh .tmp/script.sh $(COMMAND_ARGS)
+	sh .tmp/script_macos.sh $(COMMAND_ARGS)
 endif
 
 prototypes:
