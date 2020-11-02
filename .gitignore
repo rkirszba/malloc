@@ -1,3 +1,5 @@
 malloc
 *.o
 .vscode
+.gdb*
+peda*

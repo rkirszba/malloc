@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 18:47:15 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/02 15:51:57 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int8_t	zone_create(t_mem_type *mem_type)
 
 	// printf("mmap of %s zone of size %lu\n", mem_type->type & HDR_TYPE_SMALL ? "small" : "tiny", mem_type->size);
 	// printf("Max zone : %d\n",  getpagesize() * 4096);
-	zone = mmap(NULL, mem_type->size, PROT_READ | PROT_WRITE,
+	zone = mmap(NULL,
+				mem_type->size + sizeof(t_zone_header) + sizeof(t_alloc_header),
+				PROT_READ | PROT_WRITE,
 				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 
 	if (zone == MAP_FAILED)
@@ -101,11 +103,9 @@ int8_t		zone_liberate(t_zone *zone)
 	retval = SUCCESS;
 
 	if (zone->header.next_zone)
-		// if (zone->header.next_zone->header.prev_zone)
 			zone->header.next_zone->header.prev_zone = zone->header.prev_zone;
 	if (zone->header.prev_zone)
 	{
-		// if (zone->header.prev_zone->header.next_zone)
 			zone->header.prev_zone->header.next_zone = zone->header.next_zone;
 	}
 	else
@@ -117,21 +117,17 @@ int8_t		zone_liberate(t_zone *zone)
 		else if (zone == static_mem()->large)
 			static_mem()->large = zone->header.next_zone;
 	}
-	if (zone->first_alloc_header.flags & HDR_TYPE_LARGE)
-	{
-		size_add = sizeof(t_zone_header) + sizeof(t_alloc_header);
-		size_add += 10;
-		// write(1, "=======", 7);
-	}
-	else
-		size_add = 0;
+	// if (zone->first_alloc_header.flags & HDR_TYPE_LARGE)
+	// {
+	size_add = sizeof(t_zone_header) + sizeof(t_alloc_header);
+	// }
+	// else
+	// 	size_add = 0;
 	if (-1 == munmap((void*)zone, zone->header.size + size_add))
 	{
 		retval = ERROR;
-		// write(1, ".......", 7);
 	}
 	// else
-	// 	write(1, "&&&", 3);
 		//if error, should we put zone back in list ?
 	return (retval);
 }

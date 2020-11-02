@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 18:34:34 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 17:34:31 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void		*our_malloc(size_t size)
 		malloc_init();
 	mem = alloc_get(size);
 	if (mem)
+	{
+		// hamming_do(mem + sizeof(t_rbt),
+		// 		sizeof(t_alloc_header) - sizeof(t_rbt),
+		// 		(uint8_t*)&((t_alloc_header*)mem)->parity_bit);
 		return (mem + sizeof(t_alloc_header));
+	}
 	return (NULL);
 }

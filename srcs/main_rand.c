@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_rand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/10/30 18:43:50 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/02 17:12:27 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,10 +225,19 @@ void		finish(char **tab)
 
 int			main(int ac, char **av)
 {
+	t_alloc_header	test;
 	char		**tab;
 	int			i;
 	int			nb_tests = NB_TEST;
 
+	printf("rbt:        %p\n", &test.rbt);
+	printf("size:       %p\n", &test.size);
+	printf("size_prev:  %p\n", &test.size_prev);
+	printf("flags:      %p\n", &test.flags);
+	printf("parity_bit: %p\n", &test.parity_bit);
+	printf("end:        %p\n", (void*)&test + sizeof(test));
+	printf("s:          %lu\n", sizeof(test));
+	printf("s:          %lu\n", sizeof(test) - sizeof(t_rbt));
 	(void)ac;
 	(void)av;
 	(void)i;
@@ -248,7 +257,7 @@ int			main(int ac, char **av)
 	// while (++i < NB_TEST)
 	while (++i < nb_tests)
 	{
-		// write(1, "?", 1);
+		write(1, "?", 1);
 		if (0 == i % 1000)
 			printf("%d\n", i);
 		if (ERROR == unit_test(tab, i))
