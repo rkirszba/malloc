@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 18:46:53 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/02 11:27:47 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		our_free(void *ptr)
 {
 	t_alloc_header	*alloc_header;
 
-	if (static_mem()->is_init != TRUE)
+	if (static_mem()->is_init != TRUE || ptr == NULL)
 		return ;
 	alloc_header = ptr - sizeof(t_alloc_header);
 	if (unavailable_remove((void*)alloc_header) == FAILURE)

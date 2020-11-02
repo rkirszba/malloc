@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/02 11:01:42 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/02 11:13:21 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    ft_memncpy(void* dest, const void* src, size_t n)
 static void    *realloc_cant(t_alloc_header *alloc_header, size_t size)
 {
     void            *new_ptr;
-    
+
     new_ptr = our_malloc(size);
     if (new_ptr)
         ft_memncpy(new_ptr, (void*)alloc_header + sizeof(t_alloc_header),
@@ -55,7 +55,7 @@ static void    *realloc_smaller(t_alloc_header *alloc_header, size_t size)
 static void    *realloc_can(t_alloc_header *alloc_header, size_t size)
 {
     if (NULL == alloc_join_realloc(alloc_header, size))
-        return (realloc_cant(alloc_header, size));
+		return (realloc_cant(alloc_header, size));
 	unavailable_remove(alloc_header);
 	alloc_set_unavailable(alloc_header);	/*
 											** only because it is set to

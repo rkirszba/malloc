@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/30 15:25:01 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 11:55:55 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ typedef	struct				s_alloc_header
 	uint32_t				size;
 	uint32_t				size_prev;
 	uint8_t					flags;
+	uint8_t					flags1;
+	uint8_t					flags2;
+	uint8_t					flags3;
+	size_t					border;
 }							t_alloc_header;
 
 typedef	struct				s_zone_header

@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/10/30 15:24:18 by ezalos           ###   ########.fr        #
+#    Updated: 2020/11/02 12:00:20 by ezalos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ CFLAGS		= -Wall -Werror -Wextra
 SO_FLAG		= -fPIC
 SO_FLAG_	= -shared
 
-SO_FLAG		=
-SO_FLAG_	=
+# SO_FLAG		=
+# SO_FLAG_	=
 
 #For developping purposes:
-CFLAGS 		+= -fsanitize=address,undefined -g3
+# CFLAGS 		+= -fsanitize=address,undefined -g3
 # CFLAGS 		+= -g
 
 SRCS_DIR	= srcs/
@@ -88,8 +88,14 @@ endif
 run: $(TESTOR)
 	./$(TESTOR) $(COMMAND_ARGS)
 
+
+ifeq ($(UNAME),Linux)
+tests: $(NAME)
+	sh .tmp/script_linux.sh $(COMMAND_ARGS)
+else
 tests: $(NAME)
 	sh .tmp/script.sh $(COMMAND_ARGS)
+endif
 
 prototypes:
 	python3 .tmp/prototype_catcher.py srcs includes/prototypes_malloc.h malloc
