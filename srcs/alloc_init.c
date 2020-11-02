@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:42:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/02 17:15:14 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/02 17:37:33 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	alloc_update_size_next(t_alloc_header *alloc)
 	if (next_alloc)
 	{
 		next_alloc->size_prev = alloc->size;
-		hamming_do((void*)next_alloc + sizeof(t_rbt),
-						sizeof(t_alloc_header) - sizeof(t_rbt),
-						(uint8_t*)&next_alloc->parity_bit);
+		// hamming_do((void*)next_alloc + sizeof(t_rbt),
+		// 				sizeof(t_alloc_header) - sizeof(t_rbt),
+		// 				(uint8_t*)&next_alloc->parity_bit);
 	}
 }
 
