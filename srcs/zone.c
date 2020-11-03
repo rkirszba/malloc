@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/02 20:26:53 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/03 01:02:08 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_alloc_header	*zone_create_large(size_t size)
 	uint8_t			flags;
 
 	// printf("mmap of %s zone\n", "large");
+	// size = secure_align_size(size); // pour etre sur que la size donnee est alignee
 	size = secure_align_size(size + sizeof(t_alloc_header) + sizeof(t_zone_header));
 	zone = mmap(NULL, size,
 				PROT_READ | PROT_WRITE,
