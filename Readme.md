@@ -4,7 +4,6 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
-![](assets/malloc.gif)
 
 <!-- PROJECT LOGO -->
 <br />
@@ -16,6 +15,7 @@
   <h1 align="center">malloc<br />realloc<br />calloc<br />free</h1>
 
   <br />
+  <img src="assets/malloc.gif" alt="Logo" width="100%" height="100%">
 
   <p align="center">
     A C dynamic memory allocation implementation from @ezalos, @rkirszba and @arobion
@@ -25,6 +25,7 @@
     ·
     <a href="https://github.com/ezalos/malloc/issues">Report Bug</a>
     ·
+	<br />
   </p>
 </p>
 
