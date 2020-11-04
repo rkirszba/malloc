@@ -181,6 +181,7 @@ There is different levels of memory used in this project, from the smallest unit
 
    Here is a representation of a zone:
 
+  <p align="center">
   <span style="color:blue">[header_zone]</span><span style="color:yellow">[header_alloc]</span><span style="color:red">[xxxxxxxxxxxxxxxxxxxxxxx]</span><span style="color:yellow">[header_alloc]</span><span style="color:red">[xxxxxxxxx<br />
   xxxxxxxxxxxxxxxxxxxx]</span><span style="color:yellow">[header_alloc]</span><span style="color:green">[oooooooooooooooooooooooooooooooooooo<br />
   ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
@@ -199,6 +200,7 @@ There is different levels of memory used in this project, from the smallest unit
   ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
   ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
   oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo]</span>
+  </p>
 
  * Legend:
    * with `t_zone_header` -> <span style="color:blue">[header_zone]</span>
