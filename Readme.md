@@ -4,6 +4,8 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
+![](assets/malloc.gif)
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -38,6 +40,7 @@
   * [Installation](#installation)
 * [Usage](#usage)
 * [Architecture](#architecture)
+  * [Structures](#structures)
 * [Resources](#resources)
 * [License](#license)
 
@@ -61,7 +64,7 @@ void	*calloc(size_t count, size_t size);
 void	free(void *ptr);
 ```
 
-[:book:Subject:book:](Subject/fr.subject.pdf)
+[:book: Subject :book:](Subject/fr.subject.pdf)
 
  C dynamic memory allocation refers to performing manual memory management for dynamic memory allocation in the C programming language via a group of functions in the C standard library, namely malloc, realloc, calloc and free.
 
@@ -126,7 +129,110 @@ For doing so, we give instructions during the loading of the program.
 <!-- ARCHITECTURE -->
 ## Architecture
 
-See the [open issues](https://github.com/ezalos/malloc/issues) for a list of proposed features (and known issues).
+### Low level Structures
+There is different levels of memory used in this project, from the smallest unit, to the largest:
+ * #### allocation:
+
+   It's the memory delivered to the user.
+
+   Each allocation given by malloc is preceded by an header:
+   ```c
+   typedef	struct				s_alloc_header
+   {
+    /*custom structure for a node of red black tree*/
+   	t_rbt					rbt;
+	/*size of the memory following this header*/
+   	uint32_t				size;
+	/*size of the preceding memory*/
+   	uint32_t				size_prev;
+	/*see below*/
+   	uint8_t					flags;
+   }							t_alloc_header;
+   ```
+   This `flags` variable contains multiple informations encoded:
+    * Position
+	  * Is it the first allocation of zone
+	  * Is it the last allocation of zone
+    * Availability
+	  * Is this allocation available to use
+    * Zone type
+	  * Is this allocation in a large zone
+	  * Is this allocation in a small zone
+	  * Is this allocation in a tiny zone
+
+   Each allocation is followed by `size` octets
+
+ * #### Zones:
+
+   Zones are large chunks of continuous memory delivered by mmap.
+   Inside a zone, we find a succession allocation header, followed by the corresponding `size` of dedicated memory.
+
+   Each zone is preceded by an header:
+   ```c
+   typedef	struct				s_zone_header
+   {
+   	struct s_zone			*next_zone;
+   	struct s_zone			*prev_zone;
+   	size_t					size;
+   }							t_zone_header;
+   ```
+   Zones are linked together by mem_type inside a double linked list.
+
+   Here is a representation of a zone:
+
+  <span style="color:blue">[header_zone]</span><span style="color:yellow">[header_alloc]</span><span style="color:red">[xxxxxxxxxxxxxxxxxxxxxxx]</span><span style="color:yellow">[header_alloc]</span><span style="color:red">[xxxxxxxxx<br />
+  xxxxxxxxxxxxxxxxxxxx]</span><span style="color:yellow">[header_alloc]</span><span style="color:green">[oooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooo]</span><span style="color:yellow">[header_alloc]</span><span style="color:red">[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br />
+  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br />
+  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br />
+  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br />
+  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br />
+  xxxxxxx]</span><span style="color:yellow">[header_alloc]</span><span style="color:green">[ooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo<br />
+  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo]</span>
+
+ * Legend:
+   * with `t_zone_header` -> <span style="color:blue">[header_zone]</span>
+   * with `t_alloc_header` -> <span style="color:yellow">[header_alloc]</span>
+   * with used memory -> <span style="color:red">[x]</span>
+   * with free memory -> <span style="color:green">[o]</span>
+
+ * #### mem_type:
+
+ mem_types are a collection of zones, which are grouped inside a double linked list.
+
+ We make the difference between three types of mem_types, depending of the size of allocation asked by user.
+
+     * **Tiny**
+
+    	It's allocations sizes ranges from 0 octets to 1024 octets.
+
+		They have a resolution of 16 octets.
+		resolution means that we complete them to be a multiple of 16, as in the libc implementation of malloc.
+
+     * **Small**
+
+	   It's allocations sizes ranges from 1024 octets to 16MB.
+
+	   They have a resolution of 512 octets.
+
+
+     * **Large**
+
+	   It's allocations sizes ranges from 0 octets to 1024 octets.
+
+	   They have a resolution of 4096 octets.
+
+
+
 
 
 <!-- RESOURCES -->
