@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   official.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:07:39 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/02 23:35:46 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/03 15:13:36 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
+void		ft_bzero(void *mem, size_t size);
 void		ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -39,12 +40,18 @@ void		*malloc(size_t size)
 	write(1, "      size = ", 13);
 	ft_putnbr(size);
 	write(1, "\n", 1);
+	print_hex((size_t)mem);
+	write(1, "\n", 1);
+	print_hex((size_t)mem + secure_align_size(size));
+	ft_bzero(mem, secure_align_size(size));
+	write(1, "\n", 1);
 	if (((t_alloc_header*)(mem - sizeof(t_alloc_header)))->flags & HDR_POS_LAST)
 		write(1,"IT IS THE LAST ELEMENT\n", 23);
 	if (aligned_size < size)
 		write(1, "ALIGNED SIZE SMALLER THAN SIZE !!!\n", 35);
 	if (aligned_size % 8)
 		write(1, "ALIGNED SIZE IS NOT MODULO 8\n", 29);
+	// show_alloc_mem();
 	write(1, "mByeby World\n", 13);
 	return (mem);
 }
@@ -55,6 +62,9 @@ void		*realloc(void *ptr, size_t size)
 	size_t	aligned_size;
 
 	write(1, "rHello World\n", 13);
+	write(1, "Ptr is: ", 8);
+	print_hex((size_t)ptr);
+	write(1, "\n", 1);
 	mem = our_realloc(ptr, size);
 	aligned_size = ((t_alloc_header*)(mem - sizeof(t_alloc_header)))->size;
 	write(1, "GIVEN size = ", 13);
@@ -63,13 +73,21 @@ void		*realloc(void *ptr, size_t size)
 	write(1, "      size = ", 13);
 	ft_putnbr(size);
 	write(1, "\n", 1);
+	print_hex((size_t)mem);
+	write(1, "\n", 1);
+	print_hex((size_t)mem + aligned_size);
+	write(1, "\n", 1);
 	if (((t_alloc_header*)(mem - sizeof(t_alloc_header)))->flags & HDR_POS_LAST)
 		write(1,"IT IS THE LAST ELEMENT\n", 23);
 	if (aligned_size < size)
 		write(1, "ALIGNED SIZE SMALLER THAN SIZE !!!\n", 35);
-		if (aligned_size % 8)
-	write(1, "ALIGNED SIZE IS NOT MODULO 8\n", 29);
+	if (aligned_size % 8)
+		write(1, "ALIGNED SIZE IS NOT MODULO 8\n", 29);
+	if (mem)
+		((uint8_t*)mem)[0] = ((uint8_t*)mem)[0] + aligned_size;
 	write(1, "rByeby World\n", 13);
+	if (mem)
+		((uint8_t*)mem)[0] = ((uint8_t*)mem)[0] - aligned_size;
 	return (mem);
 }
 
@@ -77,6 +95,8 @@ void		free(void *ptr)
 {
 	write(1, "fHello World\n", 13);
 	our_free(ptr);
+	print_hex((size_t)ptr);
+	write(1, "\n", 1);
 	write(1, "fByeby World\n", 13);
 }
 
@@ -120,6 +140,10 @@ void		*calloc(size_t count, size_t size)
 	write(1, "\n", 1);
 	write(1, "      size = ", 13);
 	ft_putnbr(tmp_size * count);
+	write(1, "\n", 1);
+	print_hex((size_t)mem);
+	write(1, "\n", 1);
+	print_hex((size_t)mem + secure_align_size(count * size));
 	write(1, "\n", 1);
 	if (((t_alloc_header*)(mem - sizeof(t_alloc_header)))->flags & HDR_POS_LAST)
 		write(1,"IT IS THE LAST ELEMENT\n", 23);

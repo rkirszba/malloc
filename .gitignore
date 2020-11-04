@@ -3,3 +3,6 @@ malloc
 .vscode
 .gdb*
 peda*
+*.so
+*.out
+logs
