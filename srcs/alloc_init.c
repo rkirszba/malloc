@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:42:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/02 18:16:33 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/06 18:18:11 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,28 @@ void	alloc_header_init(t_alloc_header *header, size_t size, size_t size_prev,
 
 void			print_alloc(t_alloc_header *alloc)
 {
-	uint8_t		flag;
+	// uint8_t		flag;
 
 	if (!alloc)
 	{
 		printf("Alloc: %p\n", alloc);
 		return ;
 	}
-	printf("Alloc: %p\n", alloc);
-	printf("\tsize     : %d\n", alloc->size);
-	printf("\tsize_prev: %d\n", alloc->size_prev);
-	printf("\tavail    : %d\n", alloc->flags & HDR_AVAILABLE ? TRUE : FALSE);
-	flag = alloc->flags & HDR_TYPE;
-	if (flag == HDR_TYPE_TINY)
-		printf("\ttype     : %s\n", "Tiny");
-	else if (flag == HDR_TYPE_SMALL)
-		printf("\ttype     : %s\n", "Small");
-	else if (flag == HDR_TYPE_LARGE)
-		printf("\ttype     : %s\n", "Large");
-	else
-		printf("\ttype     : %s\n", "???");
-	flag = alloc->flags & HDR_POS;
-	printf("\tfirst    : %d\n", flag & HDR_POS_FIRST ? TRUE : FALSE);
-	printf("\tlast     : %d\n", flag & HDR_POS_LAST ? TRUE : FALSE);
-	printf("\n");
+	// printf("Alloc: %p\n", alloc);
+	// printf("\tsize     : %d\n", alloc->size);
+	// printf("\tsize_prev: %d\n", alloc->size_prev);
+	// printf("\tavail    : %d\n", alloc->flags & HDR_AVAILABLE ? TRUE : FALSE);
+	// flag = alloc->flags & HDR_TYPE;
+	// if (flag == HDR_TYPE_TINY)
+	// 	printf("\ttype     : %s\n", "Tiny");
+	// else if (flag == HDR_TYPE_SMALL)
+	// 	printf("\ttype     : %s\n", "Small");
+	// else if (flag == HDR_TYPE_LARGE)
+	// 	printf("\ttype     : %s\n", "Large");
+	// else
+	// 	printf("\ttype     : %s\n", "???");
+	// flag = alloc->flags & HDR_POS;
+	// printf("\tfirst    : %d\n", flag & HDR_POS_FIRST ? TRUE : FALSE);
+	// printf("\tlast     : %d\n", flag & HDR_POS_LAST ? TRUE : FALSE);
+	// printf("\n");
 }

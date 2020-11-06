@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/06 12:01:23 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/06 20:04:06 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		our_free(void *ptr)
 		malloc_init();
 
 	pthread_mutex_lock(&static_mem()->lock);
-	alloc_header = ptr - sizeof(t_alloc_header);
+	alloc_header = (t_alloc_header*)((uint8_t*)ptr - sizeof(t_alloc_header));
 	// hamming_check((void*)alloc_header + sizeof(t_rbt),
 	// 				sizeof(t_alloc_header) - sizeof(t_rbt),
 	// 				(uint8_t*)&alloc_header->parity_bit);
@@ -70,10 +70,15 @@ void		our_free(void *ptr)
 	{
 		alloc_set_available(alloc_header);
 		alloc_header = defragment(alloc_header);
+		// if (TRUE == can_zone_liberate(alloc_header) && (alloc_header->flags & HDR_TYPE_LARGE) == 0)
 		if (TRUE == can_zone_liberate(alloc_header))
 			zone_liberate(alloc_access_zone(alloc_header));
 		else
+		{
+			// write(1, "Hello\n", 6);
 			available_add(alloc_header);
+			// write(1, "Hello2\n", 7);
+		}
 	}
 	pthread_mutex_unlock(&static_mem()->lock);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/04 16:32:10 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/06 19:28:49 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,20 @@ t_alloc_header	*zone_create_large(size_t size)
 {
 	t_zone			*zone;
 	uint8_t			flags;
+	size_t			zone_size;
+	size_t			alloc_size;
 
 	// printf("mmap of %s zone\n", "large");
 	// size = secure_align_size(size); // pour etre sur que la size donnee est alignee
-	size = secure_align_size(size + sizeof(t_alloc_header) + sizeof(t_zone_header));
-	zone = mmap(NULL, size,
+	//size = secure_align_size(size + sizeof(t_alloc_header) + sizeof(t_zone_header));
+	// size = secure_align_size(size) + sizeof(t_alloc_header) + sizeof(t_zone_header);
+	alloc_size = secure_align_size(size);
+	zone_size = alloc_size + sizeof(t_alloc_header) + sizeof(t_zone_header);
+	write(1, "Large zone size = ", 18);
+	ft_putnbr(zone_size);
+	write(1, "\n", 1);
+	zone = mmap(NULL, zone_size,
+	// zone = mmap(NULL, size,
 				PROT_READ | PROT_WRITE,
 				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 
@@ -83,12 +92,14 @@ t_alloc_header	*zone_create_large(size_t size)
 		return (NULL);
 	}
 
-	zone_header_init(&zone->header, static_mem()->large, size);
+	// zone_header_init(&zone->header, static_mem()->large, size);
+	zone_header_init(&zone->header, static_mem()->large, zone_size);
 	static_mem()->large = zone;
 
 	flags = HDR_AVAILABLE | HDR_POS_LAST | HDR_POS_FIRST | HDR_TYPE_LARGE;
 	alloc_header_init(&zone->first_alloc_header,
-		size - sizeof(t_zone_header) - sizeof(t_alloc_header), 0, flags);
+		// size - sizeof(t_zone_header) - sizeof(t_alloc_header), 0, flags);
+		size , 0, flags);
 	return (&zone->first_alloc_header);
 }
 

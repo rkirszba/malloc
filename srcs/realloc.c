@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/06 17:07:27 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/06 19:43:40 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void	*our_realloc(void *ptr, size_t size)
 	mem = NULL;
     if (static_mem()->is_init != TRUE)
 		malloc_init();
-    alloc_header = ptr - sizeof(t_alloc_header);
+    // alloc_header = ptr - sizeof(t_alloc_header);
+    alloc_header = (t_alloc_header*)((uint8_t*)ptr - sizeof(t_alloc_header));
 	pthread_mutex_lock(&static_mem()->lock);
     if (unavailable_exists((void*)alloc_header) == FALSE)
 	{
