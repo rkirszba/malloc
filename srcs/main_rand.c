@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_rand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/11/06 16:40:00 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/06 17:05:04 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <pthread.h>
 #include "head.h"
 
-#define SIZE_TAB	4000
+#define SIZE_TAB	50
 #define NB_TEST		1000000
 #define SIZE_ALLOC	16
 #define TINY		(RES_TINY * TINY_SIZE_MAX_FACTOR)
@@ -50,14 +50,13 @@ size_t			get_size_alloc()
 		size = TINY + ((size_t)rand() % (SMALL - TINY));
 	else
 		size = SMALL + ((size_t)rand() % (2 << 18));
-	printf("%6lu", size);
 	return (size);
 }
 
 void		print_unit_test(t_alloc_test *tab)
 {
 	pthread_mutex_lock(&g_lock);
-	printf("%-8lu ", (unsigned long)pthread_self());
+	printf("%8lu ", (unsigned long)pthread_self());
 	if (tab->test_type == TEST_MALLOC)
 		printf("malloc:  ");
 	else if (tab->test_type == TEST_REALLOC)
@@ -65,7 +64,9 @@ void		print_unit_test(t_alloc_test *tab)
 	else
 		printf("free:    ");
 	printf(" %6lu", tab->size);
+	printf(" (%6lu)", tab->old_size);
 	printf(" %p", tab->mem);
+	printf(" (%p)", tab->old_mem);
 	printf(" %d\n", tab->retval);
 	pthread_mutex_unlock(&g_lock);
 }
@@ -107,12 +108,12 @@ int8_t		unit_test(t_alloc_test *tab)
 	test_read(tab[r].mem, secure_align_size(tab[r].size));
 	if (type < 35)
 	{
-		tab[r].test_type = TEST_MALLOC;
+		tab[r].test_type = TEST_REALLOC;
 		retval = unit_test_realloc(&tab[r]);
 	}
 	else
 	{
-		tab[r].test_type = TEST_REALLOC;
+		tab[r].test_type = TEST_MALLOC;
 		retval = unit_test_malloc(&tab[r]);
 	}
 	type = rand() % 100;
@@ -203,6 +204,7 @@ int			main(int ac, char **av)
 	int				i;
 	pthread_t 		thread_tab[THREAD_NB];
 
+	our_free((void*)(size_t)0xBADA55);
 	if (pthread_mutex_init(&g_lock, NULL) != 0)
 		printf("\n mutex init failed\n");
 	if (ac > 1)
