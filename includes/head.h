@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/06 11:56:37 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/06 16:18:06 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,18 @@ typedef	struct				s_infos
 	pthread_mutex_t			lock;
 	uint8_t					is_init;
 }							t_infos;
+
+typedef struct	s_alloc_test
+{
+	pthread_t	thread_nb;
+	void		*mem;
+	void		*old_mem;
+	size_t		size;
+	size_t		old_size;
+	uint8_t		test_type;
+	uint8_t		old_test_type;
+
+}				t_alloc_test;
 
 # include "prototypes_malloc.h"
 

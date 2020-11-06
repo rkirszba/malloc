@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main_rand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/11/06 15:33:16 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/06 16:22:12 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
 #include <pthread.h>
+#include "head.h"
 
 #define SIZE_TAB	4000
 #define NB_TEST		1000000
@@ -22,14 +22,15 @@
 #define TINY		(RES_TINY * TINY_SIZE_MAX_FACTOR)
 #define SMALL		(RES_SMALL * SMALL_SIZE_MAX_FACTOR)
 #define THREAD_NB	8
-
+#define TEST_MALLOC		1
+#define TEST_REALLOC	2
+#define TEST_FREE		3
 
 typedef struct s_thread_infos
 {
 	int			nb_tests;
 	pthread_t	*thread_tab;
 }				t_thread_infos;
-
 
 pthread_mutex_t g_lock;
 
@@ -53,92 +54,76 @@ size_t			get_size_alloc()
 	return (size);
 }
 
-void		test_write2(void *mem, size_t size)
+void		print_unit_test(t_alloc_test *tab)
 {
-	size_t	i;
+	pthread_mutex_lock(&g_lock);
+	printf("%-8lu ", pthread_self());
+	if (tab->test_type == TEST_MALLOC)
+		printf("malloc:  ");
+	else if (tab->test_type == TEST_REALLOC)
+		printf("realloc: ");
+	else
+		printf("free:    ");
+	printf(" %6lu", tab->size);
+	printf(" %p", tab->mem);
+	pthread_mutex_unlock(&g_lock);
 
-	i = 0;
-	while (i < size)
-		((char*)mem)[i++] = (uint8_t)size;
 }
 
-void		test_read2(void *mem, size_t size)
+int8_t		unit_test_malloc(t_alloc_test *tab)
 {
-	size_t	i;
+	// size_t		old;
+	// int			r;
 
-	i = 0;
-	while (i < size)
-		if (((uint8_t*)mem)[i++] != (uint8_t)size)
-		{
-			write(1, "ERROR USER MEMORY HAS BEEN ALTERED\n", 35);
-			break;
-		}
-}
-
-
-
-int8_t		unit_test_malloc(t_alloc_header **tab)
-{
-	size_t		old;
-	int			r;
-
-	r = rand() % SIZE_TAB;
-	printf("%-5d ", r);
-	test_read2(tab[r], secure_align_size(size_tab[r]));
-	our_free(tab[r]);
-	old = size_tab[r];
-	size_tab[r] = get_size_alloc();
-	printf(" (%6lu)", old);
-	old = (size_t)tab[r];
-	if (!(tab[r] = our_malloc(size_tab[r])))
+	tab->old_size = tab->size;
+	tab->old_mem = tab->mem;
+	our_free(tab->mem);
+	tab->size = get_size_alloc();
+	if (!(tab->mem = our_malloc(tab->size)))
 		return (ERROR);
-	printf(" %p", tab[r]);
-	printf(" (%p)", (void*)old);
-	test_write2(tab[r], secure_align_size(size_tab[r]));
 	return (SUCCESS);
 }
 
-int8_t		unit_test_realloc(t_alloc_header **tab)
+int8_t		unit_test_realloc(t_alloc_test *tab)
 {
-	size_t		old;
-	int			r;
+	// size_t		old;
 
-	r = rand() % SIZE_TAB;
-	printf("%-5d ", r);
-	test_read2(tab[r], secure_align_size(size_tab[r]));
-	old = size_tab[r];
-	size_tab[r] = get_size_alloc();
-	printf(" (%6lu)", old);
-	old = (size_t)tab[r];
-	if (!(tab[r] = our_realloc(tab[r], size_tab[r])))
+	tab->old_size = tab->size;
+	tab->old_mem = tab->mem;
+	tab->size = get_size_alloc();
+	if (!(tab->mem = our_realloc(tab->mem, tab->size)))
 		return (ERROR);
-	printf(" %p", tab[r]);
-	printf(" (%p)", (void*)old);
-	test_write2(tab[r], secure_align_size(size_tab[r]));
 	return (SUCCESS);
 }
 
-int8_t		unit_test(t_alloc_header **tab)
+int8_t		unit_test(t_alloc_test *tab)
 {
 	size_t	type;
 	int8_t	retval;
+	int			r;
 
+	r = rand() % SIZE_TAB;
 	type = rand() % 100;
-	/*
+	test_read(tab[r].mem, secure_align_size(tab[r].size));
 	if (type < 35)
 	{
-		printf("realloc: ");
-		retval = unit_test_realloc(tab);
+		tab[r].test_type = TEST_MALLOC;
+		retval = unit_test_realloc(&tab[r]);
 	}
 	else
 	{
-		*/
-		printf("malloc:  ");
-		retval = unit_test_malloc(tab);
-	// }
+		tab[r].test_type = TEST_REALLOC;
+		retval = unit_test_malloc(&tab[r]);
+	}
 	type = rand() % 100;
 	if (type > 100)
+	{
+		tab[r].test_type = TEST_FREE;
 		our_free((void*)(((size_t)rand() << 32) + (size_t)rand()));
+
+	}
+	test_write(tab[r].mem, secure_align_size(tab[r].size));
+	print_unit_test(&tab[r]);
 	printf(" %d\n", retval);
 	return (retval);
 }
@@ -157,33 +142,32 @@ size_t				get_thread_index(pthread_t current_thread, pthread_t *thread_tab)
 	return (0);
 }
 
-t_alloc_header		**init(pthread_t *thread_tab)
+t_alloc_test		*init(void)
 {
-	t_alloc_header		**tab;
+	t_alloc_test		*tab;
 	int					i;
 
-	if (!(tab = our_malloc(sizeof(void *) * SIZE_TAB)))
+	if (!(tab = our_malloc(sizeof(t_alloc_test) * SIZE_TAB)))
 		return (NULL);
 	i = 0;
-	write(1, "\n", 1);
 	while (i < SIZE_TAB)
 	{
-		if (!(tab[i] = our_malloc(SIZE_ALLOC)))
+		tab[i].size = SIZE_ALLOC;
+		if (!(tab[i].mem = our_malloc(tab[i].size)))
 			return (NULL);
-		size_tab[get_thread_index(pthread_self(), thread_tab)][i] = SIZE_ALLOC;
-		// test_write2(tab[i], secure_align_size(size_tab[i]));
+		test_write(tab[i].mem, secure_align_size(tab[i].size));
 		i++;
 	}
 	return (tab);
 }
 
-void		finish(t_alloc_header **tab)
+void		finish(t_alloc_test *tab)
 {
 	int			i;
 	i = 0;
 	while (i < SIZE_TAB)
 	{
-		our_free(tab[i]);
+		our_free(tab[i].mem);
 		i++;
 	}
 	our_free(tab);
@@ -192,17 +176,14 @@ void		finish(t_alloc_header **tab)
 
 void			*test_routine(void *thread_infos)
 {
-	t_alloc_header	**tab;
+	t_alloc_test	*tab;
 	int		i;
 
 	i = -1;
-	if (!(tab = init(((t_thread_infos*)thread_infos)->thread_tab)))
+	if (!(tab = init()))
 		return (NULL);
 	while (++i < ((t_thread_infos*)thread_infos)->nb_tests)
 	{
-		printf("%d ", (int)pthread_self());
-		if (0 == i % 1000)
-			printf("%d\n", i);
 		if (ERROR == unit_test(tab))
 			exit(1);
 	}
