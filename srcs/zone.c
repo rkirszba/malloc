@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/06 19:28:49 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/06 20:34:26 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ t_alloc_header	*zone_create_large(size_t size)
 	//size = secure_align_size(size + sizeof(t_alloc_header) + sizeof(t_zone_header));
 	// size = secure_align_size(size) + sizeof(t_alloc_header) + sizeof(t_zone_header);
 	alloc_size = secure_align_size(size);
-	zone_size = alloc_size + sizeof(t_alloc_header) + sizeof(t_zone_header);
+	zone_size = secure_align_size(size + sizeof(t_alloc_header) + sizeof(t_zone_header));
+	// zone_size--;
+	// zone_size += getpagesize() - zone_size % getpagesize();
 	write(1, "Large zone size = ", 18);
 	ft_putnbr(zone_size);
 	write(1, "\n", 1);
