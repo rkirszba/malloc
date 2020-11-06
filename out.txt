@@ -1,0 +1,3800 @@
+mHello World
+GIVEN size = 1536
+      size = 1536
+mByeby World
+rHello World
+GIVEN size = 64
+      size = 64
+rByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+fHello World
+Error: can't find alloc in unavailable tree: 
+0x7FDE06C040D8
+fByeby World
+fHello World
+Error: can't find alloc in unavailable tree: 
+0x7FDE06C040C8
+fByeby World
+fHello World
+Error: can't find alloc in unavailable tree: 
+0x7FDE06C040F8
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+rHello World
+GIVEN size = 256
+      size = 256
+rByeby World
+rHello World
+GIVEN size = 1024
+      size = 768
+rByeby World
+fHello World
+fByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+cHello World
+size = 64
+count = 1
+GIVEN size = 64
+      size = 64
+cByeby World
+cHello World
+size = 96
+count = 1
+GIVEN size = 96
+      size = 96
+cByeby World
+mHello World
+GIVEN size = 32
+      size = 23
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+mHello World
+GIVEN size = 208
+      size = 200
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 50
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 47
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 14
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 52
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 54
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 12
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+cHello World
+size = 96
+count = 1
+GIVEN size = 96
+      size = 96
+cByeby World
+mHello World
+GIVEN size = 128
+      size = 117
+mByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 16
+      size = 16
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 14
+mByeby World
+cHello World
+size = 128
+count = 1
+GIVEN size = 128
+      size = 128
+cByeby World
+mHello World
+GIVEN size = 4096
+      size = 4096
+mByeby World
+mHello World
+GIVEN size = 2560
+      size = 2160
+mByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 4096
+      size = 3312
+mByeby World
+mHello World
+GIVEN size = 4096
+      size = 4096
+mByeby World
+rHello World
+GIVEN size = 106416
+      size = 103292
+IT IS THE LAST ELEMENT
+rByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 192
+      size = 192
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 47
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 48
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 18
+mByeby World
+mHello World
+GIVEN size = 496
+      size = 488
+mByeby World
+mHello World
+GIVEN size = 384
+      size = 376
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 56
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 30
+mByeby World
+mHello World
+GIVEN size = 240
+      size = 231
+mByeby World
+fHello World
+fByeby World
+cHello World
+size = 72
+count = 1
+GIVEN size = 80
+      size = 72
+cByeby World
+rHello World
+GIVEN size = 1536
+      size = 1280
+rByeby World
+cHello World
+size = 263
+count = 1
+GIVEN size = 272
+      size = 263
+cByeby World
+cHello World
+size = 264
+count = 1
+GIVEN size = 272
+      size = 264
+cByeby World
+cHello World
+size = 263
+count = 1
+GIVEN size = 272
+      size = 263
+cByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32688
+      size = 32768
+IT IS THE LAST ELEMENT
+ALIGNED SIZE SMALLER THAN SIZE !!!
+mByeby World
+cHello World
+size = 278
+count = 1
+GIVEN size = 288
+      size = 278
+cByeby World
+cHello World
+size = 270
+count = 1
+GIVEN size = 272
+      size = 270
+cByeby World
+cHello World
+size = 280
+count = 1
+GIVEN size = 288
+      size = 280
+cByeby World
+cHello World
+size = 267
+count = 1
+GIVEN size = 272
+      size = 267
+cByeby World
+cHello World
+size = 271
+count = 1
+GIVEN size = 272
+      size = 271
+cByeby World
+cHello World
+size = 267
+count = 1
+GIVEN size = 272
+      size = 267
+cByeby World
+cHello World
+size = 268
+count = 1
+GIVEN size = 272
+      size = 268
+cByeby World
+cHello World
+size = 271
+count = 1
+GIVEN size = 272
+      size = 271
+cByeby World
+cHello World
+size = 269
+count = 1
+GIVEN size = 272
+      size = 269
+cByeby World
+cHello World
+size = 268
+count = 1
+GIVEN size = 272
+      size = 268
+cByeby World
+cHello World
+size = 273
+count = 1
+GIVEN size = 288
+      size = 273
+cByeby World
+cHello World
+size = 271
+count = 1
+GIVEN size = 272
+      size = 271
+cByeby World
+cHello World
+size = 292
+count = 1
+GIVEN size = 304
+      size = 292
+cByeby World
+cHello World
+size = 267
+count = 1
+GIVEN size = 272
+      size = 267
+cByeby World
+cHello World
+size = 269
+count = 1
+GIVEN size = 272
+      size = 269
+cByeby World
+cHello World
+size = 269
+count = 1
+GIVEN size = 272
+      size = 269
+cByeby World
+cHello World
+size = 267
+count = 1
+GIVEN size = 272
+      size = 267
+cByeby World
+cHello World
+size = 267
+count = 1
+GIVEN size = 272
+      size = 267
+cByeby World
+fHello World
+fByeby World
+rHello World
+GIVEN size = 464
+      size = 464
+rByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 64
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 28
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 24
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+mHello World
+GIVEN size = 80
+      size = 72
+mByeby World
+mHello World
+GIVEN size = 128
+      size = 120
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 36
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 20
+mByeby World
+mHello World
+GIVEN size = 32
+      size = 32
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 16
+      size = 7
+mByeby World
+cHello World
+size = 440
+count = 1
+GIVEN size = 448
+      size = 440
+cByeby World
+cHello World
+size = 8
+count = 4
+GIVEN size = 64
+      size = 32
+cByeby World
+cHello World
+size = 4
+count = 4
+GIVEN size = 64
+      size = 16
+cByeby World
+cHello World
+size = 4320
+count = 1
+GIVEN size = 4608
+      size = 4320
+cByeby World
+mHello World
+GIVEN size = 16
+      size = 6
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 3
+mByeby World
+cHello World
+size = 16
+count = 1
+GIVEN size = 16
+      size = 16
+cByeby World
+cHello World
+size = 96
+count = 1
+GIVEN size = 96
+      size = 96
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 47
+mByeby World
+cHello World
+size = 32
+count = 1
+GIVEN size = 32
+      size = 32
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 52
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 37
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 50
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 49
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 46
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 50
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 48
+mByeby World
+cHello World
+size = 160
+count = 1
+GIVEN size = 160
+      size = 160
+cByeby World
+cHello World
+size = 384
+count = 1
+GIVEN size = 384
+      size = 384
+cByeby World
+cHello World
+size = 1
+count = 8
+GIVEN size = 128
+      size = 8
+cByeby World
+fHello World
+fByeby World
+cHello World
+size = 72
+count = 1
+GIVEN size = 80
+      size = 72
+cByeby World
+cHello World
+size = 16
+count = 1
+GIVEN size = 16
+      size = 16
+cByeby World
+cHello World
+size = 8
+count = 4
+GIVEN size = 64
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1424
+      size = 64
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 32
+GIVEN size = 512
+      size = 32
+cByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+cHello World
+size = 64
+count = 1
+GIVEN size = 64
+      size = 64
+cByeby World
+cHello World
+size = 240
+count = 1
+GIVEN size = 240
+      size = 240
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 52
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 48
+mByeby World
+cHello World
+size = 32
+count = 1
+GIVEN size = 40
+      size = 32
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+fHello World
+fByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 56
+count = 1
+GIVEN size = 64
+      size = 56
+cByeby World
+cHello World
+size = 8
+count = 32
+GIVEN size = 512
+      size = 256
+cByeby World
+fHello World
+fByeby World
+cHello World
+size = 112
+count = 1
+GIVEN size = 112
+      size = 112
+cByeby World
+cHello World
+size = 8
+count = 32
+GIVEN size = 512
+      size = 256
+cByeby World
+fHello World
+fByeby World
+cHello World
+size = 56
+count = 1
+GIVEN size = 64
+      size = 56
+cByeby World
+cHello World
+size = 112
+count = 1
+GIVEN size = 112
+      size = 112
+cByeby World
+cHello World
+size = 56
+count = 1
+GIVEN size = 64
+      size = 56
+cByeby World
+cHello World
+size = 112
+count = 1
+GIVEN size = 112
+      size = 112
+cByeby World
+cHello World
+size = 56
+count = 1
+GIVEN size = 64
+      size = 56
+cByeby World
+cHello World
+size = 112
+count = 1
+GIVEN size = 112
+      size = 112
+cByeby World
+mHello World
+GIVEN size = 16
+      size = 5
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 5
+mByeby World
+cHello World
+size = 80
+count = 1
+GIVEN size = 80
+      size = 80
+cByeby World
+cHello World
+size = 96
+count = 1
+GIVEN size = 96
+      size = 96
+cByeby World
+mHello World
+GIVEN size = 80
+      size = 45
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 47
+mByeby World
+cHello World
+size = 32
+count = 1
+GIVEN size = 32
+      size = 32
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 52
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 40
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 50
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 49
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 46
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 50
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 48
+mByeby World
+cHello World
+size = 160
+count = 1
+GIVEN size = 160
+      size = 160
+cByeby World
+cHello World
+size = 384
+count = 1
+GIVEN size = 384
+      size = 384
+cByeby World
+cHello World
+size = 1
+count = 8
+GIVEN size = 128
+      size = 8
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 64
+count = 1
+GIVEN size = 64
+      size = 64
+cByeby World
+cHello World
+size = 240
+count = 1
+GIVEN size = 240
+      size = 240
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 52
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 48
+mByeby World
+cHello World
+size = 32
+count = 1
+GIVEN size = 40
+      size = 32
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 96
+count = 1
+GIVEN size = 96
+      size = 96
+cByeby World
+cHello World
+size = 96
+count = 1
+GIVEN size = 96
+      size = 96
+cByeby World
+mHello World
+GIVEN size = 80
+      size = 45
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 47
+mByeby World
+cHello World
+size = 32
+count = 1
+GIVEN size = 32
+      size = 32
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 52
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 15
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 50
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 49
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 46
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 50
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 48
+mByeby World
+cHello World
+size = 160
+count = 1
+GIVEN size = 160
+      size = 160
+cByeby World
+cHello World
+size = 368
+count = 1
+GIVEN size = 368
+      size = 368
+cByeby World
+cHello World
+size = 1
+count = 8
+GIVEN size = 128
+      size = 8
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 64
+count = 1
+GIVEN size = 64
+      size = 64
+cByeby World
+cHello World
+size = 240
+count = 1
+GIVEN size = 240
+      size = 240
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 52
+mByeby World
+mHello World
+GIVEN size = 48
+      size = 48
+mByeby World
+cHello World
+size = 32
+count = 1
+GIVEN size = 40
+      size = 32
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 45
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 56
+count = 1
+GIVEN size = 80
+      size = 56
+cByeby World
+cHello World
+size = 112
+count = 1
+GIVEN size = 112
+      size = 112
+cByeby World
+fHello World
+fByeby World
+cHello World
+size = 592
+count = 1
+GIVEN size = 1024
+      size = 592
+cByeby World
+mHello World
+GIVEN size = 16
+      size = 8
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 8
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 8
+mByeby World
+mHello World
+GIVEN size = 160
+      size = 160
+mByeby World
+mHello World
+GIVEN size = 2048
+      size = 2048
+mByeby World
+mHello World
+GIVEN size = 8192
+      size = 8192
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 16
+      size = 8
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 5
+mByeby World
+fHello World
+fByeby World
+mHello World
+GIVEN size = 128
+      size = 128
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 80
+count = 1
+GIVEN size = 80
+      size = 80
+cByeby World
+cHello World
+size = 1
+count = 64
+GIVEN size = 1024
+      size = 64
+cByeby World
+cHello World
+size = 96
+count = 1
+GIVEN size = 96
+      size = 96
+cByeby World
+mHello World
+GIVEN size = 48
+      size = 44
+mByeby World
+mHello World
+GIVEN size = 16
+      size = 9
+mByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 48
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 64
+      size = 49
+mByeby World
+mHello World
+GIVEN size = 64
+      size = 52
+mByeby World
+cHello World
+size = 144
+count = 1
+GIVEN size = 144
+      size = 144
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 160
+count = 1
+GIVEN size = 160
+      size = 160
+cByeby World
+cHello World
+size = 208
+count = 1
+GIVEN size = 208
+      size = 208
+cByeby World
+mHello World
+GIVEN size = 368
+      size = 364
+mByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 96
+count = 1
+GIVEN size = 96
+      size = 96
+cByeby World
+fHello World
+fByeby World
+fHello World
+fByeby World
+cHello World
+size = 64
+count = 1
+GIVEN size = 64
+      size = 64
+cByeby World
+cHello World
+size = 240
+count = 1
+GIVEN size = 240
+      size = 240
+cByeby World
+cHello World
+size = 48
+count = 1
+GIVEN size = 56
+      size = 48
+cByeby World
+mHello World
+GIVEN size = 40
+      size = 16
+mByeby World
+.tmp/script.sh: line 3: 30327 Segmentation fault: 11  $@

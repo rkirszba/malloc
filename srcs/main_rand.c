@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_rand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/11/06 16:22:12 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/06 16:40:00 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #define SIZE_ALLOC	16
 #define TINY		(RES_TINY * TINY_SIZE_MAX_FACTOR)
 #define SMALL		(RES_SMALL * SMALL_SIZE_MAX_FACTOR)
-#define THREAD_NB	8
+#define THREAD_NB		8
 #define TEST_MALLOC		1
 #define TEST_REALLOC	2
 #define TEST_FREE		3
@@ -57,7 +57,7 @@ size_t			get_size_alloc()
 void		print_unit_test(t_alloc_test *tab)
 {
 	pthread_mutex_lock(&g_lock);
-	printf("%-8lu ", pthread_self());
+	printf("%-8lu ", (unsigned long)pthread_self());
 	if (tab->test_type == TEST_MALLOC)
 		printf("malloc:  ");
 	else if (tab->test_type == TEST_REALLOC)
@@ -66,8 +66,8 @@ void		print_unit_test(t_alloc_test *tab)
 		printf("free:    ");
 	printf(" %6lu", tab->size);
 	printf(" %p", tab->mem);
+	printf(" %d\n", tab->retval);
 	pthread_mutex_unlock(&g_lock);
-
 }
 
 int8_t		unit_test_malloc(t_alloc_test *tab)
@@ -122,9 +122,9 @@ int8_t		unit_test(t_alloc_test *tab)
 		our_free((void*)(((size_t)rand() << 32) + (size_t)rand()));
 
 	}
+	tab[r].retval = retval;
 	test_write(tab[r].mem, secure_align_size(tab[r].size));
 	print_unit_test(&tab[r]);
-	printf(" %d\n", retval);
 	return (retval);
 }
 
@@ -182,6 +182,9 @@ void			*test_routine(void *thread_infos)
 	i = -1;
 	if (!(tab = init()))
 		return (NULL);
+	pthread_mutex_lock(&g_lock);
+	printf("\nNB TEST = %d\n", ((t_thread_infos*)thread_infos)->nb_tests);
+	pthread_mutex_unlock(&g_lock);
 	while (++i < ((t_thread_infos*)thread_infos)->nb_tests)
 	{
 		if (ERROR == unit_test(tab))
@@ -196,16 +199,16 @@ void			*test_routine(void *thread_infos)
 
 int			main(int ac, char **av)
 {
-	int				nb_tests;
+	t_thread_infos	thread_infos;
 	int				i;
 	pthread_t 		thread_tab[THREAD_NB];
 
-	// if (pthread_mutex_init(&g_lock, NULL) != 0)
-	// 	printf("\n mutex init failed\n");
+	if (pthread_mutex_init(&g_lock, NULL) != 0)
+		printf("\n mutex init failed\n");
 	if (ac > 1)
-		nb_tests = atoi(av[1]);
+		thread_infos.nb_tests = atoi(av[1]);
 	else
-		nb_tests = NB_TEST;
+		thread_infos.nb_tests = NB_TEST;
 	if (ac > 2)
 		srand(atoi(av[2]));
 	else
@@ -213,12 +216,17 @@ int			main(int ac, char **av)
 	write(1, "\n", 1);
 	i = -1;
 	while (++i < THREAD_NB)
-		if (pthread_create(&thread_tab[i], NULL, &test_routine, (void*)(size_t)nb_tests))
+	{
+		pthread_mutex_lock(&g_lock);
+		printf("\nLaunching thread no %d\n", i);
+		pthread_mutex_unlock(&g_lock);
+		if (pthread_create(&thread_tab[i], NULL, &test_routine, (void*)&thread_infos))
 			return (1);
+	}
 	i = -1;
 	while (++i < THREAD_NB)
 		if (pthread_join(thread_tab[i], NULL))
 			return (1);
-	// pthread_mutex_destroy(&g_lock);
+	pthread_mutex_destroy(&g_lock);
 	return (0);
 }
