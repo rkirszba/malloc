@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/11/02 19:26:58 by ezalos           ###   ########.fr        #
+#    Updated: 2020/11/03 11:15:43 by ezalos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS		= -Wall -Werror -Wextra
 SO_FLAG		= -fPIC
 SO_FLAG_	= -shared
 
-# SO_FLAG		=
+# SO_FLAG	=
 # SO_FLAG_	=
 
 #For developping purposes:
@@ -88,7 +88,7 @@ endif
 run: $(TESTOR)
 	./$(TESTOR) $(COMMAND_ARGS)
 
-
+UNAME			:=	$(shell uname)
 ifeq ($(UNAME),Linux)
 tests: $(NAME)
 	sh .tmp/script_linux.sh $(COMMAND_ARGS)

@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:34:40 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/02 17:39:04 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/04 11:33:51 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ size_t			secure_align_size(size_t size)
 	base = static_mem();
 	if (size == 0)
 		size = RES_TINY;
+	// if (size <= 4 * sizeof(void*))
+	// 	size = 4 * sizeof(void*);
+	// size = (size * 64) + 1092;
 	aligned_size = align_size(HDR_TYPE_TINY, size);
 	if (aligned_size <= base->tiny.alloc_size_max)
 		return (aligned_size);

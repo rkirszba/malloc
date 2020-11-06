@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:55 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/03 01:13:54 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/03 14:57:29 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ static uint8_t	alloc_split_check_size(t_alloc_header *alloc, size_t first_size)
 				return (TRUE);
 		}
 		
-		else // ajout au cas où ce serait un large, mais attention cela fait segfault dans realloc_smaller (available get tree)
-		{
-			if (second_size > (long long)static_mem()->small.alloc_size_max)
-				return (TRUE);
-		}
-		
+		// else // ajout au cas où ce serait un large, mais attention cela fait segfault dans realloc_smaller (available get tree)
+		// {
+		// 	if (second_size > (long long)static_mem()->small.alloc_size_max)
+		// 		return (TRUE);
+		// }
+
 	}
 	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/02 16:43:44 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/04 16:17:40 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 # define TAB_ALLOCS 				77777
 
-# define PRINT_LINE_SIZE			32
+# define PRINT_LINE_SIZE			(32 * 4)
 
 # define HDR_POS					0b00000011
 # define HDR_POS_FIRST				0b00000001
