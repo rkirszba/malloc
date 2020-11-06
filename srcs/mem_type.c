@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 00:05:07 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/31 12:18:04 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/03 17:35:01 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,14 @@ void	mem_type_init(t_mem_type *mem_type, int8_t zone_type)
 	size_t		page_size;
 
 	page_size = getpagesize();//it's 4096
+	if (!page_size)
+		page_size = 4096;
+	/*
 	while (page_size < ((RES_SMALL + sizeof(t_alloc_header)) * SMALL_SIZE_MAX_FACTOR * 100 + sizeof(t_zone_header)) / 4096)
 		page_size += getpagesize();
+		*/
+	ft_putnbr(page_size);
+	write(1, "\n", 1);
 	if (zone_type == ZONE_TINY)
 	{
 		mem_type->type = HDR_TYPE_TINY;
@@ -55,8 +61,10 @@ void	mem_type_init(t_mem_type *mem_type, int8_t zone_type)
 		mem_type->alloc_size_min = RES_TINY * 1;
 		mem_type->alloc_size_max = RES_TINY * TINY_SIZE_MAX_FACTOR;//normally reso * 62 which give : 992.
 		//So with resolution * 64 == 1024
-		mem_type->size = page_size * 512;//it's 2MB = 2097152
-		mem_type->type = HDR_TYPE_TINY;
+		// mem_type->size = page_size * 512;//it's 2MB = 2097152
+		mem_type->size = (2097152 - 1) + page_size - (2097152 - 1) % page_size; 
+		ft_putnbr(mem_type->size);
+		write(1, "\n", 1);
 	}
 	else if (zone_type == ZONE_SMALL)
 	{
@@ -65,6 +73,9 @@ void	mem_type_init(t_mem_type *mem_type, int8_t zone_type)
 		mem_type->factor_size_max = SMALL_SIZE_MAX_FACTOR;
 		mem_type->alloc_size_min = RES_TINY * TINY_SIZE_MAX_FACTOR + 1;
 		mem_type->alloc_size_max = RES_SMALL * SMALL_SIZE_MAX_FACTOR;//normally * 30 wich give : 15360(15KB)
-		mem_type->size = page_size * 4096;//16777216=16MB
+		// mem_type->size = page_size * 4096;//16777216=16MB
+		mem_type->size = (16777216 - 1) + page_size - (16777216 -1 ) % page_size;
+		ft_putnbr(mem_type->size);
+		write(1, "\n", 1);
 	}
 }
