@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/03 01:02:08 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/04 16:32:10 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int8_t		zone_liberate(t_zone *zone)
 	// int32_t			size_add;
 
 	retval = SUCCESS;
-
 	if (zone->header.next_zone)
 			zone->header.next_zone->header.prev_zone = zone->header.prev_zone;
 	if (zone->header.prev_zone)
