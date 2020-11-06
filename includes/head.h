@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/04 16:17:40 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/06 11:56:37 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <pthread.h>
 # include "tree.h"
 
 # define ZONE_SIZE					4096
@@ -104,6 +105,7 @@ typedef	struct				s_infos
 	t_mem_type				small;
 	t_zone					*large;
 	t_rbt					*unavailable[UNAVAILABLE_TABLE_SIZE];
+	pthread_mutex_t			lock;
 	uint8_t					is_init;
 }							t_infos;
 
