@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   head.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/06 16:39:02 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/06 17:20:45 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,18 +109,18 @@ typedef	struct				s_infos
 	uint8_t					is_init;
 }							t_infos;
 
-typedef struct	s_alloc_test
+typedef struct				s_alloc_test
 {
-	pthread_t	thread_nb;
-	void		*mem;
-	void		*old_mem;
-	size_t		size;
-	size_t		old_size;
-	uint8_t		test_type;
-	uint8_t		old_test_type;
-	uint8_t		retval;
+	pthread_t				thread_nb;
+	void					*mem;
+	void					*old_mem;
+	size_t					size;
+	size_t					old_size;
+	uint8_t					test_type;
+	uint8_t					old_test_type;
+	uint8_t					retval;
 
-}				t_alloc_test;
+}							t_alloc_test;
 
 # include "prototypes_malloc.h"
 

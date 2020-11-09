@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/11/06 17:05:04 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/06 17:10:38 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,9 +219,7 @@ int			main(int ac, char **av)
 	i = -1;
 	while (++i < THREAD_NB)
 	{
-		pthread_mutex_lock(&g_lock);
 		printf("\nLaunching thread no %d\n", i);
-		pthread_mutex_unlock(&g_lock);
 		if (pthread_create(&thread_tab[i], NULL, &test_routine, (void*)&thread_infos))
 			return (1);
 	}
