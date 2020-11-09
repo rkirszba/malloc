@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:27:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/06 12:01:23 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/09 17:26:55 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void			defrag_elem_right(t_alloc_header *alloc_header)
 {
 	if (NULL != alloc_header)
 		alloc_join_defrag(alloc_header, FALSE, TRUE);
-
 }
 
 t_alloc_header	*defrag_elem_left(t_alloc_header *middle)
@@ -52,20 +51,16 @@ t_alloc_header	*defragment(t_alloc_header *alloc_header)
 	return (alloc_header);
 }
 
-void		our_free(void *ptr)
+void			our_free(void *ptr)
 {
 	t_alloc_header	*alloc_header;
 
 	if (ptr == NULL)
-		return;
+		return ;
 	if (static_mem()->is_init != TRUE)
 		malloc_init();
-
 	pthread_mutex_lock(&static_mem()->lock);
-	alloc_header = ptr - sizeof(t_alloc_header);
-	// hamming_check((void*)alloc_header + sizeof(t_rbt),
-	// 				sizeof(t_alloc_header) - sizeof(t_rbt),
-	// 				(uint8_t*)&alloc_header->parity_bit);
+	alloc_header = (t_alloc_header*)((uint8_t*)ptr - sizeof(t_alloc_header));
 	if (unavailable_remove((void*)alloc_header) == SUCCESS)
 	{
 		alloc_set_available(alloc_header);
@@ -73,7 +68,9 @@ void		our_free(void *ptr)
 		if (TRUE == can_zone_liberate(alloc_header))
 			zone_liberate(alloc_access_zone(alloc_header));
 		else
+		{
 			available_add(alloc_header);
+		}
 	}
 	pthread_mutex_unlock(&static_mem()->lock);
 }

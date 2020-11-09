@@ -6,71 +6,29 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/02 19:59:29 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/09 17:55:10 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-static void	recur(size_t n, size_t base)
-{
-	char	*symbols = "0123456789ABCDEF";
-
-	if (n != 0)
-	{
-		recur(n / base, base);
-		write(1, &symbols[n % base], 1);
-	}
-}
-
-# define MASK_CHAR		0b1111
-
-void		print_hex_zeroes(size_t n)
-{
-	size_t		shift;
-
-	shift = sizeof(size_t) * 2;
-	shift -= 4;
-	while (shift < sizeof(size_t) * 2
-	&& 0 == (n & ((size_t)MASK_CHAR << shift)))
-	{
-		write(1, "0", 1);
-		shift -= 4;
-	}
-}
-
-void		print_dec(size_t n)
-{
-	recur(n, 10);
-}
-
-
-void		print_hex(size_t n)
-{
-	write(1, "0x", 2);
-	// print_hex_zeroes(n);
-	recur(n, 16);
-}
-
-void	show_alloc_alloc(void *ptr, size_t size)
+void			show_alloc_alloc(void *ptr, size_t size)
 {
 	print_hex((size_t)ptr);
 	write(1, " - ", 3);
 	print_hex((size_t)ptr + size);
 	write(1, " : ", 3);
-	recur(size, 10);
+	print_dec(size);
 	write(1, " octets\n", 8);
 }
 
-void	show_alloc_zone(t_zone *z)
+void			show_alloc_zone(t_zone *z)
 {
 	t_alloc_header		*alloc;
 
 	write(1, "\x1b[38;2;155;155;255m", 19);
 	if (HDR_TYPE_LARGE == (z->first_alloc_header.flags & HDR_TYPE))
-	{
 		write(1, "LARGE : ", 8);
-	}
 	else if (HDR_TYPE_TINY == (z->first_alloc_header.flags & HDR_TYPE))
 		write(1, "TINY : ", 7);
 	else if (HDR_TYPE_SMALL == (z->first_alloc_header.flags & HDR_TYPE))
@@ -93,7 +51,7 @@ void	show_alloc_zone(t_zone *z)
 		}
 }
 
-size_t	first_biggest_than(t_zone *zone, size_t bound)
+size_t			first_biggest_than(t_zone *zone, size_t bound)
 {
 	size_t		smallest;
 
@@ -107,7 +65,7 @@ size_t	first_biggest_than(t_zone *zone, size_t bound)
 	return (smallest);
 }
 
-t_zone	*next_smallest(size_t smallest)
+t_zone			*next_smallest(size_t smallest)
 {
 	size_t		tiny;
 	size_t		small;
@@ -117,7 +75,6 @@ t_zone	*next_smallest(size_t smallest)
 	tiny = first_biggest_than(static_mem()->tiny.zone, smallest);
 	small = first_biggest_than(static_mem()->small.zone, smallest);
 	large = first_biggest_than(static_mem()->large, smallest);
-
 	if (tiny < small)
 	{
 		if (tiny < large)
@@ -135,8 +92,7 @@ t_zone	*next_smallest(size_t smallest)
 	return (winner);
 }
 
-
-void	show_alloc_mem(void)
+void			show_alloc_mem(void)
 {
 	t_zone			*zone;
 	size_t			smallest;
