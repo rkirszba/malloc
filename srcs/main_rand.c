@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/11/09 18:47:07 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/09 18:53:17 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,8 @@ int8_t		unit_test(t_alloc_test *tab)
 		tab[r].test_type = TEST_MALLOC;
 		retval = unit_test_malloc(&tab[r]);
 	}
+	if ((size_t)tab->mem % 8 != 0)
+		write(1, "-------------NOT ALIGNED PTR-------------\n", 42);
 	type = rand() % 100;
 	if (type > 100)
 	{
