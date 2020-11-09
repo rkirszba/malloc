@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   flag_set_availability.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 17:23:30 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/09 17:29:44 by ezalos           ###   ########.fr       */
+/*   Created: 2020/10/23 14:28:39 by ldevelle          #+#    #+#             */
+/*   Updated: 2020/11/09 17:23:45 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-size_t			hash_djb2(unsigned char *ptr)
+void				alloc_set_available(t_alloc_header *alloc)
 {
-	ssize_t			i;
-	unsigned long	hash;
+	alloc->flags = flag_set_availabilty(alloc->flags, HDR_AVAILABLE);
+}
 
-	i = -1;
-	hash = 5381;
-	while (++i < 8)
-	{
-		hash = ((hash << 5) + hash) + ptr[i];
-	}
-	return (hash);
+void				alloc_set_unavailable(t_alloc_header *alloc)
+{
+	alloc->flags = flag_set_availabilty(alloc->flags, HDR_UNAVAILABLE);
 }

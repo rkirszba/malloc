@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/11/03 11:15:43 by ezalos           ###   ########.fr        #
+#    Updated: 2020/11/06 16:47:26 by ezalos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,13 @@ endif
 NAME		= libft_malloc_$(HOSTTYPE).so
 TESTOR		= malloc_testor.out
 CC			= gcc
+
+UNAME			:=	$(shell uname)
+ifeq ($(UNAME),Linux)
+LIB_THREAD = -pthread
+else
+LIB_THREAD =
+endif
 
 CFLAGS		= -Wall -Werror -Wextra
 
@@ -61,7 +68,7 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCS) Makefile
 	$(CC) $(CFLAGS) $(SO_FLAG) -o $@ -c $< $(HEADERS)
 
 $(TESTOR): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TESTOR) $(HEADERS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TESTOR) $(HEADERS) $(LIB_THREAD)
 
 clean:
 	rm -rf $(OBJS)
@@ -88,7 +95,6 @@ endif
 run: $(TESTOR)
 	./$(TESTOR) $(COMMAND_ARGS)
 
-UNAME			:=	$(shell uname)
 ifeq ($(UNAME),Linux)
 tests: $(NAME)
 	sh .tmp/script_linux.sh $(COMMAND_ARGS)

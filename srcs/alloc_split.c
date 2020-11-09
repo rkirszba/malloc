@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:30:55 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/03 14:57:29 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/09 17:22:22 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ static uint8_t	alloc_split_check_size(t_alloc_header *alloc, size_t first_size)
 			if (second_size >= (long long)static_mem()->small.alloc_size_min)
 				return (TRUE);
 		}
-		
-		// else // ajout au cas où ce serait un large, mais attention cela fait segfault dans realloc_smaller (available get tree)
-		// {
-		// 	if (second_size > (long long)static_mem()->small.alloc_size_max)
-		// 		return (TRUE);
-		// }
-
 	}
 	return (FALSE);
 }
@@ -68,10 +61,8 @@ int8_t			alloc_split(t_alloc_header *alloc, size_t first_size)
 	{
 		retval = SUCCESS;
 		old_flags = alloc->flags;
-
 		alloc_header_init(alloc, first_size, alloc->size_prev,
 			flag_set_pos(old_flags, old_flags & HDR_POS_FIRST));
-
 		new_alloc = alloc_access_next(alloc);
 		second_size = old_size - first_size - sizeof(*alloc);
 		alloc_header_init(new_alloc,

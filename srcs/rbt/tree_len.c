@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:19:07 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/28 11:19:09 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/09 18:06:34 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		count(t_rbt *rbt)
 	return (1);
 }
 
-int			tree_len(t_rbt *tree)
+int				tree_len(t_rbt *tree)
 {
 	return (tree_inorder(tree, count));
 }

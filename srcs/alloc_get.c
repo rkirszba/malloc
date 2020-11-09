@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 12:20:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/02 18:29:16 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/09 17:05:33 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ uint8_t				is_large_zone(size_t size)
 
 t_alloc_header		*alloc_get_available(size_t size)
 {
-	t_rbt   		**tree;
+	t_rbt			**tree;
 	t_rbt			*node;
 	int				umpteenth_node;
 
@@ -30,7 +30,6 @@ t_alloc_header		*alloc_get_available(size_t size)
 	umpteenth_node = 0;
 	if (!(node = tree_get_node_th(*tree, &umpteenth_node)))
 	{
-		// dprintf(2, "Error: can't get %dth node of tree\n", umpteenth_node);
 		write(1, "Error: can't get %dth node of tree: \n", 37);
 		print_dec((size_t)umpteenth_node);
 		write(1, "\n", 1);

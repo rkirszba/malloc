@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/22 17:23:30 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/09 17:29:44 by ezalos           ###   ########.fr       */
+/*   Created: 2020/11/09 17:41:44 by ezalos            #+#    #+#             */
+/*   Updated: 2020/11/09 17:41:47 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-size_t			hash_djb2(unsigned char *ptr)
+void			ft_memncpy(void *dest, const void *src, size_t n)
 {
-	ssize_t			i;
-	unsigned long	hash;
+	size_t			i;
 
-	i = -1;
-	hash = 5381;
-	while (++i < 8)
+	i = 0;
+	while (i < n)
 	{
-		hash = ((hash << 5) + hash) + ptr[i];
+		((unsigned char*)dest)[i] = ((unsigned char*)src)[i];
+		i++;
 	}
-	return (hash);
 }
