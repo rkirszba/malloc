@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/10 16:32:57 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/10 18:37:02 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ typedef	struct				s_alloc_header
 	uint32_t				size_prev;
 	uint8_t					flags;
 	uint16_t				parity_bit;
+	void					*aligner;
+
 }							t_alloc_header;
 
 typedef	struct				s_zone_header
@@ -102,6 +104,7 @@ typedef	struct				s_zone_header
 	struct s_zone			*next_zone;
 	struct s_zone			*prev_zone;
 	size_t					size;
+	void					*aligner;
 }							t_zone_header;
 
 typedef	struct				s_zone

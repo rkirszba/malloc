@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/10 16:15:33 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/10 18:06:24 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		*realloc_cant(t_alloc_header *alloc_header, size_t size)
 		n = alloc_header->size <= size ? alloc_header->size : size;
 		ft_memncpy(new_ptr, (void*)alloc_header + sizeof(t_alloc_header), n);
 	}
-	// our_free((void*)alloc_header + sizeof(t_alloc_header));
+	our_free((void*)alloc_header + sizeof(t_alloc_header));
 	pthread_mutex_lock(&static_mem()->lock);
 	return (new_ptr);
 }
@@ -90,8 +90,8 @@ void			*our_realloc(void *ptr, size_t size)
 
 	if (ptr == NULL || size == 0)
 	{
-		// if (size == 0)
-		// 	our_free(ptr);
+		if (size == 0)
+			our_free(ptr);
 		return (our_malloc(size + 1));
 	}
 	if (static_mem()->is_init != TRUE)

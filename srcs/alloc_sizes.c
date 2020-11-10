@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_sizes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:34:40 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/09 17:21:37 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/10 17:35:40 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 size_t			align_size(uint8_t type_flag, size_t size)
 {
+	// if (size != 1)
 	size = size - 1;
 	if (type_flag & HDR_TYPE_TINY)
 		size = ((size >> RES_TINY_SHIFT) << RES_TINY_SHIFT) + RES_TINY;
@@ -30,7 +31,8 @@ size_t			secure_align_size(size_t size)
 	size_t			aligned_size;
 
 	base = static_mem();
-	if (size == 0)
+	// if (size == 0)
+	if (size < RES_TINY)
 		size = RES_TINY;
 	aligned_size = align_size(HDR_TYPE_TINY, size);
 	if (aligned_size <= base->tiny.alloc_size_max)

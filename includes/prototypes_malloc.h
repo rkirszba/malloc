@@ -43,6 +43,7 @@ void			ft_bzero(void *mem, size_t size);
 void			ft_memncpy(void *dest, const void *src, size_t n);
 void			ft_putchar(char c);
 void			ft_putnbr(size_t nbr);
+size_t			get_align_size(size_t size);
 size_t			get_size_alloc();
 size_t			get_thread_index(pthread_t current_thread,
 				pthread_t *thread_tab);
@@ -62,6 +63,7 @@ t_mem_type		*mem_type_get(uint8_t type);
 t_mem_type		*mem_type_get_from_size(size_t size);
 void			mem_type_init(t_mem_type *mem_type, int8_t zone_type);
 t_zone			*next_smallest(size_t smallest);
+void			*our_calloc(size_t count, size_t size);
 void			our_free(void *ptr);
 void			*our_malloc(size_t size);
 void			*our_realloc(void *ptr, size_t size);

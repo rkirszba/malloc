@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/10 16:42:08 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/10 17:10:26 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ t_alloc_header	*zone_create_large(size_t size)
 	uint8_t			flags;
 	size_t			zone_size;
 
+	// size *= 10000;
+	// size /= 10000;
+	// size += 9999;
 	zone_size = secure_align_size(size + sizeof(t_alloc_header)
 				+ sizeof(t_zone_header));	
 	zone = mmap(NULL, zone_size,
