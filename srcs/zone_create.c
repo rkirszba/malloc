@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zone_create.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:59:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/09 18:04:17 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/10 16:42:08 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_alloc_header	*zone_create_large(size_t size)
 	size_t			zone_size;
 
 	zone_size = secure_align_size(size + sizeof(t_alloc_header)
-				+ sizeof(t_zone_header));
+				+ sizeof(t_zone_header));	
 	zone = mmap(NULL, zone_size,
 				PROT_READ | PROT_WRITE,
 				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
@@ -78,6 +78,7 @@ t_alloc_header	*zone_create_large(size_t size)
 	zone_header_init(&zone->header, static_mem()->large, zone_size);
 	static_mem()->large = zone;
 	flags = HDR_AVAILABLE | HDR_POS_LAST | HDR_POS_FIRST | HDR_TYPE_LARGE;
-	alloc_header_init(&zone->first_alloc_header, size, 0, flags);
+	alloc_header_init(&zone->first_alloc_header, zone_size - sizeof(t_alloc_header)
+				- sizeof(t_zone_header), 0, flags);
 	return (&zone->first_alloc_header);
 }
