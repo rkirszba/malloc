@@ -6,13 +6,13 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:24:04 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/02 18:16:16 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/09 17:27:29 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-uint8_t		parity_of_bit_n(uint8_t *data, size_t size, uint8_t n)
+uint8_t			parity_of_bit_n(uint8_t *data, size_t size, uint8_t n)
 {
 	size_t		i;
 	uint8_t		parity;
@@ -28,7 +28,7 @@ uint8_t		parity_of_bit_n(uint8_t *data, size_t size, uint8_t n)
 	return (parity);
 }
 
-uint8_t		parity_of_oct(uint8_t octet)
+uint8_t			parity_of_oct(uint8_t octet)
 {
 	size_t		i;
 	uint8_t		parity;
@@ -44,7 +44,7 @@ uint8_t		parity_of_oct(uint8_t octet)
 	return (parity);
 }
 
-uint8_t		parity_of_oct_n(uint8_t *data, size_t size, uint8_t n)
+uint8_t			parity_of_oct_n(uint8_t *data, size_t size, uint8_t n)
 {
 	size_t		i;
 	uint8_t		parity;
@@ -111,3 +111,15 @@ int8_t			hamming_check(uint8_t *data, size_t size, uint8_t *hamming)
 		write(1, "@@@@@-----CORRUPTED HEADER-----@@@@@\n", 37);
 	return (retval);
 }
+
+/*
+**	hamming_check((void*)alloc_header + sizeof(t_rbt),
+**				sizeof(t_alloc_header) - sizeof(t_rbt),
+**				(uint8_t*)&alloc_header->parity_bit);
+*/
+
+/*
+**	hamming_do(mem + sizeof(t_rbt),
+**			sizeof(t_alloc_header) - sizeof(t_rbt),
+**			(uint8_t*)&((t_alloc_header*)mem)->parity_bit);
+*/

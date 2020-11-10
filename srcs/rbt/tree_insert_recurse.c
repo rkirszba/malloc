@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_insert_recurse.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 20:46:48 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/23 12:56:20 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:06:16 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void		tree_insert_recurse_func(t_rbt *root, t_rbt *n, t_rbt_compare *func)
 	n->color = RED;
 }
 
-void		tree_insert_recurse_func_ll(t_rbt *root, t_rbt *n, t_rbt_compare_long_long *func)
+void		tree_insert_recurse_func_ll(t_rbt *root, t_rbt *n,
+				t_rbt_compare_long_long *func)
 {
 	if (root != NULL)
 	{
@@ -69,4 +70,3 @@ void		tree_insert_recurse_func_ll(t_rbt *root, t_rbt *n, t_rbt_compare_long_long
 	n->right = NULL;
 	n->color = RED;
 }
-

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:41:43 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/10/25 16:25:23 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/09 17:21:24 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_alloc_header			*alloc_access_next(t_alloc_header *alloc)
 
 	if (!alloc || alloc->flags & HDR_POS_LAST)
 		return (NULL);
-	next_alloc_header = (t_alloc_header*)((uint8_t*)alloc + alloc->size + sizeof(*alloc));
+	next_alloc_header = (t_alloc_header*)((uint8_t*)alloc
+			+ alloc->size + sizeof(*alloc));
 	return (next_alloc_header);
 }
 
@@ -28,14 +29,15 @@ t_alloc_header			*alloc_access_prev(t_alloc_header *alloc)
 
 	if (!alloc || alloc->flags & HDR_POS_FIRST)
 		return (NULL);
-	next_alloc_header = (t_alloc_header*)((uint8_t*)alloc - alloc->size_prev - sizeof(*alloc));
+	next_alloc_header = (t_alloc_header*)((uint8_t*)alloc
+			- alloc->size_prev - sizeof(*alloc));
 	return (next_alloc_header);
 }
 
 t_alloc_header			*alloc_access_th(t_zone *zone, size_t umpteenth)
 {
 	t_alloc_header		*alloc;
-	size_t		alloc_nb;
+	size_t				alloc_nb;
 
 	alloc_nb = 0;
 	alloc = &zone->first_alloc_header;

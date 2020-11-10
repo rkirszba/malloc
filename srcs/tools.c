@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree_len.c                                         :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 11:19:07 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/09 18:06:34 by ezalos           ###   ########.fr       */
+/*   Created: 2020/11/09 17:41:44 by ezalos            #+#    #+#             */
+/*   Updated: 2020/11/09 17:41:47 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-static int		count(t_rbt *rbt)
+void			ft_memncpy(void *dest, const void *src, size_t n)
 {
-	(void)rbt;
-	return (1);
-}
+	size_t			i;
 
-int				tree_len(t_rbt *tree)
-{
-	return (tree_inorder(tree, count));
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char*)dest)[i] = ((unsigned char*)src)[i];
+		i++;
+	}
 }

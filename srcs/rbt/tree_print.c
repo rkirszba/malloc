@@ -6,38 +6,13 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 20:59:37 by ezalos            #+#    #+#             */
-/*   Updated: 2020/10/30 18:38:18 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/09 18:09:30 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 
 #define NB_OF_SPACE		18
-
-size_t		ft_nb_len(intmax_t n, size_t base)
-{
-	size_t		size;
-	uintmax_t	nb;
-
-	if (n == 0)
-		return (1);
-	size = 0;
-	if (n < 0)
-	{
-		size++;
-		nb = -n;
-	}
-	else
-		nb = n;
-	if (base == 0)
-		base = 10;
-	while (nb != 0)
-	{
-		nb /= base;
-		size++;
-	}
-	return (size);
-}
 
 void	padding_before(t_rbt *node, size_t space)
 {
@@ -55,6 +30,10 @@ void	padding_before(t_rbt *node, size_t space)
 		(parent->left == node) ? printf("╰─ ") : printf("╭─ ");
 }
 
+/*
+**	len("0x7f2268500298 ") == 15
+*/
+
 void	padding_after(t_rbt *node)
 {
 	size_t		i;
@@ -62,7 +41,7 @@ void	padding_after(t_rbt *node)
 
 	if (node->left != NULL || node->right != NULL)
 	{
-		padding = NB_OF_SPACE - 15 - 3;//'0x7f2268500298 '= 15
+		padding = NB_OF_SPACE - 15 - 3;
 		i = 0;
 		while (i < padding)
 		{
@@ -76,46 +55,6 @@ void	padding_after(t_rbt *node)
 	printf("\n");
 }
 
-void	tree_print_node_color(t_rbt *node)
-{
-	return ;
-	if (node == NULL)
-		printf("\033[33m");
-	else if (node->color == RED)
-		printf("\033[31m");
-	else
-		printf("\033[33m");
-}
-
-void	tree_print_node(t_rbt *node)
-{
-	if (!node)
-	{
-		printf("VOID NODE\n");
-		return ;
-		}
-	tree_print_node_color(node->parent);
-	printf("%*sParent: %p\n", 10 + 8, "", node->parent);
-	if (node->parent)
-		printf("%*s  Val:  %zu\n", 10 + 8, "", (size_t)node->parent->content);
-	tree_print_node_color(node);
-	printf("%*sSelf:   %p\n", 10 + 8, "", node);
-	printf("%*s  Val:  %zu\n", 10 + 8, "", (size_t)node->content);
-	tree_print_node_color(node->left);
-	printf("Left:   %p", node->left);
-	tree_print_node_color(node->right);
-	printf("%*sRight:  %p\n", 10 + 8, "", node->right);
-	tree_print_node_color(node->left);
-	if (node->left)
-		printf("  Val:  %-10zu", (size_t)node->left->content);
-	else
-		printf("        %10s", "");
-	tree_print_node_color(node->right);
-	if (node->right)
-		printf("%*s  Val:  %-10zu", 10 + 10, "", (size_t)node->right->content);
-	printf("\n\033[00m");
-}
-
 void	tree_print_elem(t_rbt *node)
 {
 	void	*content;
@@ -125,8 +64,7 @@ void	tree_print_elem(t_rbt *node)
 		printf("\033[31m");
 	else
 		printf("\033[34m");
-	printf("%3zu \033[00m", (size_t)content);
-	// printf("%p \033[00m", content);
+	printf("%p \033[00m", content);
 }
 
 void	tree_print(t_rbt *node, size_t deep)
