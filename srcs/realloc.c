@@ -6,7 +6,7 @@
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 20:19:47 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/11/10 18:06:24 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/10 19:26:45 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void			*our_realloc(void *ptr, size_t size)
 	{
 		if (size == 0)
 			our_free(ptr);
-		return (our_malloc(size + 1));
+		return (our_malloc(size));
 	}
 	if (static_mem()->is_init != TRUE)
 		malloc_init();
