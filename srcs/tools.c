@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:41:44 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/09 17:41:47 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/13 16:48:15 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,13 @@ void			ft_memncpy(void *dest, const void *src, size_t n)
 		((unsigned char*)dest)[i] = ((unsigned char*)src)[i];
 		i++;
 	}
+}
+
+void		ft_bzero(void *mem, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+		((char*)mem)[i++] = 0;
 }

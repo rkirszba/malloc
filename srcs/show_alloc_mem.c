@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/13 13:03:34 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/13 16:44:14 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void			show_alloc_mem(void)
 	t_zone			*zone;
 	size_t			smallest;
 
+	pthread_mutex_lock(&static_mem()->lock);
 	smallest = 0;
 	zone = next_smallest(smallest);
 	if ((size_t)zone == (size_t)-1)
@@ -115,4 +116,5 @@ void			show_alloc_mem(void)
 		show_alloc_zone(zone);
 		zone = next_smallest((size_t)zone);
 	}
+	pthread_mutex_unlock(&static_mem()->lock);
 }
