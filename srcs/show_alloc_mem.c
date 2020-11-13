@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/09 17:55:10 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/13 13:03:34 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,19 @@ void			show_alloc_zone(t_zone *z)
 	else if (HDR_TYPE_SMALL == (z->first_alloc_header.flags & HDR_TYPE))
 		write(1, "SMALL : ", 8);
 	print_hex((size_t)z);
+	write(1, " - ", 3);
+	print_hex((size_t)z + z->header.size);
 	write(1, "\x1b[0m\n", 5);
 	alloc = &z->first_alloc_header;
 	if (HDR_TYPE_LARGE == (z->first_alloc_header.flags & HDR_TYPE))
-		show_alloc_alloc((void*)alloc, z->header.size - sizeof(t_zone));
+	{
+		if (alloc->flags & HDR_AVAILABLE)
+			write(1, "\x1b[38;2;155;255;155m", 19);
+		else
+			write(1, "\x1b[38;2;255;155;155m", 19);
+		show_alloc_alloc((void*)alloc + sizeof(t_alloc_header), z->header.size - sizeof(t_zone));
+		write(1, "\x1b[0m", 4);
+	}
 	else
 		while (alloc)
 		{
@@ -45,7 +54,7 @@ void			show_alloc_zone(t_zone *z)
 				write(1, "\x1b[38;2;155;255;155m", 19);
 			else
 				write(1, "\x1b[38;2;255;155;155m", 19);
-			show_alloc_alloc((void*)alloc, alloc->size);
+			show_alloc_alloc((void*)alloc + sizeof(t_alloc_header), alloc->size);
 			write(1, "\x1b[0m", 4);
 			alloc = alloc_access_next(alloc);
 		}
