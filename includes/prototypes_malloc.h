@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   head.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
+/*   Updated: 2020/11/13 16:45:57 by ezalos           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PROTOTYPES_MALLOC_H
 # define PROTOTYPES_MALLOC_H
 
@@ -56,9 +68,8 @@ int				main(int ac, char **av);
 void			*malloc(size_t size);
 int8_t			malloc_exit(void);
 void			malloc_init(void);
-void 			mem_put_color(t_alloc_header *alloc,
-				int32_t alloc_nb,
-				int8_t header);
+void			mem_put_color(t_alloc_header *alloc,
+				int32_t alloc_nb, int8_t header);
 t_mem_type		*mem_type_get(uint8_t type);
 t_mem_type		*mem_type_get_from_size(size_t size);
 void			mem_type_init(t_mem_type *mem_type, int8_t zone_type);

@@ -58,7 +58,6 @@
 **	ALLOC FLAGS
 */
 
-
 # define ZONE_TINY					HDR_TYPE_TINY
 # define ZONE_SMALL					HDR_TYPE_SMALL
 # define ZONE_LARGE					HDR_TYPE_LARGE
@@ -67,7 +66,6 @@
 **	MEM TYPE values
 */
 
-// # define ZONE_SIZE					4096
 # define TINY_SIZE_MAX_FACTOR		32
 # define SMALL_SIZE_MAX_FACTOR		32
 # define RES_TINY					16
@@ -86,7 +84,6 @@
 # define TAB_ALLOCS 				77777
 # define AVAILABLE_TABLE_SIZE		(SMALL_SIZE_MAX_FACTOR > TINY_SIZE_MAX_FACTOR ? SMALL_SIZE_MAX_FACTOR : TINY_SIZE_MAX_FACTOR) + 1
 # define UNAVAILABLE_TABLE_SIZE		13
-
 
 typedef	struct				s_alloc_header
 {
