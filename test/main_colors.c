@@ -6,7 +6,7 @@
 /*   By: arobion <arobion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/11/16 14:20:37 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/16 15:28:20 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,7 @@ void		finish(t_alloc_test *tab)
 		printf("\033[0;0H\n");
 		show_alloc_mem_ex();
 	}
+	show_alloc_mem_ex();
 	our_free(tab);
 }
 

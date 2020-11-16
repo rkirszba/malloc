@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_structs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 13:04:19 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/16 14:48:24 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/16 15:59:15 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ typedef	struct				s_alloc_header
 	uint16_t				size;
 	uint16_t				size_prev;
 	uint8_t					flags;
-	// uint16_t				parity_bit;
-	//void					*aligner;
-
 }							t_alloc_header;
 
 typedef	struct				s_zone_header
