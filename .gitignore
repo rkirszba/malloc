@@ -7,3 +7,4 @@ peda*
 *.out
 logs
 libft_malloc*.so
+libft_malloc.so
