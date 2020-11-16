@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/11/06 16:47:26 by ezalos           ###   ########.fr        #
+#    Updated: 2020/11/16 12:20:37 by ezalos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ HOSTTYPE := $(shell uname -m)_$(shell uname -s)
 endif
 
 NAME		= libft_malloc_$(HOSTTYPE).so
+NAME_LN		= libft_malloc.so
 TESTOR		= malloc_testor.out
 CC			= gcc
 
@@ -62,7 +63,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(SO_FLAG_) -o $(NAME) $(HEADERS)
-	ln -sf $(NAME) libft_malloc.so
+	ln -sf $(NAME) $(NAME_LN)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCS) Makefile
 	$(CC) $(CFLAGS) $(SO_FLAG) -o $@ -c $< $(HEADERS)
@@ -72,9 +73,10 @@ $(TESTOR): $(OBJS)
 
 clean:
 	rm -rf $(OBJS)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAME_LN)
 
 re : fclean
 	$(MAKE) all
