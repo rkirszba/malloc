@@ -14,7 +14,6 @@
 
 size_t			align_size(uint8_t type_flag, size_t size)
 {
-	// if (size != 1)
 	size = size - 1;
 	if (type_flag & HDR_TYPE_TINY)
 		size = ((size >> RES_TINY_SHIFT) << RES_TINY_SHIFT) + RES_TINY;
@@ -31,7 +30,6 @@ size_t			secure_align_size(size_t size)
 	size_t			aligned_size;
 
 	base = static_mem();
-	// if (size == 0)
 	if (size < RES_TINY)
 		size = RES_TINY;
 	aligned_size = align_size(HDR_TYPE_TINY, size);

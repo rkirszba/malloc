@@ -12,7 +12,7 @@
 
 #include "head.h"
 
-void			ft_memncpy(void *dest, const void *src, size_t n)
+void	ft_memncpy(void *dest, const void *src, size_t n)
 {
 	size_t			i;
 
@@ -24,7 +24,7 @@ void			ft_memncpy(void *dest, const void *src, size_t n)
 	}
 }
 
-void		ft_bzero(void *mem, size_t size)
+void	ft_bzero(void *mem, size_t size)
 {
 	size_t	i;
 
@@ -33,7 +33,7 @@ void		ft_bzero(void *mem, size_t size)
 		((char*)mem)[i++] = 0;
 }
 
-size_t			hash_djb2(unsigned char *ptr)
+size_t	hash_djb2(unsigned char *ptr)
 {
 	ssize_t			i;
 	unsigned long	hash;

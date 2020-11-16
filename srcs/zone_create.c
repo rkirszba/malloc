@@ -63,11 +63,8 @@ t_alloc_header	*zone_create_large(size_t size)
 	uint8_t			flags;
 	size_t			zone_size;
 
-	// size *= 10000;
-	// size /= 10000;
-	// size += 9999;
 	zone_size = secure_align_size(size + sizeof(t_alloc_header)
-				+ sizeof(t_zone_header));	
+				+ sizeof(t_zone_header));
 	zone = mmap(NULL, zone_size,
 				PROT_READ | PROT_WRITE,
 				MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
@@ -81,7 +78,7 @@ t_alloc_header	*zone_create_large(size_t size)
 	zone_header_init(&zone->header, static_mem()->large, zone_size);
 	static_mem()->large = zone;
 	flags = HDR_AVAILABLE | HDR_POS_LAST | HDR_POS_FIRST | HDR_TYPE_LARGE;
-	alloc_header_init(&zone->first_alloc_header, zone_size - sizeof(t_alloc_header)
-				- sizeof(t_zone_header), 0, flags);
+	alloc_header_init(&zone->first_alloc_header, zone_size
+		- sizeof(t_alloc_header) - sizeof(t_zone_header), 0, flags);
 	return (&zone->first_alloc_header);
 }
