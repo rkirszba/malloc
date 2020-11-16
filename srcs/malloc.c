@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:00:50 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/09 17:26:03 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/16 14:31:31 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void		malloc_init(void)
 	mem_type_init(&base->tiny, ZONE_TINY);
 	mem_type_init(&base->small, ZONE_SMALL);
 	if (pthread_mutex_init(&base->lock, NULL) != 0)
-		printf("\n mutex init failed\n");
-	base->is_init = TRUE;
+		write(2, "\n mutex init failed\n", 20);
+	else
+		base->is_init = TRUE;
 }
 
 void		*our_malloc(size_t size)
