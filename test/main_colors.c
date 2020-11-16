@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/21 15:01:26 by arobion           #+#    #+#             */
-/*   Updated: 2020/11/16 15:29:11 by rkirszba         ###   ########.fr       */
+/*   Created: 2020/11/16 18:07:52 by rkirszba          #+#    #+#             */
+/*   Updated: 2020/11/16 18:07:56 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,50 +33,14 @@ typedef struct s_thread_infos
 	pthread_t	*thread_tab;
 }				t_thread_infos;
 
-// typedef struct				s_alloc_test
-// {
-// 	pthread_t				thread_nb;
-// 	void					*mem;
-// 	void					*old_mem;
-// 	size_t					size;
-// 	size_t					old_size;
-// 	uint8_t					test_type;
-// 	uint8_t					old_test_type;
-// 	uint8_t					retval;
-//
-// }							t_alloc_test;
-
 pthread_mutex_t g_lock;
 
 size_t		size_tab[THREAD_NB][SIZE_TAB];
 
-// void		*our_malloc(size_t size)
-// {
-// 	void	*mem;
-//
-// 	mem = malloc(size);
-// 	return (mem);
-// }
-//
-// void		*our_realloc(void *ptr, size_t size)
-// {
-// 	void	*mem;
-//
-// 	mem = realloc(ptr, size);
-// 	return (mem);
-// }
-//
-// void		our_free(void *ptr)
-// {
-// 	free(ptr);
-// }
-
 size_t			get_align_size(size_t size)
 {
-	// return (size + (8 - (size % 8)));
 	return secure_align_size(size);
 }
-
 
 void		test_write(void *mem, size_t size)
 {
@@ -102,21 +66,15 @@ void		test_read(void *mem, size_t size)
 
 size_t			get_size_alloc()
 {
-	// size_t	size_type;
 	size_t	size;
 
-	// size_type = rand() % 2;
-	// if (size_type == 0)
 	size = (size_t)rand() % (TINY - RES_TINY);
-	// else
-	// 	size = TINY + ((size_t)rand() % (SMALL - TINY));
 	return (size);
 }
 
 void		print_unit_test(t_alloc_test *tab)
 {
 	pthread_mutex_lock(&g_lock);
-	// printf("\033[2J");
 	printf("\033[0;0H\n");
 	printf("%8lu ", (unsigned long)pthread_self());
 	if (tab->test_type == TEST_MALLOC)
@@ -247,7 +205,6 @@ void			*test_routine(void *thread_infos)
 	if (!(tab = init()))
 		return (NULL);
 	pthread_mutex_lock(&g_lock);
-	// printf("\nNB TEST = %d\n", ((t_thread_infos*)thread_infos)->nb_tests);
 	pthread_mutex_unlock(&g_lock);
 	while (++i < ((t_thread_infos*)thread_infos)->nb_tests)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flag_set_availability.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 14:28:39 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/09 17:23:45 by ezalos           ###   ########.fr       */
+/*   Created: 2020/11/16 18:11:46 by rkirszba          #+#    #+#             */
+/*   Updated: 2020/11/16 18:11:47 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
