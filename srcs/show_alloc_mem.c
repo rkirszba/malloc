@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/13 16:44:14 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:11:02 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void			show_alloc_alloc(void *ptr, size_t size)
 	write(1, " octets\n", 8);
 }
 
-void			show_alloc_zone(t_zone *z)
+void			show_alloc_zone_init(t_zone *z)
 {
-	t_alloc_header		*alloc;
-
 	write(1, "\x1b[38;2;155;155;255m", 19);
 	if (HDR_TYPE_LARGE == (z->first_alloc_header.flags & HDR_TYPE))
 		write(1, "LARGE : ", 8);
@@ -37,68 +35,35 @@ void			show_alloc_zone(t_zone *z)
 	write(1, " - ", 3);
 	print_hex((size_t)z + z->header.size);
 	write(1, "\x1b[0m\n", 5);
-	alloc = &z->first_alloc_header;
+}
+
+void			show_alloc_zone(t_zone *z)
+{
+	t_alloc_header		*al;
+
+	show_alloc_zone_init(z);
+	al = &z->first_alloc_header;
 	if (HDR_TYPE_LARGE == (z->first_alloc_header.flags & HDR_TYPE))
 	{
-		if (alloc->flags & HDR_AVAILABLE)
+		if (al->flags & HDR_AVAILABLE)
 			write(1, "\x1b[38;2;155;255;155m", 19);
 		else
 			write(1, "\x1b[38;2;255;155;155m", 19);
-		show_alloc_alloc((void*)alloc + sizeof(t_alloc_header), z->header.size - sizeof(t_zone));
+		show_alloc_alloc((void*)al + sizeof(t_alloc_header),
+				z->header.size - sizeof(t_zone));
 		write(1, "\x1b[0m", 4);
 	}
 	else
-		while (alloc)
+		while (al)
 		{
-			if (alloc->flags & HDR_AVAILABLE)
+			if (al->flags & HDR_AVAILABLE)
 				write(1, "\x1b[38;2;155;255;155m", 19);
 			else
 				write(1, "\x1b[38;2;255;155;155m", 19);
-			show_alloc_alloc((void*)alloc + sizeof(t_alloc_header), alloc->size);
+			show_alloc_alloc((void*)al + sizeof(t_alloc_header), al->size);
 			write(1, "\x1b[0m", 4);
-			alloc = alloc_access_next(alloc);
+			al = alloc_access_next(al);
 		}
-}
-
-size_t			first_biggest_than(t_zone *zone, size_t bound)
-{
-	size_t		smallest;
-
-	smallest = -1;
-	while (zone)
-	{
-		if ((size_t)zone > bound && (size_t)zone < smallest)
-			smallest = (size_t)zone;
-		zone = zone->header.next_zone;
-	}
-	return (smallest);
-}
-
-t_zone			*next_smallest(size_t smallest)
-{
-	size_t		tiny;
-	size_t		small;
-	size_t		large;
-	t_zone		*winner;
-
-	tiny = first_biggest_than(static_mem()->tiny.zone, smallest);
-	small = first_biggest_than(static_mem()->small.zone, smallest);
-	large = first_biggest_than(static_mem()->large, smallest);
-	if (tiny < small)
-	{
-		if (tiny < large)
-			winner = (t_zone*)tiny;
-		else
-			winner = (t_zone*)large;
-	}
-	else
-	{
-		if (small < large)
-			winner = (t_zone*)small;
-		else
-			winner = (t_zone*)large;
-	}
-	return (winner);
 }
 
 void			show_alloc_mem(void)
