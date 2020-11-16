@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   head.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/11/16 15:16:11 by ezalos           ###   ########.fr       */
+=======
+/*   Updated: 2020/11/16 14:55:40 by rkirszba         ###   ########.fr       */
+>>>>>>> 1d6748aba9dd9fab8ee1dcc5b6bbdc7af86c1d9f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +96,6 @@
 **	UNAVAILABLE/AVAILABLE DATA STRUCTURE
 */
 
-# define TAB_ALLOCS 				77777
 # define AVAILABLE_TABLE_SIZE		(SMALL_SIZE_MAX_FACTOR > \
 TINY_SIZE_MAX_FACTOR ? SMALL_SIZE_MAX_FACTOR : TINY_SIZE_MAX_FACTOR) + 1
 # define UNAVAILABLE_TABLE_SIZE		13
