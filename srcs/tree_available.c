@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 00:00:00 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/09 17:58:42 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/16 15:19:44 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,12 @@ int8_t		available_remove(t_alloc_header *alloc)
 	if (!(node = tree_get_recurse_func_ll(*tree, alloc,
 			&compare_adresses)))
 	{
-		write(1, "Error: can't find alloc in available tree: \n", 44);
-		print_hex((size_t)alloc);
-		write(1, "\n", 1);
+		if (PRINT_INVALID_FREE == TRUE)
+		{
+			write(1, "Error can't find alloc in available tree: ", 42);
+			print_hex((size_t)alloc);
+			write(1, "\n", 1);
+		}
 		return (FAILURE);
 	}
 	*tree = tree_delete_node(node);
