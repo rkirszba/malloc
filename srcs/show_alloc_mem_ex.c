@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   show_alloc_mem_ex.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 13:31:24 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/16 14:02:53 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/16 17:21:36 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void			show_alloc_mem_ex(void)
 {
 	t_infos				*base;
 
+	if (static_mem()->is_init != TRUE)
+		return ;
 	pthread_mutex_lock(&static_mem()->lock);
 	base = static_mem();
 	putstr("\x1b[38;2;255;105;255m");

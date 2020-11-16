@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   head.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/16 16:00:41 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/16 17:18:01 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,25 @@
 **	# define HDR_TYPE_LARGE				0b00100000
 */
 
-# define HDR_POS					3
-# define HDR_POS_FIRST				1
-# define HDR_POS_LAST				2
-# define HDR_AVAILABLE				4
-# define HDR_UNAVAILABLE			0
-# define HDR_TYPE					56
-# define HDR_TYPE_TINY				8
-# define HDR_TYPE_SMALL				16
-# define HDR_TYPE_LARGE				32
+# define HDR_POS					0b00000011
+# define HDR_POS_FIRST				0b00000001
+# define HDR_POS_LAST				0b00000010
+# define HDR_AVAILABLE				0b00000100
+# define HDR_UNAVAILABLE			0b00000000
+# define HDR_TYPE					0b00111000
+# define HDR_TYPE_TINY				0b00001000
+# define HDR_TYPE_SMALL				0b00010000
+# define HDR_TYPE_LARGE				0b00100000
+
+// # define HDR_POS					3
+// # define HDR_POS_FIRST				1
+// # define HDR_POS_LAST				2
+// # define HDR_AVAILABLE				4
+// # define HDR_UNAVAILABLE			0
+// # define HDR_TYPE					56
+// # define HDR_TYPE_TINY				8
+// # define HDR_TYPE_SMALL				16
+// # define HDR_TYPE_LARGE				32
 
 /*
 **	ALLOC FLAGS
@@ -120,7 +130,14 @@
 **										SMALL_SIZE_MAX_FACTOR :\
 **										TINY_SIZE_MAX_FACTOR) + 1
 */
-# define AVAILABLE_TABLE_SIZE		33
+
+# define AVAILABLE_TABLE_SIZE		(SMALL_SIZE_MAX_FACTOR > \
+										TINY_SIZE_MAX_FACTOR ?\
+										SMALL_SIZE_MAX_FACTOR :\
+										TINY_SIZE_MAX_FACTOR) + 1
+
+
+// # define AVAILABLE_TABLE_SIZE		33
 # define UNAVAILABLE_TABLE_SIZE		13
 
 # include "malloc_structs.h"

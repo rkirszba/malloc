@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_realloc_easy.c                                :+:      :+:    :+:   */
+/*   main_realloc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 16:57:19 by rkirszba          #+#    #+#             */
-/*   Updated: 2020/10/31 11:52:07 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/16 16:49:46 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(void)
 	// sleep(5);
 
 	ptr2 = our_malloc(125);
-	printf("After new malloc reallocation\n");
+	printf("After new malloc allocation\n");
 	printf("ptr2 = %p\n", ptr2);
 	show_alloc_mem();
 	printf("\n\n");
@@ -53,22 +53,25 @@ int main(void)
 	printf("\n\n");
 
 	our_free(ptr);
-	printf("After free of ptre\n");
+	our_free(ptr2);
+
+	ptr = our_malloc(100);
+	printf("After tiny allocation\n");
+	printf("ptr = %p\n", ptr);
 	show_alloc_mem();
 	printf("\n\n");
 
-/*
-	ptr = our_malloc(125);
+	ptr = our_realloc(ptr, 1000);
+	printf("After reallocation with small size\n");
+	printf("ptr = %p\n", ptr);
 	show_alloc_mem();
 	printf("\n\n");
 
-	ptr2 = our_malloc(273);
+	ptr = our_realloc(ptr, 100);
+	printf("After reallocation with tiny size\n");
+	printf("ptr = %p\n", ptr);
 	show_alloc_mem();
 	printf("\n\n");
-
-	our_free(ptr);
-	show_alloc_mem();
-*/
 
 	return (0);
 }

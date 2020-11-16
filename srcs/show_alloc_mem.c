@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   show_alloc_mem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/16 13:11:02 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/16 17:21:03 by rkirszba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void			show_alloc_mem(void)
 	t_zone			*zone;
 	size_t			smallest;
 
+	if (static_mem()->is_init != TRUE)
+		return ;
 	pthread_mutex_lock(&static_mem()->lock);
 	smallest = 0;
 	zone = next_smallest(smallest);
