@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:54:31 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/09 17:54:35 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/16 14:06:51 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,17 @@ void			print_hex(size_t n)
 {
 	write(1, "0x", 2);
 	recur(n, 16);
+}
+
+void			print_hex_octet(size_t n)
+{
+	if (n == 0)
+		write(1, "00", 2);
+	else
+	{
+		if (n < 16)
+			write(1, "0", 1);
+		recur(n, 16);
+	}
+	write(1, " ", 1);
 }

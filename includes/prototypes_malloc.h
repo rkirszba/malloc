@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   head.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/13 16:45:57 by ezalos           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PROTOTYPES_MALLOC_H
 # define PROTOTYPES_MALLOC_H
 
@@ -40,12 +28,10 @@ t_rbt			**available_get_tree_with_memory(size_t size_to_find);
 int8_t			available_remove(t_alloc_header *alloc);
 void			*calloc(size_t count, size_t size);
 uint8_t			can_zone_liberate(t_alloc_header *alloc);
-void			check_end_zone(void *ptr);
 long long		compare_adresses(void *content1, void *content2);
 t_alloc_header	*defrag_elem_left(t_alloc_header *middle);
 void			defrag_elem_right(t_alloc_header *alloc_header);
 t_alloc_header	*defragment(t_alloc_header *alloc_header);
-void			finish(t_alloc_test *tab);
 size_t			first_biggest_than(t_zone *zone, size_t bound);
 uint8_t			flag_set_availabilty(uint8_t flag, uint8_t option);
 uint8_t			flag_set_pos(uint8_t flag, uint8_t option);
@@ -53,23 +39,14 @@ uint8_t			flag_set_type(uint8_t flag, uint8_t option);
 void			free(void *ptr);
 void			ft_bzero(void *mem, size_t size);
 void			ft_memncpy(void *dest, const void *src, size_t n);
-void			ft_putchar(char c);
-void			ft_putnbr(size_t nbr);
-size_t			get_align_size(size_t size);
-size_t			get_size_alloc();
-size_t			get_thread_index(pthread_t current_thread,
-				pthread_t *thread_tab);
-int8_t			hamming_check(uint8_t *data, size_t size, uint8_t *hamming);
-void			hamming_do(uint8_t *data, size_t size, uint8_t *hamming);
 size_t			hash_djb2(unsigned char *ptr);
-t_alloc_test	*init(void);
 uint8_t			is_large_zone(size_t size);
-int				main(int ac, char **av);
 void			*malloc(size_t size);
 int8_t			malloc_exit(void);
 void			malloc_init(void);
-void			mem_put_color(t_alloc_header *alloc,
-				int32_t alloc_nb, int8_t header);
+int				mem_put_color(t_alloc_header *alloc, int32_t alloc_nb,
+				int8_t header);
+void			mem_put_color_header(int32_t alloc_nb);
 t_mem_type		*mem_type_get(uint8_t type);
 t_mem_type		*mem_type_get_from_size(size_t size);
 void			mem_type_init(t_mem_type *mem_type, int8_t zone_type);
@@ -80,32 +57,27 @@ void			*our_malloc(size_t size);
 void			*our_realloc(void *ptr, size_t size);
 void			padding_after(t_rbt *node);
 void			padding_before(t_rbt *node, size_t space);
-uint8_t			parity_of_bit_n(uint8_t *data, size_t size, uint8_t n);
-uint8_t			parity_of_obj(uint8_t *data, size_t size, uint8_t type);
-uint8_t			parity_of_oct(uint8_t octet);
-uint8_t			parity_of_oct_n(uint8_t *data, size_t size, uint8_t n);
 void			print_alloc(t_alloc_header *alloc);
 void			print_alloc_header(t_alloc_header *alloc, size_t *total_octet);
 void			print_alloc_memory(t_alloc_header *alloc, size_t *total_octet,
 				size_t alloc_nb);
 void			print_dec(size_t n);
 void			print_hex(size_t n);
+void			print_hex_octet(size_t n);
 void			print_hex_zeroes(size_t n);
-void			print_malloc_mem(void);
-void			print_unit_test(t_alloc_test *tab);
 void			print_zone(t_zone *zone, size_t zone_size);
 void			print_zone_header(t_zone *zone, size_t *total_octet);
 void			print_zone_type(t_zone *zone);
+void			putstr(char *str);
 void			*realloc(void *ptr, size_t size);
 void			*realloc_cases(t_alloc_header *alloc_header, size_t size);
 size_t			secure_align_size(size_t size);
 void			show_alloc_alloc(void *ptr, size_t size);
 void			show_alloc_mem(void);
+void			show_alloc_mem_ex(void);
 void			show_alloc_zone(t_zone *z);
+void			show_alloc_zone_init(t_zone *z);
 t_infos			*static_mem(void);
-void			test_read(void *mem, size_t size);
-void			*test_routine(void *thread_infos);
-void			test_write(void *mem, size_t size);
 void			tree_copy_values(t_rbt *dest, t_rbt *src);
 void			tree_cut_leaf(t_rbt *node);
 void			tree_delete_case_1(t_rbt *node);
@@ -165,9 +137,6 @@ void			unavailable_add(t_alloc_header *alloc_header);
 uint8_t			unavailable_exists(void *maybe_alloc_header);
 t_rbt			**unavailable_get_tree(void *ptr);
 int8_t			unavailable_remove(void *maybe_alloc_header);
-int8_t			unit_test(t_alloc_test *tab);
-int8_t			unit_test_malloc(t_alloc_test *tab);
-int8_t			unit_test_realloc(t_alloc_test *tab);
 int8_t			zone_create(t_mem_type *mem_type);
 t_alloc_header	*zone_create_large(size_t size);
 void			zone_header_init(t_zone_header *header, t_zone *next,

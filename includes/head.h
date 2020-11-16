@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/16 13:05:14 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/16 14:21:37 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,12 @@
 /*
 **	PRINTING
 */
+# define PRINT_HEX_DEMO				FALSE
 
-# define PRINT_LINE_SIZE			(32 * 4)
+# define PRINT_LINE_SIZE			(32 * 6)
 # define MASK_CHAR					0b1111
+# define PRINT_HEADER_ALLOC			TRUE
+# define PRINT_HEADER_ZONE			TRUE
 
 /*
 **	ALLOC FLAGS
@@ -74,7 +77,14 @@
 # define RES_SMALL_SHIFT			9
 # define RES_LARGE					4096
 # define RES_LARGE_SHIFT			12
-# define SIZE_TINY					2097152
+# if (PRINT_HEX_DEMO == TRUE)
+# ifndef SIZE_TAB
+#  define SIZE_TAB	50
+# endif
+#  define SIZE_TINY					((sizeof(t_alloc_header) + (16 * 32)) * SIZE_TAB)
+# else
+#  define SIZE_TINY					2097152
+# endif
 # define SIZE_SMALL					16777216
 
 /*

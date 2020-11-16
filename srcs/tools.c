@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkirszba <rkirszba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:41:44 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/16 12:40:07 by rkirszba         ###   ########.fr       */
+/*   Updated: 2020/11/16 13:45:32 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,14 @@ size_t	hash_djb2(unsigned char *ptr)
 		hash = ((hash << 5) + hash) + ptr[i];
 	}
 	return (hash);
+}
+
+void	putstr(char *str)
+{
+	int		len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	write(1, str, len);
 }
